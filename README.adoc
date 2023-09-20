@@ -1,0 +1,32 @@
+
+= SAE-S5.01
+:toc:
+
+
+
+== Equipe
+
+Le projet est réalisé par::
+
+- https://github.com/Zekoko[Bastien BALMES] SCRUM master
+- https://github.com/EnzoMancini[Enzo Mancini] Product owner
+- https://github.com/Chris-973[Chrispher MARIE-ANGÉLIQUE] DEVDEV
+
+
+== Réalisations 
+
+.Vous trouverez ci-dessous les liens vers les différentes réalisations effectuée par notre groupe :
+
+REMPLIR
+
+== Gestion de projet
+
+- https://github.com/Chris-973/SAE-S5.01---Gestion-des-Vacataires/tree/main/Doc[Dossier des documentation]
+
+- Version courante : https://github.com/Chris-973/SAE-S5.01---Gestion-des-Vacataires/releases/tag/V.2[Sprint 2]
+
+- https://github.com/Chris-973/SAE-S5.01---Gestion-des-Vacataires/tree/main/Doc/Backlog-Produit-Site-Vacataires.adoc[Backlog produit gestion des vacataires]
+
+- https://github.com/Chris-973/SAE-S5.01---Gestion-des-Vacataires/labels/US[Liste user stories]
+
+
