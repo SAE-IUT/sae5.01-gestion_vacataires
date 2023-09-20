@@ -21,7 +21,7 @@ REMPLIR
 
 == Gestion de projet
 
-- https://github.com/Chris-973/SAE-S5.01---Gestion-des-Vacataires/tree/main/Doc[Dossier des documentation]
+- https://github.com/SAE-IUT/sae5.01-gestion_vacataires/tree/main/Doc[Dossier des documentation]
 
 - Version courante : https://github.com/Chris-973/SAE-S5.01---Gestion-des-Vacataires/releases/tag/V.2[Sprint 2]
 
