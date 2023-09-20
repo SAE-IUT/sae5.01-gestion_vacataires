@@ -23,10 +23,10 @@ REMPLIR
 
 - https://github.com/SAE-IUT/sae5.01-gestion_vacataires/tree/main/Doc[Dossier des documentation]
 
-- Version courante : https://github.com/Chris-973/SAE-S5.01---Gestion-des-Vacataires/releases/tag/V.2[Sprint 2]
+- Version courante : https://github.com/SAE-IUT/sae5.01-gestion_vacataires/releases/tag/V.2[Sprint 2]
 
-- https://github.com/Chris-973/SAE-S5.01---Gestion-des-Vacataires/tree/main/Doc/Backlog-Produit-Site-Vacataires.adoc[Backlog produit gestion des vacataires]
+- https://github.com/SAE-IUT/sae5.01-gestion_vacataires/tree/main/Doc/Backlog-Produit-Site-Vacataires.adoc[Backlog produit gestion des vacataires]
 
-- https://github.com/Chris-973/SAE-S5.01---Gestion-des-Vacataires/labels/US[Liste user stories]
+- https://github.com/SAE-IUT/sae5.01-gestion_vacataires/labels/US[Liste user stories]
 
 
