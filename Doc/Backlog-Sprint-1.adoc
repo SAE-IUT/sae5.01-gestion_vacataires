@@ -1,0 +1,10 @@
+= Backlog sprint 1 du site de gestion des vacataires, réalisé par Bastien Balmes.
+
+== Site de gestion des vacataires
+
+|=======
+|User Story |Tache associé|Estimation temps (en H)
+|En tant qu’administrateur je peux consulter la liste des vacataires| Création d'une page "vacataire", plus ajout de style avec bootstrap sur la page|5
+|En tant qu’administrateur je peux consulter la liste des cours| Création d'une page "cours", plus ajout de style avec bootstrap sur la page|5
+|En tant qu’administrateur, je peux créer un vacataire|Ajout d'un bouton permettant de créer des vacataires|3
+|=======

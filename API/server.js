@@ -10,7 +10,6 @@ app.get('/', (req, res) => {
   res.status(404).send("ERROR")
 })
 
-// GET the tutors data
 app.get('/vacataires', (req, res) => {
     res.status(200).json({
       vacataires: [
@@ -76,7 +75,7 @@ app.get('/vacataires', (req, res) => {
           "status": "admis"
         }
       ],
-
+      ]
     }
     )
 })
@@ -134,7 +133,6 @@ app.get('/cours', (req, res) => {
   }
   )
 })
-
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
