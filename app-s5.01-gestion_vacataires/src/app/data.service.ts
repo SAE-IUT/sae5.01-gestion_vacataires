@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DataService {
 
-  private apiUrl  = 'http://localhost:3000';
+  private apiUrl  = 'https://sae5-01-gestion-vacataires-api.vercel.app';
 
   constructor(private http: HttpClient) {}
 
