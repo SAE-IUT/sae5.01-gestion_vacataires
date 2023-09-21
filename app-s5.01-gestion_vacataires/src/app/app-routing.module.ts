@@ -6,7 +6,7 @@ import { LesCoursComponent } from './pages/les-cours/les-cours.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
-  { path : '', component: AccueilComponent },
+  { path : '', component: VacatairesComponent },
   { path: 'vacataires', component:VacatairesComponent },
   { path: 'les-cours', component:LesCoursComponent },
   { path: '404', component:NotFoundComponent },
