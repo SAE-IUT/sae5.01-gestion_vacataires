@@ -10,6 +10,7 @@ app.get('/', (req, res) => {
   res.status(404).send("ERROR")
 })
 
+// GET the tutors data
 app.get('/vacataires', (req, res) => {
     res.status(200).json({
       vacataires: [
@@ -74,10 +75,66 @@ app.get('/vacataires', (req, res) => {
           ],
           "status": "admis"
         }
-      ]
+      ],
+
     }
     )
 })
+
+// GET the tutors data
+app.get('/cours', (req, res) => {
+  res.status(200).json({
+    cours: [
+      {
+        "id": 1,
+        "name": "Développement Avancée",
+        "department": "BUT2",
+        "tutors": [
+          "JMB",
+          "LC"
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Archi réseau",
+        "department": "BUT3",
+        "tutors": [
+          "JMB"
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Base de données",
+        "department": "BUT1",
+        "tutors": [
+          "EP",
+          "LC"
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Base de données",
+        "department": "BUT1",
+        "tutors": [
+          "EP",
+          "LC"
+        ]
+      },
+      {
+        "id": 5 ,
+        "name": "Base de données",
+        "department": "BUT1",
+        "tutors": [
+          "EP",
+          "LC"
+        ]
+      }
+    
+    ]
+  }
+  )
+})
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

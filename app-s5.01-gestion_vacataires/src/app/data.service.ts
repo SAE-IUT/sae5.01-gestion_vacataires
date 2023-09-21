@@ -14,7 +14,7 @@ export class DataService {
     return this.http.get(this.apiUrl + "/vacataires")
   }
 
-  getCourses() {
-    return this.http.get(this.apiUrl + "/courses")
+  getCours() {
+    return this.http.get(this.apiUrl + "/cours")
   }
 }
