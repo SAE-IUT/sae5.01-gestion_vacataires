@@ -23,11 +23,6 @@ L'application : https://sae5-01-gestion-vacataires.vercel.app/
 
 - https://github.com/SAE-IUT/sae5.01-gestion_vacataires/tree/main/Doc[Dossier des documentation]
 
-
-- Version courante : https://github.com/Chris-973/SAE-S5.01---Gestion-des-Vacataires/releases/tag/V.1[Sprint 1]
-
-- Liste user storie si on fait ????? et % restant
-
 - Version courante : https://github.com/SAE-IUT/sae5.01-gestion_vacataires/releases/tag/V.2[Sprint 2]
 
 - https://github.com/SAE-IUT/sae5.01-gestion_vacataires/tree/main/Doc/Backlog-Produit-Site-Vacataires.adoc[Backlog produit gestion des vacataires]
