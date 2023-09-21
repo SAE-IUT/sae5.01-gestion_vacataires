@@ -13,7 +13,7 @@ export class VacataireComponent {
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.dataService.getData().subscribe((data: any) => {
+    this.dataService.getVacataires().subscribe((data: any) => {
       this.vacataires = data.vacataires; // récupère les données des vacataires du fichier JSON et les ajoute dans le tab vacataires[]
     });
   }

@@ -13,7 +13,7 @@ export class CoursComponent {
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.dataService.getData().subscribe((data: any) => {
+    this.dataService.getCours().subscribe((data: any) => {
       this.cours = data.cours; // récupère les données des cours du fichier JSON et les ajoute dans le tab cours[]
     });
   }

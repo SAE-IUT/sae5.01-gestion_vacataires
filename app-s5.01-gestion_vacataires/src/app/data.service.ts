@@ -6,11 +6,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class DataService {
 
-  private dataUrl = 'assets/data.JSON';
+  private apiUrl  = 'https://sae5-01-gestion-vacataires-api.vercel.app';
 
   constructor(private http: HttpClient) {}
 
-  getData() {
-    return this.http.get(this.dataUrl)
+  getVacataires() {
+    return this.http.get(this.apiUrl + "/vacataires")
+  }
+
+  getCours() {
+    return this.http.get(this.apiUrl + "/cours")
   }
 }

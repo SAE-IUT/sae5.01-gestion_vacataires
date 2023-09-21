@@ -95,12 +95,6 @@
             ],
             "scripts": []
           }
-        },
-        "deploy": {
-          "builder": "angular-cli-ghpages:deploy",
-          "options": {
-            "baseHref": "/SAE-S5.01---Gestion-des-Vacataires/"
-          }
         }
       }
     }
