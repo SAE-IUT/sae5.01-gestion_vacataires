@@ -23,11 +23,8 @@ export class AccueilComponent {
     
   }
 
-  helloWorld(id: number){
-    const vacataire: any[] = this.vacataires[id]
-    console.log(vacataire);
-    
-
+  helloWorld(){
+    console.log(this.vacataires);
   }
 
 }

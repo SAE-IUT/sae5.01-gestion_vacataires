@@ -10,6 +10,8 @@ import { LesCoursComponent } from './pages/les-cours/les-cours.component';
 import { AccueilComponent } from './pages/accueil/accueil.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TestsComponent } from './components/tests/tests.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,12 +21,14 @@ import { HttpClientModule } from '@angular/common/http';
     VacatairesComponent,
     LesCoursComponent,
     AccueilComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    TestsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

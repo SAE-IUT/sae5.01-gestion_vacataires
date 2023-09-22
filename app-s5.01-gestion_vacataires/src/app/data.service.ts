@@ -17,4 +17,8 @@ export class DataService {
   getCours() {
     return this.http.get(this.apiUrl + "/cours")
   }
+
+  createVacataire(formData: any) {
+    return this.http.post(this.apiUrl + '/vacataires', formData); // Envoie les données du formulaire en tant que POST à votre API
+  }
 }
