@@ -1,5 +1,6 @@
 import { NonNullAssert } from '@angular/compiler';
 import { Component } from '@angular/core';
+import { DataService } from 'src/app/data.service';
 
 @Component({
   selector: 'app-tests',
@@ -8,22 +9,73 @@ import { Component } from '@angular/core';
 })
 export class TestsComponent {
   form: any = {
-    email: null,
-    password: null
+    identitie: "",
+    name: "",
+    lastName: "",
+    abbreviation: "",
+    department: [] = [],
+    email: "",
+    skills: [] = [],
+    socials: [] = [],
+    status: ""
   }
 
-  constructor() {}
+  constructor(private dataService: DataService) {}
+
+  vacataires: any[] = [];
+  
+  formData: any[] = []
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
+    this.dataService.getVacataires().subscribe((data: any) => {
+      this.vacataires = data.vacataires; // récupère les données des vacataires du fichier JSON et les ajoute dans le tab vacataires[]
+      console.log(this.vacataires);
+    });
     
   }
 
+  splitData() {
+    console.log("slipt");
+    // Vérifiez si form.department existe et n'est pas une chaîne vide
+    if (this.form.department && this.form.department.trim() !== ''
+        && this.form.skills && this.form.skills.trim() !== ''
+        && this.form.socials && this.form.socials.trim() !== '') {
+
+      // Utilisez split() pour diviser la chaîne par ';'
+      this.form.department = this.form.department.split(';');
+      this.form.skills = this.form.skills.split(';');
+      this.form.socials = this.form.socials.split(';');
+
+    } else {
+      // Réinitialisez le tableau si la chaîne est vide ou inexistante
+      this.form.department = [];
+      this.form.skills = [];
+      this.form.socials = [];
+    }
+  }
+
   onSubmit() {
-    const email = this.form.email;
-    const password = this.form.password;
-    console.log(this.form.email + "\n" + this.form.password);
-  
+    let ID: number = 0;
+    this.splitData()
+
+    for (let index = 0; index < this.vacataires.length; index++) {
+      const vacataire = this.vacataires[index];
+      ID = vacataire.id + 1
+    }
+            
+    this.formData.push({
+      ID,
+      name: this.form.name,
+      lastName: this.form.lastName,
+      abbreviation: this.form.abbreviation,
+      department: this.form.department,
+      email : this.form.email,
+      skills: this.form.skills,
+      socials: this.form.socials,
+      status: this.form.status
+    })
+
+    console.log(this.formData);
+
   }
 }
