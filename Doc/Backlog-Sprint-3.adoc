@@ -1,4 +1,4 @@
-= Backlog sprint 1 du site de gestion des vacataires, réalisé par Bastien Balmes.
+= Backlog sprint 2 du site de gestion des vacataires, réalisé par Bastien Balmes.
 
 == Site de gestion des vacataires
 
