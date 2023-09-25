@@ -1,0 +1,14 @@
+= Backlog sprint 1 du site de gestion des vacataires, réalisé par Bastien Balmes.
+
+== Site de gestion des vacataires
+
+|=======
+|User Story |Tache associé|Estimation temps (en H)
+|En tant qu’administrateur, je peux créer un vacataire afin de le sauvegarder dans une API|Faire en sorte que les informations quand on créé un vacataire s'enregistre|2
+|En tant qu’administrateur, je peux supprimer un vacataire afin de ne plus l’avoir dans notre API|Faire en sorte que les informations soient supprimée à la suppression d'un vacataire|2
+|En tant qu’administrateur, je peux modifier un vacataire afin de pouvoir mettre à jour ces informations personnelles|Faire en sorte que quand on modifié les informations d'un vacataire celle-ci se mettent à jour dans l'API|3
+|En tant qu’administrateur, je peux affecter un vacataire à un cours afin qu’un vacataire puisse effectuer ce/ces cours en question|Faire en sorte de pouvoir associer un vacataire à un cours et de l'enregistrer dans l'API|2
+|En tant qu’administrateur, je peux désaffecter un vacataire à un cours afin de le retirer de ce cours|Faire en sorte de désaffecter un vacataire d'un cours et enregistrer le changement|2
+|En tant qu’administrateur, je peux créer un module afin de mettre à jour la liste de modules existants|Faire en sorte que les informations quand on créé un module s'enregistre|2
+
+|=======
