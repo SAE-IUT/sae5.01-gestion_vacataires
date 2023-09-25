@@ -12,6 +12,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TestsComponent } from './components/tests/tests.component';
 import { FormsModule } from '@angular/forms';
+import { Test2Component } from './test2/test2.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     LesCoursComponent,
     AccueilComponent,
     NotFoundComponent,
-    TestsComponent
+    TestsComponent,
+    Test2Component
   ],
   imports: [
     BrowserModule,

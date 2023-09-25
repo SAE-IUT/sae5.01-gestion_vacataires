@@ -1,88 +1,11 @@
-identitie : {{form.identitie}}
-name : {{form.name}}
-lastName : {{form.lastName}}
-abbreviation : {{form.abbreviation}}
-department : {{form.department}}
-email : {{form.email}}
-skills : {{form.skills}}
-socials : {{form.socials}}
-status : {{form.status}}
-
 <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
     
     <div class="group">
         <label for="name">name :</label>
         <input type="text" name="name" id="name" [(ngModel)]="form.name" #name="ngModel" required>
-        <div class="form_error" *ngIf="lastName.errors && f.submitted">
-            name is required
-        </div>
     </div>
 
-    <div class="group">
-        <label for="lastName">lastName :</label>
-        <input type="text" name="lastName" id="lastName" [(ngModel)]="form.lastName" #lastName="ngModel" required>
-        <div class="form_error" *ngIf="lastName.errors && f.submitted">
-            lastName is required
-        </div>
-    </div>
-
-    <div class="group">
-        <label for="abbreviation">abbreviation :</label>
-        <input type="text" name="abbreviation" id="abbreviation" [(ngModel)]="form.abbreviation" #abbreviation="ngModel" required>
-        <div class="form_error" *ngIf="abbreviation.errors && f.submitted">
-            abbreviation is required
-        </div>
-    </div>
-
-    <div class="group">
-        <label for="department">department :</label>
-        <input type="text" name="department" id="department" [(ngModel)]="form.department" #department="ngModel" required>
-        <div class="form_error" *ngIf="department.errors && f.submitted">
-            department is required
-        </div>
-    </div>
-
-    <div class="group">
-        <label for="email">email :</label>
-        <input type="text" name="email" id="email" [(ngModel)]="form.email" #email="ngModel" required>
-        <div class="form_error" *ngIf="email.errors && f.submitted">
-            email is required
-        </div>
-    </div>
-
-    <div class="group">
-        <label for="skills">skills :</label>
-        <input type="text" name="email" id="skills" [(ngModel)]="form.skills" #skills="ngModel" required>
-        <div class="form_error" *ngIf="skills.errors && f.submitted">
-            skills is required
-        </div>
-    </div>
-
-    <div class="group">
-        <label for="socials">socials :</label>
-        <input type="text" name="socials" id="socials" [(ngModel)]="form.socials" #socials="ngModel" required>
-        <div class="form_error" *ngIf="socials.errors && f.submitted">
-            socials is required
-        </div>
-    </div>
-
-    <div class="group">
-        <label for="status">status :</label>
-        <input type="text" name="email" id="status" [(ngModel)]="form.status" #status="ngModel" required>
-        <div class="form_error" *ngIf="status.errors && f.submitted">
-            status is required
-        </div>
-    </div>
-
-    <div class="group">
-        <button>Login</button>
-    </div>
+    <button class="button btn btn-primary">
+        click me !
+    </button>
 </form>
-
-<button class="button btn btn-primary" (click)="onSubmit()">
-    click me !
-</button>
-
-<button>
-    tests
-</button>
