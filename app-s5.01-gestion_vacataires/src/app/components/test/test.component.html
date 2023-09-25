@@ -1,0 +1,9 @@
+<form (ngSubmit)="createVacataire()">
+    <div class="form-group">
+      <label for="name">Prénom:</label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="newVacataire.name">
+    </div>
+    <!-- Ajoutez d'autres champs ici (lastName, department, email, skills, socials, status) -->
+  
+    <button type="submit" class="btn btn-primary">Créer Vacataire</button>
+  </form>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Vacataire } from './models/vacataire';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +19,8 @@ export class DataService {
     return this.http.get(this.apiUrl + "/cours")
   }
 
-  // createVacataire(data: any[]) {
-  //   return this.http.post(this.apiUrl + '/tests', formData); // Envoie les données du formulaire en tant que POST à votre API
-  //   console.log("createVacataire");
-  //   return this.http.post(this.apiUrl + "/tests", data)
-  // }
+  createVacataire(vacataire: Vacataire) {
+    return this.http.post(`${this.apiUrl}/vacataires`, vacataire);
+  }
+
 }

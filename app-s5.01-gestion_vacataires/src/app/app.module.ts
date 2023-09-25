@@ -10,9 +10,8 @@ import { LesCoursComponent } from './pages/les-cours/les-cours.component';
 import { AccueilComponent } from './pages/accueil/accueil.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TestsComponent } from './components/tests/tests.component';
 import { FormsModule } from '@angular/forms';
-import { Test2Component } from './test2/test2.component';
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +22,7 @@ import { Test2Component } from './test2/test2.component';
     LesCoursComponent,
     AccueilComponent,
     NotFoundComponent,
-    TestsComponent,
-    Test2Component
+    TestComponent,
   ],
   imports: [
     BrowserModule,
