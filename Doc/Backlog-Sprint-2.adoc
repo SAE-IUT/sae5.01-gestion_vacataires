@@ -4,9 +4,9 @@
 
 |=======
 |User Story |Tache associé|Estimation temps (en H)
-|En tant qu’administrateur je peux consulter la liste des vacataires|Ajout de style avec bootstrap sur la page|2
-|En tant qu’administrateur je peux consulter la liste des cours|Ajout de style avec bootstrap sur la page|2
-|En tant qu'administrateur, je peux accéder aux informations d'un vacataire|Ajout d'un bouton permettant de consulter les informations d'un vacataires|3
-|En tant qu’administrateur, je peux créer un vacataire|Faire en sorte que les informations quand on créé un vacataire s'enregistre|2
+|En tant qu’administrateur je peux consulter la liste des vacataires afin de pouvoir voir tous les vacataires présents|Ajout de style avec bootstrap sur la page|2
+|En tant qu’administrateur je peux consulter la liste des cours afin de pouvoir voir tous les cours existant|Ajout de style avec bootstrap sur la page|2
+|En tant qu’administrateur, je peux accéder aux informations d’un vacataire afin de pouvoir visionner ces informations personnelles|Ajout d'un bouton permettant de consulter les informations d'un vacataires|3
+|En tant qu’administrateur, je peux créer un vacataire afin de le sauvegarder dans une API|Faire en sorte que les informations quand on créé un vacataire s'enregistre|2
 
 |=======
