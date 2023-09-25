@@ -4,7 +4,7 @@
 
 |=======
 |User Story |Tache associé|Estimation temps (en H)
-|En tant qu’administrateur je peux consulter la liste des vacataires| Création d'une page "vacataire", plus ajout de style avec bootstrap sur la page|5
-|En tant qu’administrateur je peux consulter la liste des cours| Création d'une page "cours", plus ajout de style avec bootstrap sur la page|5
-|En tant qu’administrateur, je peux créer un vacataire|Ajout d'un bouton permettant de créer des vacataires|3
+|En tant qu’administrateur je peux consulter la liste des vacataires afin de pouvoir voir tous les vacataires présents| Création d'une page "vacataire", plus ajout de style avec bootstrap sur la page|5
+|En tant qu’administrateur je peux consulter la liste des cours afin de pouvoir voir tous les cours existant| Création d'une page "cours", plus ajout de style avec bootstrap sur la page|5
+|En tant qu’administrateur, je peux créer un vacataire afin de le sauvegarder dans une API|Ajout d'un bouton permettant de créer des vacataires|3
 |=======
