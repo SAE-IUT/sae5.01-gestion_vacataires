@@ -1,0 +1,11 @@
+<form name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+    
+    <div class="group">
+        <label for="name">name :</label>
+        <input type="text" name="name" id="name" [(ngModel)]="form.name" #name="ngModel" required>
+    </div>
+
+    <button class="button btn btn-primary">
+        click me !
+    </button>
+</form>
