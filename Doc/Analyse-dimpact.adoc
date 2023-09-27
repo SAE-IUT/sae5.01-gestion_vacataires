@@ -18,6 +18,7 @@ Le contexte de cette AIPD est étroitement lié à la création d'un site web qu
 
 == Collecte et catégorisation des données
 
+Les données sont recueillies dès le premier contact des vacataires avec l'IUT, lorsqu'ils postulent pour devenir vacataires. Les informations sont initialement traitées à ce stade. Si certaines données manquent, les gestionnaires de vacataires peuvent alors leur adresser un mail afin de recueillir les informations manquantes.
 === Types de données collectées :
 Lors de l'utilisation de notre plateforme de gestion des vacataires, les gérants collectent divers types de données, notamment :
 
