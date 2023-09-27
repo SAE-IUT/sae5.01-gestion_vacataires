@@ -5,7 +5,17 @@
 == Introduction
 === Contexte de l'analyse d'impact sur la protection des données (AIPD) :
 
+Le contexte de cette AIPD est étroitement lié à la création d'un site web qui offre une plateforme de gestion de vacataires. Le développement d'une telle plateforme présente des enjeux majeurs en termes de protection des données, étant donné la nature des informations traitées et l'implication de parties prenantes multiples.
+
 === Objectif de l'AIPD :
+*Identifier les risques potentiels :* L'AIPD vise à identifier tous les risques potentiels liés à la collecte, au traitement et à la conservation des données personnelles des vacataires par les gérants. Cela comprend les risques de divulgation non autorisée, d'accès non autorisé, de perte, d'altération ou de destruction de données.
+
+*Évaluer la gravité des risques :* Une fois les risques identifiés, l'objectif est d'évaluer la gravité de ces risques, en considérant leur impact potentiel sur les droits et libertés des personnes concernées. Cela permettra de hiérarchiser les risques et de se concentrer sur les plus critiques.
+
+*Proposer des mesures d'atténuation :* L'AIPD a pour but de recommander des mesures spécifiques pour atténuer les risques identifiés. Cela peut inclure des mesures techniques, organisationnelles, ou des politiques et procédures visant à renforcer la sécurité et la protection des données.
+
+*Garantir la conformité réglementaire :* L'AIPD vise à s'assurer que le traitement des données personnelles par les gérants des vacataires est conforme aux réglementations en vigueur, en particulier au RGPD. Il s'agit de garantir que les droits des personnes concernées, tels que le droit à la vie privée et le droit à la protection des données, sont respectés.
+
 
 === Description sommaire du traitement des données concerné :
 
