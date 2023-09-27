@@ -4,3 +4,33 @@
 
 == Introduction
 === Contexte de l'analyse d'impact sur la protection des données (AIPD) :
+
+=== Objectif de l'AIPD :
+
+=== Description sommaire du traitement des données concerné :
+
+== Collecte et catégorisation des données
+
+=== Types de données collectées :
+
+=== Source des données :
+
+=== Catégorisation des données en fonction de leur sensibilité :
+
+== Identification des acteurs impliqués
+
+=== Responsable du traitement :
+
+== Description du traitement des données
+
+=== Finalités du traitement :
+
+=== Durée de conservation des données :
+
+=== Destinataires des données :
+
+== Évaluation des risques pour les droits et libertés des personnes concernées
+
+=== Identifier les risques et le gravité des risques potentiels :
+
+=== Identifier les mesures de protection existantes :
