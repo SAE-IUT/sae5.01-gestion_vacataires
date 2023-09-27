@@ -16,12 +16,14 @@ Le contexte de cette AIPD est étroitement lié à la création d'un site web qu
 
 *Garantir la conformité réglementaire :* L'AIPD vise à s'assurer que le traitement des données personnelles par les gérants des vacataires est conforme aux réglementations en vigueur, en particulier au RGPD. Il s'agit de garantir que les droits des personnes concernées, tels que le droit à la vie privée et le droit à la protection des données, sont respectés.
 
-
-=== Description sommaire du traitement des données concerné :
-
 == Collecte et catégorisation des données
 
 === Types de données collectées :
+*Données d'identification :* Cela comprend les noms et prénoms des vacataires, qui sont nécessaires pour les distinguer et les contacter.
+
+*Coordonnées :* Les adresses e-mail et numéros de téléphone sont collectés pour faciliter la communication avec les vacataires et pour les informer des opportunités de mission.
+
+*Informations professionnelles :* Nous collectons des données relatives à l'expérience, aux compétences, aux disponibilités et aux préférences des vacataires afin de les mettre en relation avec des missions appropriées.
 
 === Source des données :
 
