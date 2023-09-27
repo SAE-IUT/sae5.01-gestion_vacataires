@@ -33,10 +33,12 @@ Lors de l'utilisation de notre plateforme de gestion des vacataires, les gérant
 === Source des données :
 
 === Catégorisation des données en fonction de leur sensibilité :
+
 Les données collectées sont catégorisées en fonction de leur sensibilité, conformément aux réglementations sur la protection des données, notamment le RGPD :
 *Données personnelles :* Il s'agit des informations de base nécessaires pour identifier les vacataires, telles que les noms, prénoms, adresses e-mail et numéros de téléphone.
 
 *Données professionnelles :* Ces informations concernent l'expérience de travail, les compétences et les préférences professionnelles des vacataires. Bien que ces données soient importantes pour faciliter l'affectation à des cours appropriées.
+
 == Identification des acteurs impliqués
 
 === Responsable du traitement :
