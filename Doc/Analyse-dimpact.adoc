@@ -65,7 +65,7 @@ Toutes les données collectées sont accessibles uniquement aux gestionnaires de
 
 === Identifier les risques et le gravité des risques potentiels :
 |=======
-|Risque|Description|Gravité|
+|Risque|Description|Gravité
 |Divulgation non autorisée des données personnelles| Il existe un risque que les données personnelles des vacataires, telles que leur nom, prénom, et coordonnées, soient divulguées de manière non autorisée, compromettant ainsi leur vie privée| Élevée
 |Accès non autorisé aux données| Les vacataires font confiance à notre plateforme pour protéger leurs données. Un accès non autorisé aux informations personnelles par des tiers pourrait entraîner des conséquences graves|Élevée
 |Perte de données|La perte de données personnelles des vacataires pourrait causer des désagréments pour eux, ainsi que pour notre entreprise en termes de réputation et de conformité|Moyenne
@@ -74,7 +74,7 @@ Toutes les données collectées sont accessibles uniquement aux gestionnaires de
 
 === Identifier les mesures de protection existantes :
 |=======
-|Mesure|Mise en place|
+|Mesure|Mise en place
 |Accès restreint| Les données des vacataires ne sont accessibles qu'aux gestionnaires de vacataires autorisés. Cela limite considérablement les risques d'accès non autorisés.
 |Chiffrement des données| Toutes les données personnelles sont stockées de manière sécurisée à l'aide de technologies de chiffrement avancées pour protéger contre la divulgation non autorisée.
 |Gestion des autorisations| Nous avons mis en place des niveaux d'autorisation pour les comptes d'utilisateurs, garantissant que seules les personnes ayant besoin d'accéder à certaines données y ont accès.
