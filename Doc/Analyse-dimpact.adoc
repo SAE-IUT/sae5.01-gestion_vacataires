@@ -19,6 +19,8 @@ Le contexte de cette AIPD est étroitement lié à la création d'un site web qu
 == Collecte et catégorisation des données
 
 === Types de données collectées :
+Lors de l'utilisation de notre plateforme de gestion des vacataires, les gérants collectent divers types de données, notamment :
+
 *Données d'identification :* Cela comprend les noms et prénoms des vacataires, qui sont nécessaires pour les distinguer et les contacter.
 
 *Coordonnées :* Les adresses e-mail et numéros de téléphone sont collectés pour faciliter la communication avec les vacataires et pour les informer des opportunités de mission.
@@ -28,7 +30,10 @@ Le contexte de cette AIPD est étroitement lié à la création d'un site web qu
 === Source des données :
 
 === Catégorisation des données en fonction de leur sensibilité :
+Les données collectées sont catégorisées en fonction de leur sensibilité, conformément aux réglementations sur la protection des données, notamment le RGPD :
+*Données personnelles :* Il s'agit des informations de base nécessaires pour identifier les vacataires, telles que les noms, prénoms, adresses e-mail et numéros de téléphone.
 
+*Données professionnelles :* Ces informations concernent l'expérience de travail, les compétences et les préférences professionnelles des vacataires. Bien que ces données soient importantes pour faciliter l'affectation à des cours appropriées.
 == Identification des acteurs impliqués
 
 === Responsable du traitement :
