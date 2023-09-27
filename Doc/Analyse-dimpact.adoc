@@ -1,0 +1,6 @@
+= Analyse d'impact, réalisé par Bastien Balmes.
+:toc:
+:toc-title: Sommaire
+
+== Introduction
+=== Contexte de l'analyse d'impact sur la protection des données (AIPD) :
