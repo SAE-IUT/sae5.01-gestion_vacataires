@@ -42,17 +42,42 @@ Les données collectées sont catégorisées en fonction de leur sensibilité, c
 == Identification des acteurs impliqués
 
 === Responsable du traitement :
+Le responsable actuel du traitement des données pour l'année 2023 est Jean-Michel Bruel. En tant que responsable du traitement, M. Bruel est chargé de superviser la collecte, le traitement et la protection des données personnelles des vacataires sur notre plateforme. Il assure également la conformité aux réglementations en vigueur en matière de protection des données. Il convient de noter que le responsable peut être sujet à des changements d'une année à l'autre.
 
 == Description du traitement des données
 
 === Finalités du traitement :
+Les données personnelles collectées des vacataires sont traitées dans le but de permettre une gestion efficace et transparente des ressources humaines temporaires sur notre plateforme. Les finalités du traitement comprennent notamment :
+
+*Attribution de missions :* Les informations personnelles et professionnelles sont utilisées pour associer les vacataires aux missions correspondant à leurs compétences et disponibilités, notamment dans le contexte de modules ou de cours spécifiques.
+
+*Communication avec les vacataires :* Les données, telles que les adresses e-mail et numéros de téléphone, sont employées pour établir une communication fluide avec les vacataires. Cela inclut la notification des opportunités de mission, la coordination des plannings.
 
 === Durée de conservation des données :
 
+Les données personnelles des vacataires sont conservées jusqu'à ce qu'un vacataire décide de ne plus être inscrit sur notre plateforme. La durée de conservation est donc liée à l'engagement du vacataire et à sa volonté de rester actif sur le site. Dès qu'un vacataire choisit de se retirer, ses données personnelles sont effacées de manière sécurisée, conformément à notre politique de gestion des données.
+
 === Destinataires des données :
+
+Toutes les données collectées sont accessibles uniquement aux gestionnaires de vacataires autorisés, qui sont responsables de la gestion des missions.
 
 == Évaluation des risques pour les droits et libertés des personnes concernées
 
 === Identifier les risques et le gravité des risques potentiels :
+|=======
+|Risque|Description|Gravité|
+|Divulgation non autorisée des données personnelles| Il existe un risque que les données personnelles des vacataires, telles que leur nom, prénom, et coordonnées, soient divulguées de manière non autorisée, compromettant ainsi leur vie privée| Élevée
+|Accès non autorisé aux données| Les vacataires font confiance à notre plateforme pour protéger leurs données. Un accès non autorisé aux informations personnelles par des tiers pourrait entraîner des conséquences graves|Élevée
+|Perte de données|La perte de données personnelles des vacataires pourrait causer des désagréments pour eux, ainsi que pour notre entreprise en termes de réputation et de conformité|Moyenne
+|Erreurs humaines|Les erreurs humaines, telles que le partage accidentel d'informations sensibles ou la réponse à des tentatives de phishing, peuvent conduire à la divulgation non autorisée de données. Le phishing, qui consiste en des tentatives de vol d'informations sensibles en se faisant passer pour des entités de confiance, peut cibler nos utilisateurs et augmenter le risque d'erreur humaine|Élevée
+|=======
 
 === Identifier les mesures de protection existantes :
+|=======
+|Mesure|Mise en place|
+|Accès restreint| Les données des vacataires ne sont accessibles qu'aux gestionnaires de vacataires autorisés. Cela limite considérablement les risques d'accès non autorisés.
+|Chiffrement des données| Toutes les données personnelles sont stockées de manière sécurisée à l'aide de technologies de chiffrement avancées pour protéger contre la divulgation non autorisée.
+|Gestion des autorisations| Nous avons mis en place des niveaux d'autorisation pour les comptes d'utilisateurs, garantissant que seules les personnes ayant besoin d'accéder à certaines données y ont accès.
+|Sensibilisation à la protection des données| Nous sensibilisons nos employés et gestionnaires de vacataires aux meilleures pratiques en matière de protection des données et de respect de la vie privée.
+|Suppression sécurisée des données| Lorsqu'un vacataire choisit de se retirer, ses données sont supprimées de manière sécurisée et irréversible, conformément à notre politique de gestion des données.
+|=======
