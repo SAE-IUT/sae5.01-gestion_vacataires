@@ -7,7 +7,8 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class VacatairesService {
 
-  private apiUrl  = 'https://sae5-01-app-gestion-vacataires-api.vercel.app/vacataires';
+  // private apiUrl  = 'https://sae5-01-app-gestion-vacataires-api.vercel.app/vacataires';
+  private apiUrl  = 'http://localhost:3000/vacataires';
 
   constructor(private http: HttpClient) { }
 

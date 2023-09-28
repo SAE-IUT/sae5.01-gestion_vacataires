@@ -1,11 +1,14 @@
-<button (click)="addVacataire('Chris', 'Angalique', 'chris@gmail')">Ajouter un vacataire</button>
+<button (click)="addVacataire('Christopher', 'Marie-Angélique', 'christopher@gmail')">Ajouter un vacataire</button>
 
 <div *ngFor="let vacataire of vacataires">
     <h3>Je suis un vacataires</h3>
     <ul>
         <li>ID : {{vacataire._id}}</li>
-        <!-- <li>Message : {{vacataire.message}}</li>
-        <li>Author : {{vacataire.author}}</li> -->
+        <!-- <li>Message : {{vacataire.message}}</li> -->
+        <!-- <li>Author : {{vacataire.author}}</li> -->
+        <li>name : {{vacataire.name}}</li>
+        <li>lastName : {{vacataire.lastName}}</li>
+        <li>email : {{vacataire.email}}</li>
     </ul>
     <button (click)="deleteVacataire(vacataire._id)">Supprimer le vacataire</button>
 </div>
