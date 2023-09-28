@@ -10,6 +10,7 @@ import { AccueilComponent } from './pages/accueil/accueil.component';
 import { CoursComponent } from './components/cours/cours.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LeVacataireComponent } from './components/le-vacataire/le-vacataire.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LeVacataireComponent } from './components/le-vacataire/le-vacataire.com
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -18,6 +18,23 @@ export class LeVacataireComponent {
     });
   }
 
+  /**
+   * permet de déterminer le style de la div status selon le status du vacataire
+   * 
+   * @param status : le status du vacataire
+   * @returns : le style de la div status du vacataire
+   */
+  getVacataireStatusClass(status: string): string {
+    switch (status) {
+      case 'en attente':
+        return 'status-gray';
+      case 'admis':
+        return 'status-green';
+      default:
+        return 'status-red';
+    }
+  }
+
   addVacataire(name: string, lastName: string, email: string) {
 
     this.vacatairesService.addVacataire(name, lastName, email).subscribe({
