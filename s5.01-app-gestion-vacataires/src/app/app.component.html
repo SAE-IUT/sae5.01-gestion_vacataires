@@ -1,0 +1,23 @@
+<div class="gradient-div">
+  <!-- Contenu de la div ici -->
+</div>
+
+<header *ngIf="!isNotFoundRoute()">
+  <div class="navlogo">
+    <a href="https://www.iut-blagnac.fr/fr/"><img src="../assets/img/logo.svg" alt="Logo de l'input"></a>
+  </div>
+
+  <div class="navbar" [ngClass]="{ 'active': isNavbarActive }">
+    <ul>
+      <li><a routerLink="/vacataires">Vacataires</a></li>
+      <li><a routerLink="/les-cours">Cours</a></li>
+    </ul>
+  </div>
+
+  <div class="responsive-menu" (click)="toggleNavbarActive()">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+  
+</header>
+
+<router-outlet></router-outlet>
