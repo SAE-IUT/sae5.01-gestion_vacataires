@@ -1,0 +1,87 @@
+<div class="buttons">
+
+  <a class="btn dropdown dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Filtres</a>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">Affecter</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Non affecter</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">En attente</a>
+  </div>
+
+  <div data-bs-toggle="modal" data-bs-target="#createVacataire" class="btn">Ajouter un vacataire</div>
+
+</div>
+
+<div class="vacataires">
+  <app-le-vacataire></app-le-vacataire>
+</div>
+
+<div class="modal fade" id="createVacataire" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createVacataireLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createVacataireLabel">Ajouter un vacataire :</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form 
+          action="#" 
+          name="createVacataireForm" 
+          #f="ngForm"
+        >
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="name" id="name" [(ngModel)]="form.name" #name="ngModel" placeholder="Jean-Michel">
+            <label for="name">Prénom :</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="lastName" id="lastName" [(ngModel)]="form.lastName" #lastName="ngModel" placeholder="Password">
+            <label for="lastName">Nom de famille : </label>
+          </div>
+
+          <label for="departments" class="form-label">Départements :</label>
+          <div class="mb-3" id="departments">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="info" value="option1">
+              <label class="form-check-label" for="info">INFO</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="r&t" value="option2">
+              <label class="form-check-label" for="r&t">R&T</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="cs" value="option3">
+              <label class="form-check-label" for="cs">CS</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="gim" value="option3">
+              <label class="form-check-label" for="gim">GIM</label>
+            </div>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="email" placeholder="name@example.com">
+            <label for="email">Adresse Email : </label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="skills" placeholder="name@example.com">
+            <label for="skills">Compétences : </label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="socials" placeholder="name@example.com">
+            <label for="socials">Réseaux sociaux : </label>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+          <button type="button" class="btn btn-primary" (click)='addVacataire(form.name, form.lastName, "email")'>Ajouter</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

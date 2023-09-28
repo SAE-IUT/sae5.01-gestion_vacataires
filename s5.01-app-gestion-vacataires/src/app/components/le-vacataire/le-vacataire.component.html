@@ -1,0 +1,78 @@
+<!-- <button (click)="addVacataire('Christopher', 'Marie-Angélique', 'christopher@gmail')">Ajouter un vacataire</button>
+
+<div *ngFor="let vacataire of vacataires">
+    <h3>Je suis un vacataires</h3>
+    <ul>
+        <li>ID : {{vacataire._id}}</li>
+        <li>name : {{vacataire.name}}</li>
+        <li>lastName : {{vacataire.lastName}}</li>
+        <li>email : {{vacataire.email}}</li>
+    </ul>
+    <button (click)="deleteVacataire(vacataire._id)">Supprimer le vacataire</button>
+</div> -->
+
+<div class="vacataires">
+    <div *ngFor="let vacataire of vacataires" class="vacataire">
+  
+      <div class="expand" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal-' + vacataire.id">
+        <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+      </div>
+  
+      <div class="profile-pic"><img src='../../../assets/img/user-avatar.svg' alt="profile-pic"></div>
+  
+      <div class="content">
+        <div class="name">{{ vacataire.name }} {{ vacataire.lastName }}</div>
+        <div class="departement">Département {{ vacataire.department }}</div>
+        <div class="email">{{ vacataire.email }}</div>
+      </div>
+  
+      <div class="status" [ngClass]="getVacataireStatusClass(vacataire.status)"></div>
+  
+      <!-- Modal du vacataire actuel -->
+      <div class="modal fade" [id]="'exampleModal-' + vacataire.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">{{ vacataire.name }} {{ vacataire.lastName }}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- Contenu du modal pour ce vacataire -->
+              <p>Département : {{ vacataire.department }}</p>
+              <p>Email : {{ vacataire.email }}</p>
+              <!-- Ajoutez d'autres informations du vacataire si nécessaire -->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" [attr.data-bs-target]="'#exampleModalToggle2-' + vacataire.id" data-bs-toggle="modal" data-bs-dismiss="modal">Affecter</button>
+              <button type="button" class="btn btn-secondary">Modifier</button>
+              <button type="button" class="btn btn-danger" (click)="deleteVacataire(vacataire._id)">Supprimer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="modal fade" [id]="'exampleModalToggle2-' + vacataire.id" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel2">Affecter {{ vacataire.name }} {{ vacataire.lastName }} à un cours</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Nom du cours :</label>
+                  <input type="text" class="form-control" id="recipient-name">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+              <button type="button" class="btn btn-primary">Valider</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
