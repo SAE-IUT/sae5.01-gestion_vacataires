@@ -35,9 +35,9 @@ export class LeVacataireComponent {
     }
   }
 
-  addVacataire(name: string, lastName: string, email: string) {
+  addVacataire(name: string, lastName: string, department: string, email: string, linkedin: string, discord: string) {
 
-    this.vacatairesService.addVacataire(name, lastName, email).subscribe({
+    this.vacatairesService.addVacataire(name, lastName, department, email, linkedin, discord).subscribe({
       next: (response) => {
         window.location.reload()
       },

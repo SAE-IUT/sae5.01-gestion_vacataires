@@ -41,44 +41,59 @@
             <label for="lastName">Nom de famille : </label>
           </div>
 
-          <label for="departments" class="form-label">Départements :</label>
-          <div class="mb-3" id="departments">
+          <!-- <label for="departments" class="form-label">Départements :</label>
+          <div class="mb-3" id="departments" name="departments" [(ngModel)]="form.departments" #departments="ngModel">
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="info" value="option1">
+              <input class="form-check-input" type="checkbox" id="info" value="option1" [(ngModel)]="form.departments.info" #info="ngModel">
               <label class="form-check-label" for="info">INFO</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="r&t" value="option2">
+              <input class="form-check-input" type="checkbox" id="r&t" value="option2" [(ngModel)]="form.departments.rt" #r&t="ngModel">
               <label class="form-check-label" for="r&t">R&T</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="cs" value="option3">
+              <input class="form-check-input" type="checkbox" id="cs" value="option3" [(ngModel)]="form.departments.cs" #cs="ngModel">
               <label class="form-check-label" for="cs">CS</label>
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="gim" value="option3">
+              <input class="form-check-input" type="checkbox" id="gim" value="option3" [(ngModel)]="form.departments.gim" #gim="ngModel">
               <label class="form-check-label" for="gim">GIM</label>
             </div>
-          </div>
+          </div> -->
+
+          <select class="form-select mb-3" multiple aria-label="multiple select example" id="department" name="department" [(ngModel)]="form.department" #department="ngModel">
+            <option selected disabled>Départments :</option>
+            <option value="info">Informatique</option>
+            <option value="r&t">Réseaux & Télécommunication</option>
+            <option value="cs">Carrière sociales</option>
+            <option value="gim">Génie Industriel et Maintenance</option>
+          </select>
 
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="email" placeholder="name@example.com">
-            <label for="email">Adresse Email : </label>
-          </div>
-
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="skills" placeholder="name@example.com">
+            <input type="text" class="form-control" name="skills" id="skills">
             <label for="skills">Compétences : </label>
           </div>
 
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="socials" placeholder="name@example.com">
-            <label for="socials">Réseaux sociaux : </label>
+            <input type="email" class="form-control" name="email" id="email" [(ngModel)]="form.email" #email="ngModel">
+            <label for="email">Adresse Email : </label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="linkedin" id="linkedin">
+            <label for="lindin">Profil Linkedin : </label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="discord" id="linkedin" [(ngModel)]="form.discord" #discord="ngModel">
+            <label for="linkedin">Pseudo Discord : </label>
           </div>
         </form>
+    
+        <h6>{{form.department}}</h6>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-          <button type="button" class="btn btn-primary" (click)='addVacataire(form.name, form.lastName, "email")'>Ajouter</button>
+          <button type="button" class="btn btn-primary" (click)='addVacataire(form.name, form.lastName, form.department, form.email, form.linkedin, form.discord)'>Ajouter</button>
         </div>
       </div>
 
