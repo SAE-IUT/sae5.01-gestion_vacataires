@@ -11,12 +11,12 @@
     </div>
 
     <div class="content">
-      <div class="name">{{ cours.name }}</div>
+      <div class="name" style="word-wrap: break-word;">{{ cours.name }}</div>
       <div class="name">{{ cours.name_reduit }}</div>
       <div class="content_departement">
         Département :
         <div *ngFor="let departement of cours.departement" class="departement" style="display:inline-block;">
-          <li>&nbsp;{{departement}}</li>
+          <li style="text-transform: uppercase;">&nbsp;{{departement}}</li>
         </div>
       </div>
 
@@ -38,7 +38,7 @@
             <p><strong>Matière:</strong> {{cours.matiere}}</p>
             <strong>Département:</strong>
             <div *ngFor="let departement of cours.departement" class="departement" style="display:inline-block;">
-              <li>&nbsp;{{departement}}</li>
+              <li style="text-transform: uppercase;">&nbsp;{{departement}}</li>
             </div><p></p>
             <p><strong>Couleur:</strong> {{cours.color_hexa}}</p>
             <!-- Ajoutez d'autres informations du module si nécessaire -->
