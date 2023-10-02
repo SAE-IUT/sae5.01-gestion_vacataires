@@ -3,6 +3,10 @@
 :toc:
 
 
+== Description
+
+Cette SAE porte sur la création d'un site web permettant la gestion des vacataires présents au sein de l'IUT.
+Ce site web permettra la connexion à un compte adiminsatrateur donnant les accés à la gestion des vacataires.
 
 == Equipe
 
@@ -13,6 +17,11 @@ Le projet est réalisé par::
 - https://github.com/Chris-973[Chrispher MARIE-ANGÉLIQUE] DEVDEV
 - https://github.com/Jolex35[Alex JOLAS] Dev
 - https://github.com/BryceFuerty[Bryce FUERTES] DEVDEV
+
+== Technologie
+
+Cette application Web est développée en Angular, qui est basé sur TypeScript 
+Pour le stockage des données, c'est une base de données Mango DB qui est utilisée
 
 == Réalisations 
 
