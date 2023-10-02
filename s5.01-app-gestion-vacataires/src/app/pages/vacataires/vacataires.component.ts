@@ -13,7 +13,10 @@ export class VacatairesComponent {
   form = {
     name : "",
     lastName: "",
-    email: ""
+    department: "",
+    email: "", 
+    linkedin: "",
+    discord: ""
   }
 
   constructor(private vacatairesService: VacatairesService) {}
@@ -24,8 +27,8 @@ export class VacatairesComponent {
     });
   }
 
-  onSubmit(name: string, lastName: string, email: string) {
-    this.vacatairesService.addVacataire(name, lastName, email).subscribe({
+  onSubmit(name: string, lastName: string, department: string, email: string, linkedin: string, discord: string) {
+    this.vacatairesService.addVacataire(name, lastName, department, email, linkedin, discord).subscribe({
       next: (response) => {
         window.location.reload()
       },
@@ -38,9 +41,9 @@ export class VacatairesComponent {
     });
   }
 
-  addVacataire(name: string, lastName: string, email: string) {
+  addVacataire(name: string, lastName: string, department: string, email: string, linkedin: string, discord: string) {
 
-    this.vacatairesService.addVacataire(name, lastName, email).subscribe({
+    this.vacatairesService.addVacataire(name, lastName, department, email, linkedin, discord).subscribe({
       next: (response) => {
         window.location.reload()
       },
@@ -54,5 +57,9 @@ export class VacatairesComponent {
     
   }
 
+  hello(value: string) {
+    console.log(typeof(value));
+      
+  }
 
 }
