@@ -11,12 +11,6 @@ Le projet est réalisé par :
 - https://github.com/Zekoko[Bastien BALMES] SCRUM master
 - https://github.com/EnzoMancini[Enzo Mancini] Product owner
 - https://github.com/Chris-973[Chrispher MARIE-ANGÉLIQUE] DEVDEV
-- https://github.com/BryceFuerty[Bryce FUERTES]
-- https://github.com/Jolex35[Alex JOLAS]
-- https://github.com/Stemon8[Marco VALLE]
-- https://github.com/VictorThompsonKeyl[Victor THOMPSON]
-- https://github.com/RedeiFantasmi[Michele FLORIO]
-
 
 == Réalisations 
 
