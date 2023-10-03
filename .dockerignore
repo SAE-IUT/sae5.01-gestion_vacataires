@@ -1,0 +1,44 @@
+# Compiled output
+s5.01-app-gestion-vacataires/dist
+s5.01-app-gestion-vacataires/tmp
+s5.01-app-gestion-vacataires/out-tsc
+s5.01-app-gestion-vacataires/bazel-out
+
+# Node
+s5.01-app-gestion-vacataires/node_modules
+s5.01-app-gestion-vacataires/s5.01-app-gestion-vacataires/npm-debug.log
+s5.01-app-gestion-vacataires/yarn-error.log
+/node_modules
+npm-debug.log
+yarn-error.log
+app-s5.01-gestion_vacataires
+
+# IDEs and editors
+s5.01-app-gestion-vacataires/.idea/
+s5.01-app-gestion-vacataires/.project
+s5.01-app-gestion-vacataires/.classpath
+s5.01-app-gestion-vacataires/.c9/
+s5.01-app-gestion-vacataires/*.launch
+s5.01-app-gestion-vacataires/.settings/
+s5.01-app-gestion-vacataires/*.sublime-workspace
+
+# Visual Studio Code
+s5.01-app-gestion-vacataires/.vscode/*
+s5.01-app-gestion-vacataires/!.vscode/settings.json
+s5.01-app-gestion-vacataires/!.vscode/tasks.json
+s5.01-app-gestion-vacataires/!.vscode/launch.json
+s5.01-app-gestion-vacataires/!.vscode/extensions.json
+s5.01-app-gestion-vacataires/.history/*
+
+# Miscellaneous
+s5.01-app-gestion-vacataires/.angular/cache
+s5.01-app-gestion-vacataires/.sass-cache/
+s5.01-app-gestion-vacataires/connect.lock
+s5.01-app-gestion-vacataires/coverage
+s5.01-app-gestion-vacataires/libpeerconnection.log
+s5.01-app-gestion-vacataires/testem.log
+s5.01-app-gestion-vacataires/typings
+
+# System files
+s5.01-app-gestion-vacataires/.DS_Store
+s5.01-app-gestion-vacataires/Thumbs.db
