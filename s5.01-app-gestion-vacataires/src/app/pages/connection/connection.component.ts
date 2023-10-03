@@ -3,13 +3,8 @@ import { NgForm }   from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  template: `
-    <form (ngSubmit)="onSubmit(loginForm)">
-      <input type="text" name="username" ngModel required>
-      <input type="password" name="password" ngModel required>
-      <button type="submit" [disabled]="!loginForm?.valid">Login</button>
-    </form>
-  `
+  templateUrl: './connection.component.html',
+  styleUrls: ['./connection.component.css'],
 })
 export class ConnectionComponent {
 
@@ -18,5 +13,13 @@ export class ConnectionComponent {
   onSubmit(form: NgForm | undefined) {
     console.log(form?.value);
     // Do login here
+  }
+
+  form = {
+    pseudo : "",
+    password: "",
+  }
+  connect(pseudo: String, password: String) {
+
   }
 }
