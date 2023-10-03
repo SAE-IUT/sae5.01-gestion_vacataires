@@ -11,7 +11,6 @@ import { CoursComponent } from './components/cours/cours.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LeVacataireComponent } from './components/le-vacataire/le-vacataire.component';
 import { FormsModule } from '@angular/forms';
-import { ConnexionComponent } from './src/app/pages/connexion/connexion.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,6 @@ import { ConnexionComponent } from './src/app/pages/connexion/connexion.componen
     AccueilComponent,
     CoursComponent,
     LeVacataireComponent,
-    ConnexionComponent,
   ],
   imports: [
     BrowserModule,
