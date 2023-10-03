@@ -6,22 +6,27 @@
 
 == Equipe
 
-Le projet est réalisé par::
+Le projet est réalisé par :
 
 - https://github.com/Zekoko[Bastien BALMES] SCRUM master
 - https://github.com/EnzoMancini[Enzo Mancini] Product owner
 - https://github.com/Chris-973[Chrispher MARIE-ANGÉLIQUE] DEVDEV
+- https://github.com/BryceFuerty[Bryce FUERTES]
+- https://github.com/Jolex35[Alex JOLAS]
+- https://github.com/Stemon8[Marco VALLE]
+- https://github.com/VictorThompsonKeyl[Victor THOMPSON]
+- https://github.com/RedeiFantasmi[Michele FLORIO]
 
 
 == Réalisations 
 
-.Vous trouverez ci-dessous les liens vers les différentes réalisations effectuée par notre groupe :
+.Vous trouverez ci-dessous les liens vers les différentes réalisations effectuées par notre groupe :
 
 L'application : https://sae5-01-gestion-vacataires.vercel.app/
 
 == Gestion de projet
 
-- https://github.com/SAE-IUT/sae5.01-gestion_vacataires/tree/main/Doc[Dossier des documentation]
+- https://github.com/SAE-IUT/sae5.01-gestion_vacataires/tree/main/Doc[Dossier des documentations]
 
 - Version courante : https://github.com/SAE-IUT/sae5.01-gestion_vacataires/releases/tag/V.3[Sprint 3]
 
