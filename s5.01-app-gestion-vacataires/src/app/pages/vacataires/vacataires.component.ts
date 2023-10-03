@@ -14,7 +14,7 @@ export class VacatairesComponent {
     name : "",
     lastName: "",
     department: "",
-    email: "", 
+    email: "",
     linkedin: "",
     discord: ""
   }
@@ -23,7 +23,7 @@ export class VacatairesComponent {
 
   ngOnInit() {
     this.vacatairesService.getVacataire().subscribe((data: any) => {
-      this.vacataires = data;               
+      this.vacataires = data;
     });
   }
 
@@ -54,12 +54,12 @@ export class VacatairesComponent {
       complete: () => {
       }
     });
-    
+
   }
 
   hello(value: string) {
     console.log(typeof(value));
-      
+
   }
 
 }
