@@ -34,4 +34,25 @@ L'application : https://sae5-01-gestion-vacataires.vercel.app/
 
 - https://github.com/SAE-IUT/sae5.01-gestion_vacataires/labels/US[Liste user stories]
 
+== Installation docker (sous linux ou WSL2 avec docker installé)
 
+A faire une fois:
+
+---
+export CR_PAT=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
+echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
+---
+
+A faire à chaque fois qu'une nouvelle version est souhaitée:
+
+---
+docker pull ghcr.io/sae-iut/sae5.01-gestion_vacataires:main
+---
+
+Docker run:
+ 
+---
+docker run -p 80:4200 ghcr.io/sae-iut/sae5.01-gestion_vacataires:main
+---
+
+Le serveur est lancé sur localhost
