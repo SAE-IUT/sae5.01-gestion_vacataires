@@ -16,7 +16,7 @@ Le projet est réalisé par :
 - https://github.com/EnzoMancini[Enzo Mancini] Product owner
 - https://github.com/Chris-973[Chrispher MARIE-ANGÉLIQUE] DEVDEV
 - https://github.com/Jolex35[Alex JOLAS] Dev
-- https://github.com/BryceFuerty[Bryce FUERTES] DEVDEV
+- https://github.com/BryceFuerty[Bryce FUERTES] DEV
 
 == Technologie
 
