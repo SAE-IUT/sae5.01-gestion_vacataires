@@ -1,1 +1,55 @@
-<p>connection works!</p>
+<div class="buttons">
+
+  <a class="btn dropdown dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Filtres</a>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">Affecter</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Non affecter</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">En attente</a>
+  </div>
+
+  <div data-bs-toggle="modal" data-bs-target="#createVacataire" class="btn">Ajouter un vacataire</div>
+
+</div>
+
+<div class="vacataires">
+  <app-le-vacataire></app-le-vacataire>
+</div>
+
+<div class="modal fade" id="createVacataire" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createVacataireLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createVacataireLabel">Connexion :</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form
+          action="#"
+          name="createVacataireForm"
+          #f="ngForm"
+        >
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="name" id="name" [(ngModel)]="form.name" #name="ngModel" placeholder="Jean-Michel">
+            <label for="name">Pseudo</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="lastName" id="lastName" [(ngModel)]="form.lastName" #lastName="ngModel" placeholder="Password">
+            <label for="lastName">Mot de passe</label>
+          </div>
+
+        </form>
+
+        <h6>{{form.department}}</h6>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+          <button type="button" class="btn btn-primary" (click)='addVacataire(form.name, form.lastName, form.department, form.email, form.linkedin, form.discord)'>Ajouter</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
