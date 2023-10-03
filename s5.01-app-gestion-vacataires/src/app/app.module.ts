@@ -11,6 +11,7 @@ import { CoursComponent } from './components/cours/cours.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LeVacataireComponent } from './components/le-vacataire/le-vacataire.component';
 import { FormsModule } from '@angular/forms';
+import { ConnectionComponent } from './pages/connection/connection.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     AccueilComponent,
     CoursComponent,
     LeVacataireComponent,
+    ConnectionComponent,
   ],
   imports: [
     BrowserModule,
