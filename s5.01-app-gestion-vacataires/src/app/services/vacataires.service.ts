@@ -7,8 +7,8 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class VacatairesService {
 
-  private apiUrl  = 'https://sae5-01-app-gestion-vacataires-api.vercel.app/vacataires';
-  // private apiUrl  = 'http://localhost:3000/vacataires';
+  // private apiUrl  = 'https://sae5-01-app-gestion-vacataires-api.vercel.app/vacataires';
+  private apiUrl  = 'http://localhost:3000/vacataires';
 
   constructor(private http: HttpClient) { }
 
@@ -16,9 +16,9 @@ export class VacatairesService {
     return this.http.get(this.apiUrl)    
   }
 
-  addVacataire(name: string, lastName: string, department: string, email: string, linkedin: string, discord: string): Observable<any> {
+  addVacataire(name: string, lastName: string, phone: string, email: string, github: string, skills: string): Observable<any> {
     const url = this.apiUrl + "/newVacataire";
-    return this.http.post(url, {name, lastName, email});   
+    return this.http.post(url, {name, lastName, phone, email, github, skills});   
   }
 
   deleteVacataire(id: string): Observable<any> {
