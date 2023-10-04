@@ -13,10 +13,10 @@ export class VacatairesComponent {
   form = {
     name : "",
     lastName: "",
-    department: "",
+    phone: "",
     email: "", 
-    linkedin: "",
-    discord: ""
+    github: "",
+    skills: ""
   }
 
   constructor(private vacatairesService: VacatairesService) {}
@@ -27,8 +27,18 @@ export class VacatairesComponent {
     });
   }
 
-  onSubmit(name: string, lastName: string, department: string, email: string, linkedin: string, discord: string) {
-    this.vacatairesService.addVacataire(name, lastName, department, email, linkedin, discord).subscribe({
+  addVacataire(name: string, lastName: string, phone: string, email: string, github: string, skills: string) {
+
+    console.log(
+      "name : " + name + "\n" +
+      "lastName : " + lastName +
+      "Phone : " + phone + "\n" +
+      "email : " + email + "\n" +
+      "github : " + github + "\n" +
+      "skills : " + skills + "\n" 
+    );
+
+    this.vacatairesService.addVacataire(name, lastName, phone, email, github, skills).subscribe({
       next: (response) => {
         window.location.reload()
       },
@@ -38,23 +48,8 @@ export class VacatairesComponent {
       },
       complete: () => {
       }
-    });
-  }
+    })
 
-  addVacataire(name: string, lastName: string, department: string, email: string, linkedin: string, discord: string) {
-
-    this.vacatairesService.addVacataire(name, lastName, department, email, linkedin, discord).subscribe({
-      next: (response) => {
-        window.location.reload()
-      },
-      error: (error) => {
-        // Gestion des erreurs
-        console.error(error);
-      },
-      complete: () => {
-      }
-    });
-    
   }
 
   hello(value: string) {
