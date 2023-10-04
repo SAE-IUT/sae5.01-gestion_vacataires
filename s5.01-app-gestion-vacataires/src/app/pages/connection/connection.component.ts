@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm }   from '@angular/forms';
-
+import {LoginService} from 'src/app/services/login.service';
 @Component({
   selector: 'app-login',
   templateUrl: './connection.component.html',
@@ -19,10 +19,19 @@ export class ConnectionComponent {
     pseudo : "",
     password: "",
   }
-  constructor(private loginService: loginService) {}
+  constructor(private loginService: LoginService) {}
 
-  connect(pseudo: String, password: String) {
-    if(password = getPasswordValide)
-
+  connect(pseudo: string, password: string) {
+    this.loginService.getPasswordValid(pseudo,password).subscribe({
+      next: (response) => {
+        window.location.reload()
+      },
+      error: (error) => {
+        // Gestion des erreurs
+        console.error(error);
+      },
+      complete: () => {
+      }
+    });
   }
 }

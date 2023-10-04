@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  private apiUrl  = 'https://localhost:3000/connexion';
+  private apiUrl  = 'http://localhost:3000/connexion';
 
   constructor(private http: HttpClient) { }
 
-  getPasswordValide(pseudo:string,password:string) {
+  getPasswordValid(pseudo: string,password: string) {
     return this.http.get(this.apiUrl, {pseudo,password})
   }
   }
