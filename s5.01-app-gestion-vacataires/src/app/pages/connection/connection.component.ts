@@ -19,7 +19,10 @@ export class ConnectionComponent {
     pseudo : "",
     password: "",
   }
+  constructor(private loginService: loginService) {}
+
   connect(pseudo: String, password: String) {
+    if(password = getPasswordValide)
 
   }
 }
