@@ -24,7 +24,7 @@ export class ConnectionComponent {
   connect(pseudo: string, password: string) {
     this.loginService.getPasswordValid(pseudo,password).subscribe({
       next: (response) => {
-        window.location.reload()
+        //window.location.reload()
       },
       error: (error) => {
         // Gestion des erreurs
