@@ -7,13 +7,14 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  private apiUrl  = 'http://localhost:3000/connexion/getUser';
+  // private apiUrl  = 'http://localhost:3000/connexion/getUser';
+  private apiUrl  = 'https://sae5-01-app-gestion-vacataires-api.vercel.app/connexion';
 
   constructor(private http: HttpClient) { }
 
   getPasswordValid(pseudo: string,password: string) {
     return this.http.post(this.apiUrl, {pseudo,password})
-    // return this.http.post(this.apiUrl+ `?pseudo=${pseudo}&password=${password}`)
+    // return this.http.get(this.apiUrl)
 
   }
   }
