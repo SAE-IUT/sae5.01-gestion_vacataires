@@ -7,4 +7,4 @@ RUN npm install
 RUN npm install -g @angular/cli@7.3.9
 EXPOSE 4200
 COPY . .
-CMD ng serve --host 0.0.0.0
+CMD npm start
