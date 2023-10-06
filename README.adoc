@@ -39,7 +39,7 @@ L'application : https://sae5-01-gestion-vacataires.vercel.app/
 A faire une fois:
 
 ----
-export CR_PAT=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
+export CR_PAT=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
 echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
 ----
 
@@ -56,3 +56,32 @@ docker run -p 80:4200 ghcr.io/sae-iut/sae5.01-gestion_vacataires:main
 ----
 
 Le serveur est lancé sur localhost
+
+
+== Installation finale et automation Docker compose (sous linux avec docker compose)
+
+Sachez que l'ouverture des ports 80 et 3000 ne sera pas adressée dans ce readme mais qui es un pas nécessaire pour la mise en production
+
+1 - téléchargez le fichier compose.yaml dans le répertoire de vottre choix et placez vous dessus
+
+A faire une fois:
+----
+export CR_PAT=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
+echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
+----
+
+Pour lancer le docker compose:
+----
+docker compose up -d
+----
+
+Pour avoir la dernière version des images
+----
+docker compose pull
+----
+
+
+(optionnel mais reccommandé) cron job pour fetch la dernière version de l'appli et relancer les serveurs tous les jours à 3h du matin
+----
+0 3 * * * cd /chemin/vers/le/compose && docker compose pull && docker compose up -d
+----
