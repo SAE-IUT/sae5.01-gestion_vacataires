@@ -13,11 +13,14 @@ export class VacatairesComponent {
   form = {
     name : "",
     lastName: "",
-    department: "",
+    phone: "",
     email: "", 
-    linkedin: "",
-    discord: ""
+    github: "",
+    skills: ""
   }
+
+  comp: string[] = [];
+  // tags: string[] = [];
 
   constructor(private vacatairesService: VacatairesService) {}
 
@@ -27,23 +30,58 @@ export class VacatairesComponent {
     });
   }
 
-  onSubmit(name: string, lastName: string, department: string, email: string, linkedin: string, discord: string) {
-    this.vacatairesService.addVacataire(name, lastName, department, email, linkedin, discord).subscribe({
-      next: (response) => {
-        window.location.reload()
-      },
-      error: (error) => {
-        // Gestion des erreurs
-        console.error(error);
-      },
-      complete: () => {
-      }
-    });
+  splitSkills() {
+    // Vérifiez si form.department existe et n'est pas une chaîne vide
+    if (this.form.skills && this.form.skills.trim() !== '') {
+      // Utilisez split() pour diviser la chaîne par ';'
+      this.comp = this.form.skills.split(' ');
+    } else {
+      // Réinitialisez le tableau si la chaîne est vide ou inexistante
+      this.comp = [];
+    }
   }
 
-  addVacataire(name: string, lastName: string, department: string, email: string, linkedin: string, discord: string) {
+  removeSkill(skill: string) {
+    // Supprimez la compétence du tableau
+    const index = this.comp.indexOf(skill);
+    if (index !== -1) {
+      this.comp.splice(index, 1);
+      // Mettez à jour la chaîne de compétences dans le formulaire
+      this.form.skills = this.comp.join(' ');
+    }
+  }
+  
+  // splitSkills() {
+  //   // Vérifiez si form.department existe et n'est pas une chaîne vide
+  //   if (this.form.skills && this.form.skills.trim() !== '') {
+  //     // Utilisez split() pour diviser la chaîne par des espaces
+  //     const newTags = this.form.skills.split(' ');
+  
+  //     // Ajoutez chaque nouveau tag à la liste des tags
+  //     this.tags = [...this.tags, ...newTags];
+  
+  //     // Effacez le champ d'entrée
+  //     this.form.skills = '';
+  //   }
+  // }
 
-    this.vacatairesService.addVacataire(name, lastName, department, email, linkedin, discord).subscribe({
+  // removeTag(tag: string) {
+  //   this.tags = this.tags.filter(t => t !== tag);
+  // }
+  
+
+  addVacataire(name: string, lastName: string, phone: string, email: string, github: string, skills: string) {
+
+    console.log(
+      "name : " + name + "\n" +
+      "lastName : " + lastName +
+      "Phone : " + phone + "\n" +
+      "email : " + email + "\n" +
+      "github : " + github + "\n" +
+      "skills : " + skills + "\n" 
+    );
+
+    this.vacatairesService.addVacataire(name, lastName, phone, email, github, skills).subscribe({
       next: (response) => {
         window.location.reload()
       },
@@ -53,8 +91,8 @@ export class VacatairesComponent {
       },
       complete: () => {
       }
-    });
-    
+    })
+
   }
 
   hello(value: string) {

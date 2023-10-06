@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ModulesService } from 'src/app/services/modules.service';
+import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
 
 interface Module {
   _id: string,
@@ -22,7 +23,7 @@ interface Filter {
 })
 export class LesCoursComponent {
 
-  public cours: Module[] = [];
+  public modules: Module[] = [];
 
   public matieres: string[] = [];
   public departements: string[] = [];
@@ -30,6 +31,14 @@ export class LesCoursComponent {
 
   public currentSearch: string | null = null;
   private searchTimeout: number | null = null;
+
+  form = {
+    name : "",
+    name_reduit: "",
+    color_hexa: "",
+    departement: [""],
+    matiere: ""
+  }
 
   constructor(
     private modulesService: ModulesService,
@@ -39,7 +48,7 @@ export class LesCoursComponent {
 
   ngOnInit() {
     this.modulesService.getModule().subscribe((data: unknown) => {
-      this.cours = data as Module[];
+      this.modules = data as Module[];
     });
     
     // const data = [
@@ -113,5 +122,34 @@ export class LesCoursComponent {
   isFiltered(category: string) {
     return Object.hasOwn(this.filtres, category);
   }
-  
+
+  onSubmit(name: string, name_reduit: string, color_hexa: string, departement: string[], matiere: string) {
+    this.modulesService.addModule(name, name_reduit, color_hexa, departement, matiere).subscribe({
+      next: (response) => {
+        window.location.reload()
+      },
+      error: (error) => {
+        // Gestion des erreurs
+        console.error(error);
+      },
+      complete: () => {
+      }
+    });
+  }
+
+  addModule(name: string, name_reduit: string, color_hexa: string, departement: string[], matiere: string) {
+
+    this.modulesService.addModule(name, name_reduit, color_hexa, departement, matiere).subscribe({
+      next: (response) => {
+        window.location.reload()
+      },
+      error: (error) => {
+        // Gestion des erreurs
+        console.error(error);
+      },
+      complete: () => {
+      }
+    });
+
+  }
 }

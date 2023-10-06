@@ -11,7 +11,7 @@ Le projet est réalisé par::
 - https://github.com/Zekoko[Bastien BALMES] SCRUM master
 - https://github.com/EnzoMancini[Enzo Mancini] Product owner
 - https://github.com/Chris-973[Chrispher MARIE-ANGÉLIQUE] DEVDEV
-
+_ 
 
 == Réalisations 
 

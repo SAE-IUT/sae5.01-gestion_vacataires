@@ -34,3 +34,57 @@
 <div class="modules">
   <app-cours [cours]="cours" [filtres]="filtres"></app-cours>
 </div>
+
+<div class="modal fade" id="createModule" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createModuleLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createModuleLabel">Ajouter un module :</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form
+          action="#"
+          name="createModuleForm"
+          #f="ngForm"
+        >
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="name" id="name" [(ngModel)]="form.name" #name="ngModel" placeholder="Jean-Michel">
+            <label for="name">Nom :</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="name_reduit" id="name_reduit" [(ngModel)]="form.name_reduit" #name_reduit="ngModel" placeholder="Nom réduit">
+            <label for="name_reduit">Nom réduit : </label>
+          </div>
+
+          <select class="form-select mb-3" multiple aria-label="multiple select example" id="departement" name="departement" [(ngModel)]="form.departement" #departement="ngModel">
+            <option selected disabled>Départements :</option>
+            <option type="text" value="info">INFO</option>
+            <option type="text" value="rt">RT</option>
+            <option type="text" value="cs">CS</option>
+            <option type="text" value="gim">GIM</option>
+          </select>
+
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="matiere" id="matiere" [(ngModel)]="form.matiere" #matiere="ngModel">
+            <label for="matiere">Matière : </label>
+          </div>
+
+          <div class="d-flex align-items-center mb-3">
+            <input type="color" id="color_hexa" name="color_hexa" value="#e66465" [(ngModel)]="form.color_hexa" #color_hexa="ngModel"/>
+            <label for="color_hexa" class="col-form-label me-2">Couleur du module :</label>
+          </div>
+
+        </form>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+          <button type="button" class="btn btn-primary" (click)='addModule(form.name, form.name_reduit, form.color_hexa, form.departement, form.matiere)'>Ajouter</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

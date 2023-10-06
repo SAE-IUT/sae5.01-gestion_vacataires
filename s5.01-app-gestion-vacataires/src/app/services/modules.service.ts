@@ -15,7 +15,7 @@ export class ModulesService {
     return this.http.get(this.apiUrl)
   }
 
-  addModule(name: string, name_reduit: string, color_hexa: string, departement: string, matiere: string ): Observable<any> {
+  addModule(name: string, name_reduit: string, color_hexa: string, departement: string[], matiere: string ): Observable<any> {
     const url = this.apiUrl + "/newModule";
     return this.http.post(url, {name, name_reduit, color_hexa, departement, matiere});
   }
