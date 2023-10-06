@@ -1,5 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ModulesService } from 'src/app/services/modules.service';
+
+interface Module {
+  _id: string,
+  name: string,
+  name_reduit: string,
+  color_hexa: string,
+  departement: string[],
+  matiere: string,
+}
+
+interface Filter {
+  [key: string]: string | null,
+}
 
 @Component({
   selector: 'app-cours',
@@ -8,15 +22,14 @@ import { ModulesService } from 'src/app/services/modules.service';
 })
 export class CoursComponent {
 
-  public cours: any[] = [];
+  @Input() cours: Module[] = [];
+  @Input() filtres: Filter = {};
 
-  constructor(private modulesService: ModulesService){}
+  private searchProperty: string = 'name';
 
-  ngOnInit() {
-    this.modulesService.getModule().subscribe((data: any) => {
-      this.cours = data;
-    });
-  }
+  constructor(
+    private modulesService: ModulesService,
+  ){}
 
   deleteModule(id: string) {
     this.modulesService.deleteModule(id).subscribe({
@@ -32,6 +45,26 @@ export class CoursComponent {
         window.location.reload()
       }
     });
+  }
+
+  isInFilter(cours: any) {
+    for (const [filterName, filterValue] of Object.entries(this.filtres)) {
+      const property = cours?.[filterName];
+      
+      if (property) {
+        if (property instanceof Array) {
+          if (!property.includes(filterValue?.toLowerCase())) return false;
+        } else if (filterName === this.searchProperty) {
+          if (!property.toUpperCase().includes(filterValue?.toUpperCase())) {
+            return false;
+          }
+        } else if (property.toUpperCase() !== filterValue?.toUpperCase()) {
+          return false;
+        }
+      }
+    }
+
+    return true;
   }
 
 }
