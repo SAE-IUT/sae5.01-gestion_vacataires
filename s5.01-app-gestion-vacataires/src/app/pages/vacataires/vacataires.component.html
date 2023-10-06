@@ -50,32 +50,42 @@
           </select> -->
 
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="phone" id="phone" [(ngModel)]="form.phone" #phone="ngModel">
-            <label for="phone">phone : </label>
+            <input type="text" class="form-control" name="phone" id="phone" [(ngModel)]="form.phone" #phone="ngModel" placeholder="0648618251">
+            <label for="phone">Numéro de téléphone : </label>
           </div>
 
           <div class="form-floating mb-3">
-            <input type="email" class="form-control" name="email" id="email" [(ngModel)]="form.email" #email="ngModel">
+            <input type="email" class="form-control" name="email" id="email" [(ngModel)]="form.email" #email="ngModel" placeholder="email@gmail.fr">
             <label for="email">Adresse Email : </label>
           </div>
 
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="github" id="github" [(ngModel)]="form.github" #github="ngModel">
+            <input type="text" class="form-control" name="github" id="github" [(ngModel)]="form.github" #github="ngModel" placeholder="github.gg//christopher">
             <label for="github">Profil GitHub : </label>
           </div>
 
-          <!-- <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="skills" id="skills" [(ngModel)]="form.skills" #skills="ngModel">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="skills" id="skills" [(ngModel)]="form.skills" #skills="ngModel" placeholder="ihm dev bd" (input)="splitSkills()" >
             <label for="skills">Skills : </label>
-          </div> -->
+          </div>
 
-          <select class="form-select mb-3" multiple aria-label="multiple select example" id="skills" name="skills" [(ngModel)]="form.skills" #skills="ngModel">
+          <div class="skills-container mb-3">
+            <div *ngFor="let comp of comp" class="skill">
+              {{ comp }}
+              <span class="delete-icon" (click)="removeSkill(comp)">X</span>
+            </div>
+          </div>
+          
+
+          
+
+          <!-- <select class="form-select mb-3" multiple aria-label="multiple select example" id="skills" name="skills" [(ngModel)]="form.skills" #skills="ngModel">
             <option selected disabled>Départments :</option>
             <option value="info">Informatique</option>
             <option value="r&t">Réseaux & Télécommunication</option>
             <option value="cs">Carrière sociales</option>
             <option value="gim">Génie Industriel et Maintenance</option>
-          </select>
+          </select> -->
         </form>
 
         <div class="modal-footer">
