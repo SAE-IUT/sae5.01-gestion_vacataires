@@ -22,7 +22,7 @@ interface Filter {
 })
 export class CoursComponent {
 
-  @Input() cours: Module[] = [];
+  @Input() modules: Module[] = [];
   @Input() filtres: Filter = {};
 
   private searchProperty: string = 'name';

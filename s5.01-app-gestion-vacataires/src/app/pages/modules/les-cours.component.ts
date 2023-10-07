@@ -78,9 +78,9 @@ export class LesCoursComponent {
     //   }
     // ];
 
-    // this.cours = data;
+    // this.modules = data;
     
-    for (const c of this.cours) {
+    for (const c of this.modules) {
       if (!this.matieres.includes(c.matiere)) {
         this.matieres.push(c.matiere);
       }
