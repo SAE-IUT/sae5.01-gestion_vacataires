@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm }   from '@angular/forms';
+import { bootstrapApplication } from '@angular/platform-browser';
 import {LoginService} from 'src/app/services/login.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './connection.component.html',
@@ -29,6 +31,9 @@ export class ConnectionComponent {
       error: (error) => {
         // Gestion des erreurs
         console.error(error);
+        var myAlert = document.getElementById('myAlert')
+        var bsAlert = new bootstrap
+
       },
       complete: () => {
       }
