@@ -23,7 +23,7 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: example
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
   api:
-    build: sae5.01-gestion_vacataires-API
+    image: ghcr.io/sae-iut/sae5.01-gestion_vacataires-api:master
     restart: always
     depends_on:
       - mongo
@@ -31,7 +31,7 @@ services:
       - 3000:3000
   angular:
     restart: always
-    build: sae5.01-gestion_vacataires/s5.01-app-gestion-vacataires
+    image: ghcr.io/sae-iut/sae5.01-gestion_vacataires:main
     ports:
       - 80:4200
 

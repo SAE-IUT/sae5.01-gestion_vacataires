@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { VacatairesComponent } from './pages/vacataires/vacataires.component';
 import { AccueilComponent } from './pages/accueil/accueil.component';
-import { LesCoursComponent } from './pages/les-cours/les-cours.component';
+import { LesCoursComponent } from './pages/modules/les-cours.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [

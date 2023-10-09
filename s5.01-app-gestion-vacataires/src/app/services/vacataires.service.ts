@@ -16,9 +16,9 @@ export class VacatairesService {
     return this.http.get(this.apiUrl)    
   }
 
-  addVacataire(name: string, lastName: string, email: string): Observable<any> {
+  addVacataire(name: string, lastName: string, phone: string, email: string, github: string, skills: string): Observable<any> {
     const url = this.apiUrl + "/newVacataire";
-    return this.http.post(url, {name, lastName, email});   
+    return this.http.post(url, {name, lastName, phone, email, github, skills});   
   }
 
   deleteVacataire(id: string): Observable<any> {
