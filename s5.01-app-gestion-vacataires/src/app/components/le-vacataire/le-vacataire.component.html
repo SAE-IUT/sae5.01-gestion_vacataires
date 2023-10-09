@@ -12,9 +12,9 @@
 </div> -->
 
 <div class="vacataires">
-    <div *ngFor="let vacataire of vacataires" class="vacataire">
+    <div *ngFor="let vacataire of vacataires; let i = index" class="vacataire">
   
-      <div class="expand" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal-' + vacataire.id">
+      <div class="expand" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal-' + vacataire._id">
         <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
       </div>
   
@@ -22,14 +22,15 @@
   
       <div class="content">
         <div class="name">{{ vacataire.name }} {{ vacataire.lastName }}</div>
-        <div class="departement">Département {{ vacataire.department }}</div>
+        <div class="index">Vacataire n°{{i+1}}</div>
         <div class="email">{{ vacataire.email }}</div>
+        <div class="skills">Skills : {{ vacataire.skills }}</div>
       </div>
   
       <div class="status" [ngClass]="getVacataireStatusClass(vacataire.status)"></div>
   
       <!-- Modal du vacataire actuel -->
-      <div class="modal fade" [id]="'exampleModal-' + vacataire.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" [id]="'exampleModal-' + vacataire._id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
@@ -38,12 +39,15 @@
             </div>
             <div class="modal-body">
               <!-- Contenu du modal pour ce vacataire -->
-              <p>Département : {{ vacataire.department }}</p>
+              <p>Téléphone : {{ vacataire.phone }}</p>
               <p>Email : {{ vacataire.email }}</p>
+              <p>github : {{ vacataire.github }}</p>
+              <p>skills : {{ vacataire.skills }}</p>
+              <p>modules : {{ vacataire.modules }}</p>
               <!-- Ajoutez d'autres informations du vacataire si nécessaire -->
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary" [attr.data-bs-target]="'#exampleModalToggle2-' + vacataire.id" data-bs-toggle="modal" data-bs-dismiss="modal">Affecter</button>
+              <button type="button" class="btn btn-primary" [attr.data-bs-target]="'#exampleModalToggle2-' + vacataire._id" data-bs-toggle="modal" data-bs-dismiss="modal">Affecter</button>
               <button type="button" class="btn btn-secondary">Modifier</button>
               <button type="button" class="btn btn-danger" (click)="deleteVacataire(vacataire._id)">Supprimer</button>
             </div>
@@ -51,7 +55,7 @@
         </div>
       </div>
   
-      <div class="modal fade" [id]="'exampleModalToggle2-' + vacataire.id" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+      <div class="modal fade" [id]="'exampleModalToggle2-' + vacataire._id" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">

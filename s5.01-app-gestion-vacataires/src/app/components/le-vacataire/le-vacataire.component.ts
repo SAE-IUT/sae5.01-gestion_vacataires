@@ -35,23 +35,6 @@ export class LeVacataireComponent {
     }
   }
 
-  addVacataire(name: string, lastName: string, email: string) {
-
-    this.vacatairesService.addVacataire(name, lastName, email).subscribe({
-      next: (response) => {
-        window.location.reload()
-      },
-      error: (error) => {
-        // Gestion des erreurs
-        console.error(error);
-      },
-      complete: () => {
-        window.location.reload()
-      }
-    });
-    
-  }
-
   deleteVacataire(id: string) {
     this.vacatairesService.deleteVacataire(id).subscribe({
       next: (response) => {

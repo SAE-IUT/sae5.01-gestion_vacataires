@@ -1,0 +1,80 @@
+<div class="cours">
+  <div *ngFor="let cours of cours" class="cours-card">
+
+    <div class="expand" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal' + cours._id">
+      <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+    </div>
+
+    <!-- <div class="profile-pic"><img [src]="'../../../assets/img/profile-pic' + cours.id + '.svg'" alt="profile-pic"></div> -->
+    <div class="cours-color" [style.background-color]="cours.color_hexa">
+
+    </div>
+
+    <div class="content">
+      <div class="name" style="word-wrap: break-word;">{{ cours.name }}</div>
+      <div class="name">{{ cours.name_reduit }}</div>
+      <div class="content_departement">
+        Département :
+        <div *ngFor="let departement of cours.departement" class="departement" style="display:inline-block;">
+          <li style="text-transform: uppercase;">&nbsp;{{departement}}</li>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- Modal du vacataire actuel -->
+    <div class="modal fade" [id]="'exampleModal' + cours._id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{ cours.name }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" style="text-align: left;">
+            <!-- Contenu du modal pour ce module -->
+            <p><strong>Nom:</strong> {{ cours.name }}</p>
+            <p><strong>Nom réduit:</strong> {{cours.name_reduit}}</p>
+            <p><strong>Matière:</strong> {{cours.matiere}}</p>
+            <strong>Département:</strong>
+            <div *ngFor="let departement of cours.departement" class="departement" style="display:inline-block;">
+              <li style="text-transform: uppercase;">&nbsp;{{departement}}</li>
+            </div><p></p>
+            <p><strong>Couleur:</strong> {{cours.color_hexa}}</p>
+            <!-- Ajoutez d'autres informations du module si nécessaire -->
+          </div>
+          <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-primary" [attr.data-bs-target]="'#exampleModalToggle2-' + cours.id" data-bs-toggle="modal" data-bs-dismiss="modal">Affecter</button> -->
+            <button type="button" class="btn btn-secondary">Modifier</button>
+            <button type="button" class="btn btn-danger" (click)="deleteModule(cours._id)">Supprimer</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TODO : trouver une autre fonctionnalité pour ce btn
+      <div class="modal fade" [id]="'exampleModalToggle2-' + cours.id" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModal  ToggleLabel2">Affecter {{ cours.name }} à un cours</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Nom du cours :</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+            <button type="button" class="btn btn-primary">Valider</button>
+          </div>
+        </div>
+      </div>
+    </div>
+     -->
+  </div>
+</div>
