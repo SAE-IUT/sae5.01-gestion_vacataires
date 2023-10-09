@@ -23,6 +23,7 @@ import { ConnectionComponent } from './pages/connection/connection.component';
     CoursComponent,
     LeVacataireComponent,
     ConnectionComponent,
+
   ],
   imports: [
     BrowserModule,
