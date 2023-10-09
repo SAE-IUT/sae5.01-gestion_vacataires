@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  // private apiUrl  = 'http://localhost:3000/connexion/getUser';
-  private apiUrl  = 'https://sae5-01-app-gestion-vacataires-api.vercel.app/connexion';
+  private apiUrl  = 'http://localhost:3000/connexion';
+  // private apiUrl  = 'https://sae5-01-app-gestion-vacataires-api.vercel.app/connexion';
 
   constructor(private http: HttpClient) { }
 
