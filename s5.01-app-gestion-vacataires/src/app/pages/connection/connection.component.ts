@@ -27,15 +27,23 @@ export class ConnectionComponent {
     this.loginService.getPasswordValid(pseudo,password).subscribe({
       next: (response) => {
         //window.location.reload()
+
       },
       error: (error) => {
         // Gestion des erreurs
         console.error(error);
-        var myAlert = document.getElementById('myAlert')
-        var bsAlert = new bootstrap
+        const alert = document.getElementById('alertPass');
+
+        if (alert != null ){
+          alert.style.display = "block"
+          setTimeout(() => {
+            alert.style.display = "none";
+              },3000)
+        }
 
       },
       complete: () => {
+
       }
     });
   }
