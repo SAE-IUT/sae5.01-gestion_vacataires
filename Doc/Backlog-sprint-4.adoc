@@ -4,8 +4,9 @@
 
 |=======
 |User Story |Tache associé|Estimation temps (en H)
-|En tant qu’administrateur, je peux supprimer un module afin que ce module ne puisse peut plus être affecté|Faire en sorte que les informations soient supprimée à la suppression d’un module|2
-|En tant qu’administrateur, je peux modifier un module afin de pouvoir mettre à jour les informations du module|Faire en sorte que quand on modifié les informations d’un module celle-ci se mettent à jour dans l’API|2
+|En tant qu’administrateur, je peux créer un module afin de le sauvegarder dans une API|Faire en sorte que les informations quand on créé un module s'enregistre|2
+|En tant qu’administrateur, je peux supprimer un module afin de ne plus l’avoir dans notre API|Faire en sorte que les informations soient supprimée à la suppression d'un module|2
+|En tant qu’administrateur, je peux modifier un module afin de pouvoir mettre à jour ces informations personnelles|Faire en sorte que quand on modifié les informations d'un module celle-ci se mettent à jour dans l'API|3
 |En tant qu’administrateur, je peux trier la liste des vacataires en fonction de différents filtres afin d’avoir un moyen plus rapide de trouver ce que l’on cherche|Faire en sorte de pouvoir trier les vacataires en fonction des filtres|8
 |En tant qu’administrateur, je peux trier la liste des modules en fonction de différents filtres afin de trouver le module ou les modules qu’on cherche plus rapidement|Faire en sorte de pouvoir trier les modules en fonction des filtres|8
 |En tant qu’utilisateurs, je dois me connecter pour accéder au site afin de pouvoir voir où gérer les informations des vacataires ainsi que des cours|Faire en sorte de pouvoir géré qui peut se connecter sur le site de gestion des vacataires|12

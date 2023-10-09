@@ -6,22 +6,27 @@
 
 == Equipe
 
-Le projet est réalisé par::
+Le projet est réalisé par :
 
 - https://github.com/Zekoko[Bastien BALMES] SCRUM master
 - https://github.com/EnzoMancini[Enzo Mancini] Product owner
 - https://github.com/Chris-973[Chrispher MARIE-ANGÉLIQUE] DEVDEV
-_ 
+- https://github.com/BryceFuerty[Bryce FUERTES]
+- https://github.com/Jolex35[Alex JOLAS]
+- https://github.com/Stemon8[Marco VALLE]
+- https://github.com/VictorThompsonKeyl[Victor THOMPSON]
+- https://github.com/RedeiFantasmi[Michele FLORIO]
+
 
 == Réalisations 
 
-.Vous trouverez ci-dessous les liens vers les différentes réalisations effectuée par notre groupe :
+.Vous trouverez ci-dessous les liens vers les différentes réalisations effectuées par notre groupe :
 
 L'application : https://sae5-01-gestion-vacataires.vercel.app/
 
 == Gestion de projet
 
-- https://github.com/SAE-IUT/sae5.01-gestion_vacataires/tree/main/Doc[Dossier des documentation]
+- https://github.com/SAE-IUT/sae5.01-gestion_vacataires/tree/main/Doc[Dossier des documentations]
 
 - Version courante : https://github.com/SAE-IUT/sae5.01-gestion_vacataires/releases/tag/V.3[Sprint 3]
 
@@ -29,4 +34,54 @@ L'application : https://sae5-01-gestion-vacataires.vercel.app/
 
 - https://github.com/SAE-IUT/sae5.01-gestion_vacataires/labels/US[Liste user stories]
 
+== Installation docker (sous linux ou WSL2 avec docker installé)
 
+A faire une fois:
+
+----
+export CR_PAT=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
+echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
+----
+
+A faire à chaque fois qu'une nouvelle version est souhaitée:
+
+----
+docker pull ghcr.io/sae-iut/sae5.01-gestion_vacataires:main
+----
+
+Docker run:
+ 
+----
+docker run -p 80:4200 ghcr.io/sae-iut/sae5.01-gestion_vacataires:main
+----
+
+Le serveur est lancé sur localhost
+
+
+== Installation finale et automation Docker compose (sous linux avec docker compose)
+
+Sachez que l'ouverture des ports 80 et 3000 ne sera pas adressée dans ce readme mais qui es un pas nécessaire pour la mise en production
+
+1 - téléchargez le fichier compose.yaml dans le répertoire de vottre choix et placez vous dessus
+
+A faire une fois:
+----
+export CR_PAT=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
+echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
+----
+
+Pour lancer le docker compose:
+----
+docker compose up -d
+----
+
+Pour avoir la dernière version des images
+----
+docker compose pull
+----
+
+
+(optionnel mais reccommandé) cron job pour fetch la dernière version de l'appli et relancer les serveurs tous les jours à 3h du matin
+----
+0 3 * * * cd /chemin/vers/le/compose && docker compose pull && docker compose up -d
+----

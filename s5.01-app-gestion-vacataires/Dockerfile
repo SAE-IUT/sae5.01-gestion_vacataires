@@ -4,6 +4,7 @@ WORKDIR /code
 ENV PATH /code/node_modules/.bin:$PATH
 COPY package.json package.json
 RUN npm install
-EXPOSE 3000
+RUN npm install -g @angular/cli@7.3.9
+EXPOSE 4200
 COPY . .
 CMD npm start
