@@ -1,20 +1,42 @@
 <div class="buttons">
 
   <a class="btn dropdown dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Filtres</a>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Affecter</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Non affecter</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">En attente</a>
+  <ul class="dropdown-menu" (click)="$event.stopPropagation()">
+    <!-- Filtre matière -->
+    <li>
+      <span class="dropdown-item-text" *ngIf="!isFiltered('matiere')">Matière</span>
+      <a class="dropdown-item active-filter" [routerLink]="['/les-cours']" [queryParams]="{ 'matiere': null }" queryParamsHandling="merge" replaceUrl="true" *ngIf="isFiltered('matiere')">Matière</a>
+      <ul class="dropdown-menu dropdown-submenu" *ngIf="matieres.length !== 0">
+        <li *ngFor="let matiere of matieres">
+          <a class="dropdown-item" [routerLink]="['/les-cours']" [queryParams]="{ 'matiere': matiere }" queryParamsHandling="merge" replaceUrl="true" [attr.aria-selected]="filtres['matiere'] === matiere">{{ matiere }}</a>
+        </li>
+      </ul>
+    </li>
+    <!-- Filtre département -->
+    <li>
+      <span class="dropdown-item-text" *ngIf="!isFiltered('departement')">Département</span>
+      <a class="dropdown-item active-filter" [routerLink]="['/les-cours']" [queryParams]="{ 'departement': null }" queryParamsHandling="merge" replaceUrl="true" *ngIf="isFiltered('departement')">Département</a>
+      <ul class="dropdown-menu dropdown-submenu" *ngIf="matieres.length !== 0">
+        <li *ngFor="let departement of departements">
+          <a class="dropdown-item" [routerLink]="['/les-cours']" [queryParams]="{ 'departement': departement}" queryParamsHandling="merge" replaceUrl="true" [attr.aria-selected]="filtres['departement'] === departement">{{ departement }}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <!-- Barre de recherche -->
+  <div class="btn search flex-wrap">
+    <label for="search">Rechercher par nom : </label> 
+    <input type="text" class="form-control w-auto" id="search" name="search" [value]="currentSearch" (input)="search($event)">
   </div>
 
   <div data-bs-toggle="modal" data-bs-target="#createModule" class="btn">Ajouter un module</div>
 
 </div>
 
+<!-- Liste des cartes -->
 <div class="modules">
-  <app-cours></app-cours>
+  <app-cours [modules]="modules" [filtres]="filtres"></app-cours>
 </div>
 
 <div class="modal fade" id="createModule" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createModuleLabel" aria-hidden="true">

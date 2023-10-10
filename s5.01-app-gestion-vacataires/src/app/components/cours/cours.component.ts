@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import Filtre from 'src/app/interfaces/filtre-interface';
+import Module from 'src/app/interfaces/module-interface';
 import { ModulesService } from 'src/app/services/modules.service';
 
 @Component({
@@ -8,15 +10,13 @@ import { ModulesService } from 'src/app/services/modules.service';
 })
 export class CoursComponent {
 
-  public cours: any[] = [];
+  // Import des données fournies par le parent
+  @Input() modules: Module[] = [];
+  @Input() filtres: Filtre = {};
 
-  constructor(private modulesService: ModulesService){}
-
-  ngOnInit() {
-    this.modulesService.getModule().subscribe((data: any) => {
-      this.cours = data;
-    });
-  }
+  constructor(
+    private modulesService: ModulesService,
+  ){}
 
   deleteModule(id: string) {
     this.modulesService.deleteModule(id).subscribe({
@@ -32,6 +32,45 @@ export class CoursComponent {
         window.location.reload()
       }
     });
+  }
+
+  /**
+   * Vérifie si un cours correspond aux filtres actifs
+   * @param cours Cours à vérifier
+   * @returns boolean
+   */
+  isInFilter(cours: Module) {
+    let state = true; // Est valide par défaut
+
+    for (const [filterName, filterValue] of Object.entries(this.filtres)) {
+      if (filterName === 'search') { // Si barre de recherche
+        let found = false;
+
+        // Propriétés de la recherche
+        const name = cours.name.toUpperCase();
+        const nameReduit = cours.name_reduit.toUpperCase();
+
+        if (name.includes(filterValue.toUpperCase()) || nameReduit.includes(filterValue.toUpperCase())) {
+          found = true;
+        }
+
+        state = found;
+      } else {
+        const property = cours?.[filterName as keyof Module];
+
+        if (property) {
+          if (property instanceof Array) {
+            if (property.findIndex(el => el.toUpperCase() === filterValue.toUpperCase()) === -1) {
+              state = false;
+            }
+          } else if (property.toUpperCase() !== filterValue?.toUpperCase()) {
+            state = false;
+          }
+        }
+      }
+    }
+
+    return state;
   }
 
 }

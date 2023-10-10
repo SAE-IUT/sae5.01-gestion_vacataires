@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import Filtre from 'src/app/interfaces/filtre-interface';
+import Vacataire from 'src/app/interfaces/vacataire-interface';
 import { VacatairesService } from 'src/app/services/vacataires.service';
 
 @Component({
@@ -8,15 +10,11 @@ import { VacatairesService } from 'src/app/services/vacataires.service';
 })
 export class LeVacataireComponent {
 
-  public vacataires: any[] = []
+  // Import des données fournies par le parent
+  @Input() vacataires: Vacataire[] = [];
+  @Input() filtres: Filtre = {};
 
   constructor(private vacatairesService: VacatairesService) {}
-
-  ngOnInit() {
-    this.vacatairesService.getVacataire().subscribe((data: any) => {
-      this.vacataires = data;               
-    });
-  }
 
   /**
    * permet de déterminer le style de la div status selon le status du vacataire
@@ -50,4 +48,44 @@ export class LeVacataireComponent {
       }
     });    
   }
+
+  /**
+   * Vérifie si un cours correspond aux filtres actifs
+   * @param vacataire Vacataire à vérifier
+   * @returns boolean
+   */
+  isInFilter(vacataire: Vacataire) {
+    let state = true; // Est validé par défaut
+
+    for (const [filterName, filterValue] of Object.entries(this.filtres)) {
+      if (filterName === 'search') {
+        let found = false;
+
+        // Propriétés de la recherche
+        const name = vacataire.name.toUpperCase();
+        const lastName = vacataire.lastName.toUpperCase();
+
+        if ((name + ' ' + lastName).includes(filterValue.toUpperCase()) || (lastName + ' ' + name).includes(filterValue.toUpperCase())) {
+          found = true;
+        }
+
+        state = found;
+      } else {
+        const property = vacataire?.[filterName as keyof Vacataire];
+
+        if (property) {
+          if (property instanceof Array) {
+            if (property.findIndex(el => el.toUpperCase() === filterValue.toUpperCase()) === -1) {
+              state = false;
+            }
+          } else if (property.toUpperCase() !== filterValue?.toUpperCase()) {
+            state = false;
+          }
+        }
+      }
+    }
+
+    return state;
+  }
+
 }
