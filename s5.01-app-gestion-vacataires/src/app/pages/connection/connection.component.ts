@@ -3,6 +3,9 @@ import { NgForm }   from '@angular/forms';
 import { bootstrapApplication } from '@angular/platform-browser';
 import {LoginService} from 'src/app/services/login.service';
 
+type res = {
+  msg:string
+}
 @Component({
   selector: 'app-login',
   templateUrl: './connection.component.html',
@@ -27,6 +30,8 @@ export class ConnectionComponent {
     this.loginService.getPasswordValid(pseudo,password).subscribe({
       next: (response) => {
         //window.location.reload()
+        localStorage.setItem("token",(response as res).msg)
+
 
       },
       error: (error) => {
