@@ -44,36 +44,9 @@ export class VacatairesComponent {
   ){}
 
   ngOnInit() {
-    // this.vacatairesService.getVacataire().subscribe((data: any) => {
-    //   this.vacataires = data;               
-    // });
-
-    const data = [
-      {
-        _id: '255',
-        name: 'Chris',
-        lastName: 'Pratt',
-        phone: '+33 6 85 25 10 02',
-        email: 'chris.pratt@gmail.com',
-        github: 'github.com/chris',
-        skills: ['strong', 'nice'],
-        modules: ['Anglais', 'Base de données'],
-        status: 'Affecté',
-      },
-      {
-        _id: '2551',
-        name: 'Prok',
-        lastName: 'Praker',
-        phone: '+33 6 43 65 78 40',
-        email: 'prok.praker@gmail.com',
-        github: 'github.com/ppork',
-        skills: ['strong', 'neighborhood'],
-        modules: ['SAE', 'Base de données'],
-        status: 'Non Affecté',
-      },
-    ];
-
-    this.vacataires = data;
+    this.vacatairesService.getVacataire().subscribe((data: any) => {
+      this.vacataires = data;               
+    });
 
     // Récupération des matières distinctes
     for (const c of this.vacataires) {
