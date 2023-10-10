@@ -22,7 +22,7 @@ Le projet est réalisé par :
 
 .Vous trouverez ci-dessous les liens vers les différentes réalisations effectuées par notre groupe :
 
-L'application : https://sae5-01-gestion-vacataires.vercel.app/
+L'application : http://vacataires.mvallew.com/
 
 == Gestion de projet
 
