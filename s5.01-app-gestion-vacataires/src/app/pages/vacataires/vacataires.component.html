@@ -23,8 +23,8 @@
   </ul>
 
   <div class="btn search flex-wrap">
-    <label>Rechercher par nom : </label> 
-    <input type="text" class="form-control w-auto" name="search" [value]="currentSearch" (input)="search($event)">
+    <label for="search">Rechercher par nom : </label> 
+    <input type="text" class="form-control w-auto" id="search" name="search" [value]="currentSearch" (input)="search($event)">
   </div>
 
   <div data-bs-toggle="modal" data-bs-target="#createVacataire" class="btn">Ajouter un vacataire</div>

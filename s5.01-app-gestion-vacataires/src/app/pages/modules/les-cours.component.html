@@ -2,6 +2,7 @@
 
   <a class="btn dropdown dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Filtres</a>
   <ul class="dropdown-menu" (click)="$event.stopPropagation()">
+    <!-- Filtre matière -->
     <li>
       <span class="dropdown-item-text" *ngIf="!isFiltered('matiere')">Matière</span>
       <a class="dropdown-item active-filter" [routerLink]="['/les-cours']" [queryParams]="{ 'matiere': null }" queryParamsHandling="merge" replaceUrl="true" *ngIf="isFiltered('matiere')">Matière</a>
@@ -11,6 +12,7 @@
         </li>
       </ul>
     </li>
+    <!-- Filtre département -->
     <li>
       <span class="dropdown-item-text" *ngIf="!isFiltered('departement')">Département</span>
       <a class="dropdown-item active-filter" [routerLink]="['/les-cours']" [queryParams]="{ 'departement': null }" queryParamsHandling="merge" replaceUrl="true" *ngIf="isFiltered('departement')">Département</a>
@@ -22,15 +24,17 @@
     </li>
   </ul>
 
+  <!-- Barre de recherche -->
   <div class="btn search flex-wrap">
-    <label>Rechercher par nom : </label> 
-    <input type="text" class="form-control w-auto" name="search" [value]="currentSearch" (input)="search($event)">
+    <label for="search">Rechercher par nom : </label> 
+    <input type="text" class="form-control w-auto" id="search" name="search" [value]="currentSearch" (input)="search($event)">
   </div>
 
   <div data-bs-toggle="modal" data-bs-target="#createModule" class="btn">Ajouter un module</div>
 
 </div>
 
+<!-- Liste des cartes -->
 <div class="modules">
   <app-cours [modules]="modules" [filtres]="filtres"></app-cours>
 </div>

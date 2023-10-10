@@ -2,19 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ModulesService } from 'src/app/services/modules.service';
 import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
-
-interface Module {
-  _id: string,
-  name: string,
-  name_reduit: string,
-  color_hexa: string,
-  departement: string[],
-  matiere: string,
-}
-
-interface Filter {
-  [key: string]: string | null,
-}
+import Module from 'src/app/interfaces/module-interface';
+import Filter from 'src/app/interfaces/filtre-interface';
 
 @Component({
   selector: 'app-les-cours',
@@ -23,13 +12,14 @@ interface Filter {
 })
 export class LesCoursComponent {
 
-  public modules: Module[] = [];
+  public modules: Module[] = []; // Liste des cours
 
-  public matieres: string[] = [];
-  public departements: string[] = [];
-  public filtres: Filter = {};
+  public filtres: Filter = {}; // Filtres actifs
 
-  public currentSearch: string | null = null;
+  public matieres: string[] = []; // Liste des matières
+  public departements: string[] = []; // Liste des départements
+
+  public currentSearch: string | null = null; // Dernière recherche saisie
   private searchTimeout: number | null = null;
 
   form = {
@@ -47,39 +37,40 @@ export class LesCoursComponent {
   ){}
 
   ngOnInit() {
-    this.modulesService.getModule().subscribe((data: unknown) => {
-      this.modules = data as Module[];
-    });
+    // this.modulesService.getModule().subscribe((data: unknown) => {
+    //   this.modules = data as Module[];
+    // });
     
-    // const data = [
-    //   {
-    //     _id: '2125',
-    //     name: 'SAE5',
-    //     name_reduit: 'SAE',
-    //     color_hexa: '#115588',
-    //     departement: ['info'],
-    //     matiere: 'SAE',
-    //   },
-    //   {
-    //     _id: '21255',
-    //     name: 'Anglais',
-    //     name_reduit: 'ENG',
-    //     color_hexa: '#558811',
-    //     departement: ['info', 'rt', 'gmi', 'cs'],
-    //     matiere: 'Anglais',
-    //   },
-    //   {
-    //     _id: '212552',
-    //     name: 'Base de données',
-    //     name_reduit: 'BDD',
-    //     color_hexa: '#881155',
-    //     departement: ['info'],
-    //     matiere: 'Développement',
-    //   }
-    // ];
+    const data = [
+      {
+        _id: '2125',
+        name: 'SAE5',
+        name_reduit: 'SAE',
+        color_hexa: '#115588',
+        departement: ['info'],
+        matiere: 'SAE',
+      },
+      {
+        _id: '21255',
+        name: 'Anglais',
+        name_reduit: 'ENG',
+        color_hexa: '#558811',
+        departement: ['info', 'rt', 'gmi', 'cs'],
+        matiere: 'Anglais',
+      },
+      {
+        _id: '212552',
+        name: 'Base de données',
+        name_reduit: 'BDD',
+        color_hexa: '#881155',
+        departement: ['info'],
+        matiere: 'Développement',
+      }
+    ];
 
-    // this.modules = data;
+    this.modules = data;
     
+    // Récupération des matières et des départements distincts
     for (const c of this.modules) {
       if (!this.matieres.includes(c.matiere)) {
         this.matieres.push(c.matiere);
@@ -91,17 +82,24 @@ export class LesCoursComponent {
       }
     }
 
+    // Remplissage des filtres actifs à partir des query params
     this.route.queryParamMap.subscribe((params: ParamMap) => {
       this.filtres = {};
       for (const param of params.keys) {
-        this.filtres[param] = params.get(param);
+        this.filtres[param] = params.get(param) ?? '';
       }
-      this.currentSearch = this.route.snapshot.queryParamMap.get('name');
+      this.currentSearch = this.route.snapshot.queryParamMap.get('search');
     });
   }
 
+  /**
+   * Gère la recherche :
+   * - valide une recherche 0.75s après la saisie si elle est différente de la précédente
+   * - modification du query param "search"
+   * @param e
+   */
   search(e: Event) {
-    const newSearch = (<HTMLInputElement>e.target).value;
+    const newSearch = (<HTMLInputElement>e.target).value; // valeur saisie
 
     if (this.searchTimeout) clearTimeout(this.searchTimeout);
 
@@ -110,7 +108,7 @@ export class LesCoursComponent {
         this.router.navigate(
           ['/les-cours'],
           {
-            queryParams: { name: newSearch ? newSearch : null },
+            queryParams: { search: newSearch ? newSearch : null },
             queryParamsHandling: 'merge',
             replaceUrl: true,
           },
@@ -119,6 +117,11 @@ export class LesCoursComponent {
     }, 750);
   }
 
+  /**
+   * Vérifie si le filtre est actif
+   * @param category Filtre à vérifier
+   * @returns boolean
+   */
   isFiltered(category: string) {
     return Object.hasOwn(this.filtres, category);
   }

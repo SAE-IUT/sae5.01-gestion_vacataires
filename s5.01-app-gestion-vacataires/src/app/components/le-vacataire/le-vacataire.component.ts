@@ -1,21 +1,7 @@
 import { Component, Input } from '@angular/core';
+import Filtre from 'src/app/interfaces/filtre-interface';
+import Vacataire from 'src/app/interfaces/vacataire-interface';
 import { VacatairesService } from 'src/app/services/vacataires.service';
-
-interface Vacataire {
-  _id: string,
-  name: string,
-  lastName: string,
-  phone: string,
-  email: string,
-  github: string,
-  skills: string[],
-  modules: string[],
-  status: string,
-}
-
-interface Filter {
-  [key: string]: string | null,
-}
 
 @Component({
   selector: 'app-le-vacataire',
@@ -24,19 +10,11 @@ interface Filter {
 })
 export class LeVacataireComponent {
 
-  // public vacataires: any[] = []
+  // Import des données fournies par le parent
   @Input() vacataires: Vacataire[] = [];
-  @Input() filtres: Filter = {};
-
-  private searchProperty: string = 'name';
+  @Input() filtres: Filtre = {};
 
   constructor(private vacatairesService: VacatairesService) {}
-
-  ngOnInit() {
-    // this.vacatairesService.getVacataire().subscribe((data: any) => {
-    //   this.vacataires = data;               
-    // });
-  }
 
   /**
    * permet de déterminer le style de la div status selon le status du vacataire
@@ -71,23 +49,43 @@ export class LeVacataireComponent {
     });    
   }
 
-  isInFilter(cours: any) {
+  /**
+   * Vérifie si un cours correspond aux filtres actifs
+   * @param vacataire Vacataire à vérifier
+   * @returns boolean
+   */
+  isInFilter(vacataire: Vacataire) {
+    let state = true; // Est validé par défaut
+
     for (const [filterName, filterValue] of Object.entries(this.filtres)) {
-      const property = cours?.[filterName];
-      if (property) {
-        if (property instanceof Array) {
-          if (!property.includes(filterValue)) return false;
-        } else if (filterName === this.searchProperty) {
-          console.log(property + ' ' + cours.lastName);
-          if (!(property + ' ' + cours.lastName).toUpperCase().includes(filterValue?.toUpperCase() ?? '') && !(cours.lastName + ' ' + property).toUpperCase().includes(filterValue?.toUpperCase() ?? '')) {
-            return false;
+      if (filterName === 'search') {
+        let found = false;
+
+        // Propriétés de la recherche
+        const name = vacataire.name.toUpperCase();
+        const lastName = vacataire.lastName.toUpperCase();
+
+        if ((name + ' ' + lastName).includes(filterValue.toUpperCase()) || (lastName + ' ' + name).includes(filterValue.toUpperCase())) {
+          found = true;
+        }
+
+        state = found;
+      } else {
+        const property = vacataire?.[filterName as keyof Vacataire];
+
+        if (property) {
+          if (property instanceof Array) {
+            if (property.findIndex(el => el.toUpperCase() === filterValue.toUpperCase()) === -1) {
+              state = false;
+            }
+          } else if (property.toUpperCase() !== filterValue?.toUpperCase()) {
+            state = false;
           }
-        } else if (property.toUpperCase() !== filterValue?.toUpperCase()) {
-          return false;
         }
       }
     }
 
-    return true;
+    return state;
   }
+
 }

@@ -13,6 +13,7 @@
 
 <div class="vacataires">
   <ng-container *ngFor="let vacataire of vacataires; let i = index">
+    <!-- Affichage de la carte en fonction des filtres -->
     <div class="vacataire" *ngIf="isInFilter(vacataire)">
 
       <div class="expand" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal-' + vacataire._id">

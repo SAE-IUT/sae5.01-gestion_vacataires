@@ -1,19 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import Filtre from 'src/app/interfaces/filtre-interface';
+import Module from 'src/app/interfaces/module-interface';
 import { ModulesService } from 'src/app/services/modules.service';
-
-interface Module {
-  _id: string,
-  name: string,
-  name_reduit: string,
-  color_hexa: string,
-  departement: string[],
-  matiere: string,
-}
-
-interface Filter {
-  [key: string]: string | null,
-}
 
 @Component({
   selector: 'app-cours',
@@ -22,10 +10,9 @@ interface Filter {
 })
 export class CoursComponent {
 
+  // Import des données fournies par le parent
   @Input() modules: Module[] = [];
-  @Input() filtres: Filter = {};
-
-  private searchProperty: string = 'name';
+  @Input() filtres: Filtre = {};
 
   constructor(
     private modulesService: ModulesService,
@@ -47,24 +34,43 @@ export class CoursComponent {
     });
   }
 
-  isInFilter(cours: any) {
+  /**
+   * Vérifie si un cours correspond aux filtres actifs
+   * @param cours Cours à vérifier
+   * @returns boolean
+   */
+  isInFilter(cours: Module) {
+    let state = true; // Est valide par défaut
+
     for (const [filterName, filterValue] of Object.entries(this.filtres)) {
-      const property = cours?.[filterName];
-      
-      if (property) {
-        if (property instanceof Array) {
-          if (!property.includes(filterValue?.toLowerCase())) return false;
-        } else if (filterName === this.searchProperty) {
-          if (!property.toUpperCase().includes(filterValue?.toUpperCase())) {
-            return false;
+      if (filterName === 'search') { // Si barre de recherche
+        let found = false;
+
+        // Propriétés de la recherche
+        const name = cours.name.toUpperCase();
+        const nameReduit = cours.name_reduit.toUpperCase();
+
+        if (name.includes(filterValue.toUpperCase()) || nameReduit.includes(filterValue.toUpperCase())) {
+          found = true;
+        }
+
+        state = found;
+      } else {
+        const property = cours?.[filterName as keyof Module];
+
+        if (property) {
+          if (property instanceof Array) {
+            if (property.findIndex(el => el.toUpperCase() === filterValue.toUpperCase()) === -1) {
+              state = false;
+            }
+          } else if (property.toUpperCase() !== filterValue?.toUpperCase()) {
+            state = false;
           }
-        } else if (property.toUpperCase() !== filterValue?.toUpperCase()) {
-          return false;
         }
       }
     }
 
-    return true;
+    return state;
   }
 
 }

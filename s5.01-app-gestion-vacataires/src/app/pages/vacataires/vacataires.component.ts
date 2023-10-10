@@ -1,22 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import Filter from 'src/app/interfaces/filtre-interface';
+import Vacataire from 'src/app/interfaces/vacataire-interface';
 import { VacatairesService } from 'src/app/services/vacataires.service';
-
-interface Vacataire {
-  _id: string,
-  name: string,
-  lastName: string,
-  phone: string,
-  email: string,
-  github: string,
-  skills: string[],
-  modules: string[],
-  status: string,
-}
-
-interface Filter {
-  [key: string]: string | null,
-}
 
 @Component({
   selector: 'app-vacataires',
@@ -25,17 +11,18 @@ interface Filter {
 })
 export class VacatairesComponent {
 
-  public vacataires: Vacataire[] = []
+  public vacataires: Vacataire[] = []; // Liste des vacataires
 
-  public filtres: Filter = {};
+  public filtres: Filter = {}; // Filtres actifs
+
   public status: string[] = [
     'Affecté',
     'Non Affecté',
     'En Attente',
   ];
-  public matieres: string[] = [];
+  public matieres: string[] = []; // Liste des matières
 
-  public currentSearch: string | null = null;
+  public currentSearch: string | null = null; // Dernière recherche saisie
   private searchTimeout: number | null = null;
 
   form = {
@@ -88,10 +75,8 @@ export class VacatairesComponent {
 
     this.vacataires = data;
 
+    // Récupération des matières distinctes
     for (const c of this.vacataires) {
-      // if (!this.matieres.includes(c.matiere)) {
-      //   this.matieres.push(c.matiere);
-      // }
       for (const module of c.modules) {
         if (!this.matieres.includes(module)) {
           this.matieres.push(module);
@@ -99,12 +84,13 @@ export class VacatairesComponent {
       }
     }
 
+    // Remplissage des filtres actifs à partir des query params
     this.route.queryParamMap.subscribe((params: ParamMap) => {
       this.filtres = {};
       for (const param of params.keys) {
-        this.filtres[param] = params.get(param);
+        this.filtres[param] = params.get(param) ?? '';
       }
-      this.currentSearch = this.route.snapshot.queryParamMap.get('name');
+      this.currentSearch = this.route.snapshot.queryParamMap.get('search');
     });
   }
 
@@ -178,12 +164,23 @@ export class VacatairesComponent {
       
   }
 
+  /**
+   * Vérifie si le filtre est actif
+   * @param category Filtre à vérifier
+   * @returns boolean
+   */
   isFiltered(category: string) {
     return Object.hasOwn(this.filtres, category);
   }
 
+  /**
+   * Gère la recherche :
+   * - valide une recherche 0.75s après la saisie si elle est différente de la précédente
+   * - modification du query param "search"
+   * @param e
+   */
   search(e: Event) {
-    const newSearch = (<HTMLInputElement>e.target).value;
+    const newSearch = (<HTMLInputElement>e.target).value; // valeur saisie
 
     if (this.searchTimeout) clearTimeout(this.searchTimeout);
 
@@ -192,7 +189,7 @@ export class VacatairesComponent {
         this.router.navigate(
           ['/vacataires'],
           {
-            queryParams: { name: newSearch ? newSearch : null },
+            queryParams: { search: newSearch ? newSearch : null },
             queryParamsHandling: 'merge',
             replaceUrl: true,
           },
