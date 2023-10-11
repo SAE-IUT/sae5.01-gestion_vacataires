@@ -71,7 +71,7 @@ Sachez que l'ouverture des ports 80 et 3000 ne sera pas adressée dans ce readme
 
 A faire une fois:
 ----
-export CR_PAT=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
+export CR_PAT=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
 echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
 ----
 

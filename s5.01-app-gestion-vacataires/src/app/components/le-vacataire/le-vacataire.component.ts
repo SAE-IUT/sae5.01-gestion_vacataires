@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import Filtre from 'src/app/interfaces/filtre-interface';
+import Module from 'src/app/interfaces/module-interface';
+import Vacataire from 'src/app/interfaces/vacataire-interface';
+import { ModulesService } from 'src/app/services/modules.service';
 import { VacatairesService } from 'src/app/services/vacataires.service';
 
 @Component({
@@ -8,13 +12,27 @@ import { VacatairesService } from 'src/app/services/vacataires.service';
 })
 export class LeVacataireComponent {
 
-  public vacataires: any[] = []
+  // Import des données fournies par le parent
+  @Input() vacataires: Vacataire[] = [];
+  @Input() filtres: Filtre = {};
 
-  constructor(private vacatairesService: VacatairesService) {}
+  public cours: Module[] = []
+
+  errorMessage: string | null = null;
+
+  nomCours: string = '';
+  
+  form = {
+    name: ""
+  }
+
+
+
+  constructor(private vacatairesService: VacatairesService, private modulesService: ModulesService) {}
 
   ngOnInit() {
-    this.vacatairesService.getVacataire().subscribe((data: any) => {
-      this.vacataires = data;               
+    this.modulesService.getModule().subscribe((data: unknown) => {
+      this.cours = data as Module[];
     });
   }
 
@@ -28,28 +46,12 @@ export class LeVacataireComponent {
     switch (status) {
       case 'en attente':
         return 'status-gray';
-      case 'admis':
+      case 'affecté':
         return 'status-green';
+      case 'non affecté':
       default:
         return 'status-red';
     }
-  }
-
-  addVacataire(name: string, lastName: string, department: string, email: string, linkedin: string, discord: string) {
-
-    this.vacatairesService.addVacataire(name, lastName, department, email, linkedin, discord).subscribe({
-      next: (response) => {
-        window.location.reload()
-      },
-      error: (error) => {
-        // Gestion des erreurs
-        console.error(error);
-      },
-      complete: () => {
-        window.location.reload()
-      }
-    });
-    
   }
 
   deleteVacataire(id: string) {
@@ -66,5 +68,100 @@ export class LeVacataireComponent {
         window.location.reload()
       }
     });    
+  }
+
+  /**
+   * Vérifie si un cours correspond aux filtres actifs
+   * @param vacataire Vacataire à vérifier
+   * @returns boolean
+   */
+  isInFilter(vacataire: Vacataire) {
+    let state = true; // Est validé par défaut
+
+    for (const [filterName, filterValue] of Object.entries(this.filtres)) {
+      if (filterName === 'search') {
+        let found = false;
+
+        // Propriétés de la recherche
+        const name = vacataire.name.toUpperCase();
+        const lastName = vacataire.lastName.toUpperCase();
+
+        if ((name + ' ' + lastName).includes(filterValue.toUpperCase()) || (lastName + ' ' + name).includes(filterValue.toUpperCase())) {
+          found = true;
+        }
+
+        state = found;
+      } else {
+        const property = vacataire?.[filterName as keyof Vacataire];
+
+        if (property) {
+          if (property instanceof Array) {
+            if (property.findIndex(el => el.toUpperCase() === filterValue.toUpperCase()) === -1) {
+              state = false;
+            }
+          } else if (property.toUpperCase() !== filterValue?.toUpperCase()) {
+            state = false;
+          }
+        }
+      }
+    }
+
+    return state;
+  }
+
+  affecterVacataire(vacataireId: string, nomCours: string) {
+    console.log(nomCours);
+    const vacataire = this.vacataires.find(v => v._id === vacataireId);
+  
+    if (vacataire && nomCours && !vacataire.modules.includes(nomCours)) {
+      this.vacatairesService.affecterVacataire(vacataireId, nomCours).subscribe(() => {
+        vacataire.modules.push(nomCours);
+        this.errorMessage = null; // Réinitialise le message d'erreur
+        // Rechargez la liste des vacataires après l'affectation
+        this.vacatairesService.getVacataire().subscribe((data: unknown) => {
+          this.vacataires = data as Vacataire[];
+           // Fermez le modal ici, car il n'y a pas d'erreur
+          const modal = document.getElementById('exampleModalToggle2-' + vacataireId);
+          if (modal) {
+            modal.querySelector('.btn-close')?.dispatchEvent(new Event('click'));        
+          }    
+        });
+      }, (error) => {
+        // Gérer les erreurs ici si nécessaire
+        console.error(error);
+      });
+    } else {
+      this.errorMessage = "Ce cours est déjà affecté.";
+    }
+  }
+
+  desaffecterVacataire(vacataireId: string, nomCours: string) {
+    this.vacatairesService.desaffecterVacataire(vacataireId, nomCours).subscribe(() => {
+      const vacataire = this.vacataires.find((v) => v._id === vacataireId);
+      if (vacataire) {
+        // Retirez le cours de la liste des modules du vacataire
+        vacataire.modules = vacataire.modules.filter((module: string) => module !== nomCours);
+      }
+      // Rechargez la liste des vacataires après la désaffectation
+      this.vacatairesService.getVacataire().subscribe((data: unknown) => {
+        this.vacataires = data as Vacataire[];
+      });
+    }, (error) => {
+      // Gérez les erreurs ici si nécessaire
+      console.error(error);
+    });
+  }
+
+  onModalShow(event: Event) {
+    // Réinitialise errorMessage lorsque le modal est sur le point d'être affiché
+    if (this.errorMessage) {
+      this.errorMessage = null;
+    }
+  }
+
+
+  hello() {
+    console.log(this.cours);
+    
   }
 }

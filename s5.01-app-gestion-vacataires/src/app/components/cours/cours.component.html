@@ -1,80 +1,109 @@
 <div class="cours">
-  <div *ngFor="let cours of cours" class="cours-card">
+  <ng-container *ngFor="let cours of modules">
+    <div *ngIf="isInFilter(cours)" class="cours-card">
 
-    <div class="expand" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal' + cours._id">
-      <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
-    </div>
-
-    <!-- <div class="profile-pic"><img [src]="'../../../assets/img/profile-pic' + cours.id + '.svg'" alt="profile-pic"></div> -->
-    <div class="cours-color" [style.background-color]="cours.color_hexa">
-
-    </div>
-
-    <div class="content">
-      <div class="name">{{ cours.name }}</div>
-      <div class="name">{{ cours.name_reduit }}</div>
-      <div class="content_departement">
-        Département :
-        <div *ngFor="let departement of cours.departement" class="departement" style="display:inline-block;">
-          <li>&nbsp;{{departement}}</li>
-        </div>
+      <div class="expand" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal' + cours._id">
+        <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
       </div>
 
+      <!-- <div class="profile-pic"><img [src]="'../../../assets/img/profile-pic' + cours.id + '.svg'" alt="profile-pic"></div> -->
+      <div class="cours-color" [style.background-color]="cours.color_hexa"></div>
 
+      <div class="content">
+        <div class="name" style="word-wrap: break-word;">{{ cours.name }}</div>
+        <div class="name">{{ cours.name_reduit }}</div>
+        <div class="content_departement">
+          Département :
+          <div *ngFor="let departement of cours.departement" class="departement" style="display:inline-block;">
+            <li style="text-transform: uppercase;">&nbsp;{{departement}}</li>
+          </div>
+        </div>
+      </div>
     </div>
-
     <!-- Modal du vacataire actuel -->
     <div class="modal fade" [id]="'exampleModal' + cours._id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
+          <div class="cours-color" [style.background-color]="cours.color_hexa"></div>
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">{{ cours.name }}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="text-align: left;">
             <!-- Contenu du modal pour ce module -->
-            <p><strong>Nom:</strong> {{ cours.name }}</p>
-            <p><strong>Nom réduit:</strong> {{cours.name_reduit}}</p>
-            <p><strong>Matière:</strong> {{cours.matiere}}</p>
-            <strong>Département:</strong>
-            <div *ngFor="let departement of cours.departement" class="departement" style="display:inline-block;">
-              <li>&nbsp;{{departement}}</li>
+            <p style="font-family: Arial, Helvetica, sans-serif;"><strong>Nom du module:</strong> {{ cours.name }}</p>
+            <p style="font-family: Arial, Helvetica, sans-serif;"><strong>Nom réduit:</strong> {{cours.name_reduit}}</p>
+            <p style="font-family: Arial, Helvetica, sans-serif;"><strong>Matière:</strong> {{cours.matiere}}</p>
+            <strong style="font-family: Arial, Helvetica, sans-serif;">Département:</strong>
+            <div *ngFor="let departement of cours.departement" class="departement" style="display:inline-block;font-family: Arial, Helvetica, sans-serif;">
+              <li style="text-transform: uppercase;">&nbsp;{{departement}}</li>
             </div><p></p>
-            <p><strong>Couleur:</strong> {{cours.color_hexa}}</p>
+            <p><strong style="font-family: Arial, Helvetica, sans-serif;">Couleur (Hexadécimal):</strong> <font style="font-family: Arial, Helvetica, sans-serif;text-transform: uppercase;"> {{cours.color_hexa}}</font> </p>
             <!-- Ajoutez d'autres informations du module si nécessaire -->
           </div>
           <div class="modal-footer">
             <!-- <button type="button" class="btn btn-primary" [attr.data-bs-target]="'#exampleModalToggle2-' + cours.id" data-bs-toggle="modal" data-bs-dismiss="modal">Affecter</button> -->
-            <button type="button" class="btn btn-secondary">Modifier</button>
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" [attr.data-bs-target]="'#updateModule'+cours._id">Modifier</button>
             <button type="button" class="btn btn-danger" (click)="deleteModule(cours._id)">Supprimer</button>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- TODO : trouver une autre fonctionnalité pour ce btn
-      <div class="modal fade" [id]="'exampleModalToggle2-' + cours.id" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
+    <div class="modal fade" [id]="'updateModule'+cours._id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateModuleLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  ">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModal  ToggleLabel2">Affecter {{ cours.name }} à un cours</h5>
+            <h5 class="modal-title" id="updateModuleLabel">Modifier le module :</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="recipient-name" class="col-form-label">Nom du cours :</label>
-                <input type="text" class="form-control" id="recipient-name">
+
+            <form
+              action="#"
+              name="updateModuleForm"
+              #f="ngForm"
+            >
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="name" id="name"  [(ngModel)]="cours.name" #name="ngModel">
+                <label for="name">Nom :</label>
               </div>
+
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="name_reduit" id="name_reduit" [(ngModel)]="cours.name_reduit" #name_reduit="ngModel">
+                <label for="name_reduit">Nom réduit : </label>
+              </div>
+
+              <select class="form-select mb-3" multiple aria-label="multiple select example" id="departement" name="departement" [(ngModel)]="cours.departement" #departement="ngModel">
+                <option selected disabled>Départements :</option>
+                <option type="text" value="info">INFO</option>
+                <option type="text" value="rt">RT</option>
+                <option type="text" value="cs">CS</option>
+                <option type="text" value="gim">GIM</option>
+              </select>
+
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="matiere" id="matiere" [(ngModel)]="cours.matiere" #matiere="ngModel">
+                <label for="matiere">Matière : </label>
+              </div>
+
+              <div class="d-flex align-items-center mb-3">
+                <label for="color_hexa" class="col-form-label me-2">Couleur du module :</label>
+                <input type="color" id="color_hexa" name="color_hexa"  [(ngModel)]="cours.color_hexa" #color_hexa="ngModel"/>
+              </div>
+
             </form>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+              <button type="button" class="btn btn-primary" (click)='updateModule(cours._id,cours.name, cours.name_reduit, cours.color_hexa, cours.departement, cours.matiere)'>Valider</button>
+            </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-            <button type="button" class="btn btn-primary">Valider</button>
-          </div>
+
         </div>
       </div>
     </div>
-     -->
-  </div>
+    </div>
+  </ng-container>
+  <h1 *ngIf="modules.length === 0">Pas de cours trouvés.</h1>
 </div>
+
+
