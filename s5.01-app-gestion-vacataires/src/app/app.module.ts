@@ -13,6 +13,7 @@ import { LeVacataireComponent } from './components/le-vacataire/le-vacataire.com
 import { FormsModule } from '@angular/forms';
 import { ConnectionComponent } from './pages/connection/connection.component';
 import { TokenInterceptorService } from './interceptors/token-interceptor.service';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { TokenInterceptorService } from './interceptors/token-interceptor.servic
     CoursComponent,
     LeVacataireComponent,
     ConnectionComponent,
+    ProfileComponent,
 
   ],
   imports: [
