@@ -4,11 +4,11 @@ import Module from 'src/app/interfaces/module-interface';
 import { ModulesService } from 'src/app/services/modules.service';
 
 @Component({
-  selector: 'app-cours',
-  templateUrl: './cours.component.html',
-  styleUrls: ['./cours.component.css']
+  selector: 'app-liste-cours',
+  templateUrl: './liste-cours.component.html',
+  styleUrls: ['./liste-cours.component.css']
 })
-export class CoursComponent {
+export class ListeCoursComponent {
 
   // Import des données fournies par le parent
   @Input() modules: Module[] = [];
