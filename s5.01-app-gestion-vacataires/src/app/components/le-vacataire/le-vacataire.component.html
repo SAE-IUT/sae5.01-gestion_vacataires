@@ -15,7 +15,6 @@
   <ng-container *ngFor="let vacataire of vacataires; let i = index">
     <!-- Affichage de la carte en fonction des filtres -->
     <div class="vacataire" *ngIf="isInFilter(vacataire)">
-
       <div class="expand" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal-' + vacataire._id">
         <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
       </div>
@@ -58,7 +57,6 @@
           </div>
         </div>
       </div>
-
       <div class="modal fade" [id]="'exampleModalToggle2-' + vacataire._id" (show.bs.modal)="onModalShow($event)" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">

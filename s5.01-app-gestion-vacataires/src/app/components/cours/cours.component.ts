@@ -24,7 +24,6 @@ export class CoursComponent {
 
   constructor(private modulesService: ModulesService){}
 
-
   deleteModule(id: string) {
     this.modulesService.deleteModule(id).subscribe({
       next: (response) => {
@@ -95,5 +94,4 @@ export class CoursComponent {
       }
     });
   }
-
 }

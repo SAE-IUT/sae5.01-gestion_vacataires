@@ -1,0 +1,41 @@
+<div class="mt-6 d-flex justify-content-center align-items-center connexioncontainer">
+
+  <article class="body ">
+
+    <div class="container border shadow p-5 mb-5 rounded bg-white">
+
+      <form
+        action="#"
+        name="connectionForm"
+        #f="ngForm"
+
+      >
+        <div>
+          <label class="form-label" for="pseudo">Identifiant</label>
+          <input type="text" class="form-control border-secondary" name="pseudo" id="pseudo" [(ngModel)]="form.pseudo"
+                 #name="ngModel">
+        </div>
+
+
+        <div class="form-outline mb-3 mt-3">
+          <label class="form-label" for="password">Mot de passe</label>
+          <input class="form-control border-secondary" name="password" id="password"
+                 [(ngModel)]="form.password" #lastName="ngModel" type="password">
+        </div>
+
+        <div class="alert alert-danger" role="alert" style="display: none;" id="alertPass">
+          Identifiants invalides
+        </div>
+
+      </form>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)='connect(form.pseudo, form.password)'>Connexion</button>
+      </div>
+    </div>
+
+  </article>
+</div>
+
+
