@@ -6,20 +6,25 @@
     <li>
       <span class="dropdown-item-text" *ngIf="!isFiltered('matiere')">Matière</span>
       <a class="dropdown-item active-filter" [routerLink]="['/les-cours']" [queryParams]="{ 'matiere': null }" queryParamsHandling="merge" replaceUrl="true" *ngIf="isFiltered('matiere')">Matière</a>
-      <ul class="dropdown-menu dropdown-submenu" *ngIf="matieres.length !== 0">
+      <ul class="dropdown-menu dropdown-submenu">
         <li *ngFor="let matiere of matieres">
           <a class="dropdown-item" [routerLink]="['/les-cours']" [queryParams]="{ 'matiere': matiere }" queryParamsHandling="merge" replaceUrl="true" [attr.aria-selected]="filtres['matiere'] === matiere">{{ matiere }}</a>
         </li>
+        <span class="dropdown-item-text" *ngIf="matieres.length === 0">Pas de filtre disponible</span>
       </ul>
     </li>
+
+    <li class="dropdown-divider"></li>
+    
     <!-- Filtre département -->
     <li>
       <span class="dropdown-item-text" *ngIf="!isFiltered('departement')">Département</span>
       <a class="dropdown-item active-filter" [routerLink]="['/les-cours']" [queryParams]="{ 'departement': null }" queryParamsHandling="merge" replaceUrl="true" *ngIf="isFiltered('departement')">Département</a>
-      <ul class="dropdown-menu dropdown-submenu" *ngIf="matieres.length !== 0">
+      <ul class="dropdown-menu dropdown-submenu">
         <li *ngFor="let departement of departements">
           <a class="dropdown-item" [routerLink]="['/les-cours']" [queryParams]="{ 'departement': departement}" queryParamsHandling="merge" replaceUrl="true" [attr.aria-selected]="filtres['departement'] === departement">{{ departement }}</a>
         </li>
+        <span class="dropdown-item-text" *ngIf="departements.length === 0">Pas de filtre disponible</span>
       </ul>
     </li>
   </ul>
