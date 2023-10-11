@@ -6,11 +6,11 @@ import { ModulesService } from 'src/app/services/modules.service';
 import { VacatairesService } from 'src/app/services/vacataires.service';
 
 @Component({
-  selector: 'app-le-vacataire',
-  templateUrl: './le-vacataire.component.html',
-  styleUrls: ['./le-vacataire.component.css']
+  selector: 'app-liste-vacataires',
+  templateUrl: './liste-vacataires.component.html',
+  styleUrls: ['./liste-vacataires.component.css']
 })
-export class LeVacataireComponent {
+export class ListeVacatairesComponent {
 
   // Import des données fournies par le parent
   @Input() vacataires: Vacataire[] = [];

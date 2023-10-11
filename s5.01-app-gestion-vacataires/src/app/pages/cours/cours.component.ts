@@ -6,11 +6,11 @@ import Module from 'src/app/interfaces/module-interface';
 import Filter from 'src/app/interfaces/filtre-interface';
 
 @Component({
-  selector: 'app-les-cours',
-  templateUrl: './les-cours.component.html',
-  styleUrls: ['./les-cours.component.css'],
+  selector: 'app-cours',
+  templateUrl: './cours.component.html',
+  styleUrls: ['./cours.component.css'],
 })
-export class LesCoursComponent {
+export class CoursComponent {
 
   public modules: Module[] = []; // Liste des cours
 
@@ -77,7 +77,7 @@ export class LesCoursComponent {
     this.searchTimeout = window.setTimeout(() => {
       if (newSearch !== this.currentSearch) {
         this.router.navigate(
-          ['/les-cours'],
+          ['/cours'],
           {
             queryParams: { search: newSearch ? newSearch : null },
             queryParamsHandling: 'merge',

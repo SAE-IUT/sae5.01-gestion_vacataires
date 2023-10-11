@@ -3,11 +3,11 @@ import {LoginService} from "../../services/login.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-profil',
+  templateUrl: './profil.component.html',
+  styleUrls: ['./profil.component.css']
 })
-export class ProfileComponent {
+export class ProfilComponent {
 
   form = {
     password: "",
