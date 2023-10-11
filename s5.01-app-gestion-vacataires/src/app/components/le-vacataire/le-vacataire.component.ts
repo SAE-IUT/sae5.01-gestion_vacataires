@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import Filtre from 'src/app/interfaces/filtre-interface';
 import Vacataire from 'src/app/interfaces/vacataire-interface';
 import { VacatairesService } from 'src/app/services/vacataires.service';
+import { ModulesService } from 'src/app/services/modules.service';
+import { ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-le-vacataire',
@@ -14,7 +16,26 @@ export class LeVacataireComponent {
   @Input() vacataires: Vacataire[] = [];
   @Input() filtres: Filtre = {};
 
-  constructor(private vacatairesService: VacatairesService) {}
+  errorMessage: string | null = null;
+
+  nomCours: string = '';
+
+  public cours: any[] = []
+  
+  form = {
+  name: "",
+  
+}
+
+
+
+  constructor(private vacatairesService: VacatairesService, private modulesService: ModulesService) {}
+
+  ngOnInit() {
+    this.modulesService.getModule().subscribe((data: any) => {
+      this.cours = data;
+    });
+  }
 
   /**
    * permet de déterminer le style de la div status selon le status du vacataire
@@ -88,4 +109,59 @@ export class LeVacataireComponent {
     return state;
   }
 
+  affecterVacataire(vacataireId: string, nomCours: string) {
+    console.log(nomCours);
+    const vacataire = this.vacataires.find(v => v._id === vacataireId);
+  
+    if (vacataire && nomCours && !vacataire.modules.includes(nomCours)) {
+      this.vacatairesService.affecterVacataire(vacataireId, nomCours).subscribe(() => {
+        vacataire.modules.push(nomCours);
+        this.errorMessage = null; // Réinitialise le message d'erreur
+        // Rechargez la liste des vacataires après l'affectation
+        this.vacatairesService.getVacataire().subscribe((data: any) => {
+          this.vacataires = data;
+           // Fermez le modal ici, car il n'y a pas d'erreur
+          const modal = document.getElementById('exampleModalToggle2-' + vacataireId);
+          if (modal) {
+            modal.querySelector('.btn-close')?.dispatchEvent(new Event('click'));        
+          }    
+        });
+      }, (error) => {
+        // Gérer les erreurs ici si nécessaire
+        console.error(error);
+      });
+    } else {
+      this.errorMessage = "Ce cours est déjà affecté.";
+    }
+  }
+
+  desaffecterVacataire(vacataireId: string, nomCours: string) {
+    this.vacatairesService.desaffecterVacataire(vacataireId, nomCours).subscribe(() => {
+      const vacataire = this.vacataires.find((v) => v._id === vacataireId);
+      if (vacataire) {
+        // Retirez le cours de la liste des modules du vacataire
+        vacataire.modules = vacataire.modules.filter((module: string) => module !== nomCours);
+      }
+      // Rechargez la liste des vacataires après la désaffectation
+      this.vacatairesService.getVacataire().subscribe((data: any) => {
+        this.vacataires = data;
+      });
+    }, (error) => {
+      // Gérez les erreurs ici si nécessaire
+      console.error(error);
+    });
+  }
+
+  onModalShow(event: any) {
+    // Réinitialise errorMessage lorsque le modal est sur le point d'être affiché
+    if (this.errorMessage) {
+      this.errorMessage = null;
+    }
+  }
+
+
+  hello() {
+    console.log(this.cours);
+    
+  }
 }

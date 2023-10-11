@@ -25,4 +25,14 @@ export class VacatairesService {
     const url = this.apiUrl + '/deleteVacataire/' + id;
     return this.http.delete(url);   
   }
+
+  affecterVacataire(id: string, nomCours: string): Observable<any> {
+    const url = this.apiUrl + '/affecterVacataire/' + id
+    return this.http.patch(url, { nomCours });
+  }
+
+  desaffecterVacataire(id: string, nomCours: string): Observable<any> {
+    const url = `${this.apiUrl}/desaffecterVacataire/${id}`;
+    return this.http.patch(url, { nomCours });
+  }
 }
