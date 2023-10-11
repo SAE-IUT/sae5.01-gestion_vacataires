@@ -26,13 +26,14 @@
 }
 
 
+
 .cours-color {
   position: absolute;
   width: 50px;
   height: 100%;
   left: 0;
   top: 0;
-  border-radius: 10px 0 0 10px;
+  border-radius: 6px 0 0 6px;
 }
 
 @media screen and (max-width: 768px) {

@@ -54,12 +54,12 @@
           #f="ngForm"
         >
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="name" id="name" [(ngModel)]="form.name" #name="ngModel" placeholder="Jean-Michel">
+            <input type="text" class="form-control" name="name" id="name" [(ngModel)]="form.name" #name="ngModel">
             <label for="name">Nom :</label>
           </div>
 
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="name_reduit" id="name_reduit" [(ngModel)]="form.name_reduit" #name_reduit="ngModel" placeholder="Nom réduit">
+            <input type="text" class="form-control" name="name_reduit" id="name_reduit" [(ngModel)]="form.name_reduit" #name_reduit="ngModel">
             <label for="name_reduit">Nom réduit : </label>
           </div>
 
@@ -77,8 +77,8 @@
           </div>
 
           <div class="d-flex align-items-center mb-3">
-            <input type="color" id="color_hexa" name="color_hexa" value="#e66465" [(ngModel)]="form.color_hexa" #color_hexa="ngModel"/>
             <label for="color_hexa" class="col-form-label me-2">Couleur du module :</label>
+            <input type="color" id="color_hexa" name="color_hexa" value="#e66465" [(ngModel)]="form.color_hexa" #color_hexa="ngModel"/>
           </div>
 
         </form>
