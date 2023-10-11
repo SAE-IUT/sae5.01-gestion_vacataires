@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm }   from '@angular/forms';
 import { bootstrapApplication } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import {LoginService} from 'src/app/services/login.service';
 
 type res = {
@@ -24,14 +25,18 @@ export class ConnectionComponent {
     pseudo : "",
     password: "",
   }
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService ,private router:Router) {}
 
   connect(pseudo: string, password: string) {
     this.loginService.getPasswordValid(pseudo,password).subscribe({
       next: (response) => {
         //window.location.reload()
         localStorage.setItem("token",(response as res).msg)
-
+        this.router.navigate(
+          ["/"],
+        {
+          replaceUrl:true
+        })
 
       },
       error: (error) => {
