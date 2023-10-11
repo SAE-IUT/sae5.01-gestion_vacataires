@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { NgForm }   from '@angular/forms';
-import { bootstrapApplication } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import {LoginService} from 'src/app/services/login.service';
 
@@ -13,13 +11,6 @@ type res = {
   styleUrls: ['./connection.component.css'],
 })
 export class ConnectionComponent {
-
-  loginForm: NgForm | undefined;
-
-  onSubmit(form: NgForm | undefined) {
-    console.log(form?.value);
-    // Do login here
-  }
 
   form = {
     pseudo : "",
