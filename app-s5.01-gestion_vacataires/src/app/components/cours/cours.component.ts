@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { DataService } from 'src/app/data.service';
 
 @Component({
-  selector: 'app-cours',
+  selector: 'app-liste-cours',
   templateUrl: './cours.component.html',
   styleUrls: ['./cours.component.css']
 })
