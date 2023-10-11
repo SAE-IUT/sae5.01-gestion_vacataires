@@ -5,7 +5,31 @@
     <div class="container border shadow p-5 mb-5 rounded bg-white">
 
       <div>Nom d'utilisateur :</div>
-      <div>Changer de mot de passe :</div>
+      <form
+        action="#"
+        name="connectionForm"
+        #f="ngForm"
+        class="border shadow bg-white p-2 rounded"
+      >
+        <div class="form-outline mb-3 mt-3">
+          <label class="form-label" for="password">Mot de passe actuel</label>
+          <input class="form-control border-secondary" name="password" id="password"
+                 [(ngModel)]="form.password" #lastName="ngModel" type="password">
+        </div>
+
+        <div class="alert alert-danger" role="alert" style="display: none;" id="alertPass">
+          Identifiants invalides
+        </div>
+
+        <div class="form-outline mb-3 mt-3">
+          <label class="form-label" for="newPassword">Nouveau mot de passe</label>
+          <input class="form-control border-secondary" name="newPassword" id="newPassword"
+                 [(ngModel)]="form.newPassword" #lastName="ngModel" type="password">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)='changePassword(form.password, form.newPassword)'>Changer le mot de passe</button>
+        </div>
+      </form>
       <div>Déconnexion</div>
     </div>
 

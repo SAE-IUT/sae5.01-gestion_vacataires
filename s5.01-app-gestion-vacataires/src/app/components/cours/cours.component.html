@@ -25,11 +25,11 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="cours-color" [style.background-color]="cours.color_hexa"></div>
-          <div class="modal-header">
+          <div class="modal-header" style="margin-left: 50px;">
             <h5 class="modal-title" id="exampleModalLabel">{{ cours.name }}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body" style="text-align: left;">
+          <div class="modal-body" style="text-align: left;margin-left: 60px;">
             <!-- Contenu du modal pour ce module -->
             <p style="font-family: Arial, Helvetica, sans-serif;"><strong>Nom du module:</strong> {{ cours.name }}</p>
             <p style="font-family: Arial, Helvetica, sans-serif;"><strong>Nom réduit:</strong> {{cours.name_reduit}}</p>
@@ -48,6 +48,7 @@
           </div>
         </div>
       </div>
+    </div>
     <div class="modal fade" [id]="'updateModule'+cours._id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateModuleLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  ">
         <div class="modal-content">
@@ -100,7 +101,6 @@
 
         </div>
       </div>
-    </div>
     </div>
   </ng-container>
   <h1 *ngIf="modules.length === 0">Pas de cours trouvés.</h1>
