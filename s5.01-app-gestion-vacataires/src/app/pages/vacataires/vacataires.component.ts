@@ -23,6 +23,7 @@ export class VacatairesComponent {
 
   ngOnInit() {
     this.vacatairesService.getVacataire().subscribe((data: any) => {
+      console.log(data)
       this.vacataires = data;
     });
   }

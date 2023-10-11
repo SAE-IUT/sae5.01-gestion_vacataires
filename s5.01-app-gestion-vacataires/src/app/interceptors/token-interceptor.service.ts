@@ -1,5 +1,6 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 })
 export class TokenInterceptorService implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private router: Router) {}
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
@@ -21,8 +22,18 @@ export class TokenInterceptorService implements HttpInterceptor {
         })
       }
       return next.handle(req).pipe(
-        catchError(err => {
-          return throwError(err)
+        catchError((err: HttpErrorResponse) => {
+          if(err.status === 401){
+            this.router.navigate(
+              ["/connexion"],
+              {
+                replaceUrl:true
+              }
+            )
+          }else {
+            console.log("redirection ok")
+          }
+          return throwError(err);
         })
       )
   }
