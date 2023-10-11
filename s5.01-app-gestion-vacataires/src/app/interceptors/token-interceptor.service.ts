@@ -13,7 +13,11 @@ export class TokenInterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
     ): Observable<HttpEvent<any>> {
+      if (this.router.url !== "/connexion"){
+        localStorage.setItem("currentRoute",this.router.url)
+      }
       const token = localStorage.getItem("token")
+
       if (token) {
         req = req.clone({
           setHeaders:{

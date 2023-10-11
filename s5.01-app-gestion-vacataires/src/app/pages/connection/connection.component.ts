@@ -33,7 +33,7 @@ export class ConnectionComponent {
         //window.location.reload()
         localStorage.setItem("token",(response as res).msg)
         this.router.navigate(
-          ["/"],
+          [localStorage.getItem("currentRoute")],
         {
           replaceUrl:true
         })
