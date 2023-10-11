@@ -39,20 +39,20 @@ export class LesCoursComponent {
   ngOnInit() {
     this.modulesService.getModule().subscribe((data: unknown) => {
       this.modules = data as Module[];
-    });
-    
-    // Récupération des matières et des départements distincts
-    for (const c of this.modules) {
-      if (!this.matieres.includes(c.matiere)) {
-        this.matieres.push(c.matiere);
-      }
-      for (const departement of c.departement) {
-        if (!this.departements.includes(departement.toUpperCase())) {
-          this.departements.push(departement.toUpperCase());
+
+      // Récupération des matières et des départements distincts
+      for (const c of this.modules) {
+        if (!this.matieres.includes(c.matiere)) {
+          this.matieres.push(c.matiere);
+        }
+        for (const departement of c.departement) {
+          if (!this.departements.includes(departement.toUpperCase())) {
+            this.departements.push(departement.toUpperCase());
+          }
         }
       }
-    }
-
+    });
+    
     // Remplissage des filtres actifs à partir des query params
     this.route.queryParamMap.subscribe((params: ParamMap) => {
       this.filtres = {};
