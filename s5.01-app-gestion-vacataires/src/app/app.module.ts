@@ -8,9 +8,12 @@ import { LesCoursComponent } from './pages/modules/les-cours.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AccueilComponent } from './pages/accueil/accueil.component';
 import { CoursComponent } from './components/cours/cours.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LeVacataireComponent } from './components/le-vacataire/le-vacataire.component';
 import { FormsModule } from '@angular/forms';
+import { ConnectionComponent } from './pages/connection/connection.component';
+import { TokenInterceptorService } from './interceptors/token-interceptor.service';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import { FormsModule } from '@angular/forms';
     AccueilComponent,
     CoursComponent,
     LeVacataireComponent,
+    ConnectionComponent,
+    ProfileComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -28,7 +34,13 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

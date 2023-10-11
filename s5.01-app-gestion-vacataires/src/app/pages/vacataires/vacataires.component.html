@@ -1,12 +1,37 @@
 <div class="buttons">
 
   <a class="btn dropdown dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Filtres</a>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Affecter</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Non affecter</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">En attente</a>
+  <ul class="dropdown-menu" (click)="$event.stopPropagation()">
+    <!-- Filtre Affectation -->
+    <li>
+      <span class="dropdown-item-text" *ngIf="!isFiltered('status')">Affectation</span>
+      <a class="dropdown-item active-filter" [routerLink]="['/vacataires']" [queryParams]="{ 'status': null }" queryParamsHandling="merge" replaceUrl="true" *ngIf="isFiltered('status')">Affectation</a>
+      <ul class="dropdown-menu dropdown-submenu">
+        <li *ngFor="let s of status">
+          <a class="dropdown-item" [routerLink]="['/vacataires']" [queryParams]="{ 'status': s }" queryParamsHandling="merge" replaceUrl="true" [attr.aria-selected]="filtres['status'] === s">{{ s }}</a>
+        </li>
+        <span class="dropdown-item-text" *ngIf="status.length === 0">Pas de filtre disponible</span>
+      </ul>
+    </li>
+
+    <li class="dropdown-divider"></li>
+
+    <!-- Filtre Matière -->
+    <li>
+      <span class="dropdown-item-text" *ngIf="!isFiltered('modules')">Matière</span>
+      <a class="dropdown-item active-filter" [routerLink]="['/vacataires']" [queryParams]="{ 'modules': null }" queryParamsHandling="merge" replaceUrl="true" *ngIf="isFiltered('modules')">Matière</a>
+      <ul class="dropdown-menu dropdown-submenu">
+        <li *ngFor="let matiere of matieres">
+          <a class="dropdown-item" [routerLink]="['/vacataires']" [queryParams]="{ 'modules': matiere }" queryParamsHandling="merge" replaceUrl="true" [attr.aria-selected]="filtres['modules'] === matiere">{{ matiere }}</a>
+        </li>
+        <span class="dropdown-item-text" *ngIf="matieres.length === 0">Pas de filtre disponible</span>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="btn search flex-wrap">
+    <label for="search">Rechercher par nom : </label>
+    <input type="text" class="form-control w-auto" id="search" name="search" [value]="currentSearch" (input)="search($event)">
   </div>
 
   <div data-bs-toggle="modal" data-bs-target="#createVacataire" class="btn">Ajouter un vacataire</div>
@@ -14,7 +39,7 @@
 </div>
 
 <div class="vacataires">
-  <app-le-vacataire></app-le-vacataire>
+  <app-le-vacataire [vacataires]="vacataires" [filtres]="filtres"></app-le-vacataire>
 </div>
 
 <div class="modal fade" id="createVacataire" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createVacataireLabel" aria-hidden="true">
@@ -32,12 +57,12 @@
           #f="ngForm"
         >
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="name" id="name" [(ngModel)]="form.name" #name="ngModel" placeholder="Jean-Michel">
+            <input type="text" class="form-control" name="name" id="name" [(ngModel)]="form.name" #name="ngModel">
             <label for="name">Prénom :</label>
           </div>
 
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="lastName" id="lastName" [(ngModel)]="form.lastName" #lastName="ngModel" placeholder="Password">
+            <input type="text" class="form-control" name="lastName" id="lastName" [(ngModel)]="form.lastName" #lastName="ngModel">
             <label for="lastName">Nom de famille : </label>
           </div>
 
@@ -75,9 +100,10 @@
               <span class="delete-icon" (click)="removeSkill(comp)">X</span>
             </div>
           </div>
-          
 
-          
+
+
+
 
           <!-- <select class="form-select mb-3" multiple aria-label="multiple select example" id="skills" name="skills" [(ngModel)]="form.skills" #skills="ngModel">
             <option selected disabled>Départments :</option>

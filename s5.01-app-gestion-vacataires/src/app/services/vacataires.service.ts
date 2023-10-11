@@ -13,16 +13,26 @@ export class VacatairesService {
   constructor(private http: HttpClient) { }
 
   getVacataire() {
-    return this.http.get(this.apiUrl)    
+    return this.http.get(this.apiUrl)
   }
 
   addVacataire(name: string, lastName: string, phone: string, email: string, github: string, skills: string): Observable<any> {
     const url = this.apiUrl + "/newVacataire";
-    return this.http.post(url, {name, lastName, phone, email, github, skills});   
+    return this.http.post(url, {name, lastName, phone, email, github, skills});
   }
 
   deleteVacataire(id: string): Observable<any> {
     const url = this.apiUrl + '/deleteVacataire/' + id;
-    return this.http.delete(url);   
+    return this.http.delete(url);
+  }
+
+  affecterVacataire(id: string, nomCours: string): Observable<any> {
+    const url = this.apiUrl + '/affecterVacataire/' + id
+    return this.http.patch(url, { nomCours });
+  }
+
+  desaffecterVacataire(id: string, nomCours: string): Observable<any> {
+    const url = `${this.apiUrl}/desaffecterVacataire/${id}`;
+    return this.http.patch(url, { nomCours });
   }
 }

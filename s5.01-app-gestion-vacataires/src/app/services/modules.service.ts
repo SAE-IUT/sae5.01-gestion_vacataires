@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ModulesService {
 
-  private apiUrl  = 'https://sae5-01-app-gestion-vacataires-api.vercel.app/modules';
+  private apiUrl  = 'api/modules';
 
   constructor(private http: HttpClient) { }
 
@@ -16,6 +16,7 @@ export class ModulesService {
   }
 
   addModule(name: string, name_reduit: string, color_hexa: string, departement: string[], matiere: string ): Observable<any> {
+
     const url = this.apiUrl + "/newModule";
     return this.http.post(url, {name, name_reduit, color_hexa, departement, matiere});
   }
@@ -23,5 +24,11 @@ export class ModulesService {
   deleteModule(id: string): Observable<any> {
     const url = this.apiUrl + '/deleteModule/' + id;
     return this.http.delete(url);
+  }
+
+
+  updateModule(id: string, name: string, name_reduit: string, color_hexa: string, departement: string[], matiere: string ): Observable<any> {
+    const url = this.apiUrl + '/editModule/'+ id;
+    return this.http.put<any>(url,{name, name_reduit, color_hexa, departement, matiere});
   }
 }

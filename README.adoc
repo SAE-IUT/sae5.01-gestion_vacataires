@@ -3,6 +3,10 @@
 :toc:
 
 
+== Description
+
+Cette SAE porte sur la création d'un site web permettant la gestion des vacataires présents au sein de l'IUT.
+Ce site web permettra la connexion à un compte adiminsatrateur donnant les accés à la gestion des vacataires.
 
 == Equipe
 
@@ -11,6 +15,13 @@ Le projet est réalisé par :
 - https://github.com/Zekoko[Bastien BALMES] SCRUM master
 - https://github.com/EnzoMancini[Enzo Mancini] Product owner
 - https://github.com/Chris-973[Chrispher MARIE-ANGÉLIQUE] DEVDEV
+- https://github.com/Jolex35[Alex JOLAS] Dev
+- https://github.com/BryceFuerty[Bryce FUERTES] DEV
+
+== Technologie
+
+Cette application Web est développée en Angular, qui est basé sur TypeScript 
+Pour le stockage des données, c'est une base de données Mango DB qui est utilisée
 
 == Réalisations 
 
@@ -60,7 +71,7 @@ Sachez que l'ouverture des ports 80 et 3000 ne sera pas adressée dans ce readme
 
 A faire une fois:
 ----
-export CR_PAT=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
+export CR_PAT=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
 echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
 ----
 
