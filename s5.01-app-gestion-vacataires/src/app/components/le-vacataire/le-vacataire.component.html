@@ -91,7 +91,7 @@
         </div>  
       </div>  
 
-      <div class="modal fade" [id]="'exampleModalToggle3-' + vacataire._id" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
+      <div class="modal fade" [id]="'exampleModalToggle3-' + vacataire._id" (show.bs.modal)="onModalShow($event)" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">

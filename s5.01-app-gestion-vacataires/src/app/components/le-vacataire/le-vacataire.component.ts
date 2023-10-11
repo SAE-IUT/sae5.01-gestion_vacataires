@@ -49,6 +49,7 @@ export class LeVacataireComponent {
       case 'affecté':
         return 'status-green';
       case 'non affecté':
+        return 'status-red';
       default:
         return 'status-red';
     }
@@ -146,6 +147,10 @@ export class LeVacataireComponent {
       this.vacatairesService.getVacataire().subscribe((data: unknown) => {
         this.vacataires = data as Vacataire[];
       });
+      const modal = document.getElementById('exampleModalToggle3-' + vacataireId);
+          if (modal) {
+            modal.querySelector('.btn-close')?.dispatchEvent(new Event('click'));        
+          } 
     }, (error) => {
       // Gérez les erreurs ici si nécessaire
       console.error(error);
