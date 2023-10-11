@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 import Filtre from 'src/app/interfaces/filtre-interface';
+import Module from 'src/app/interfaces/module-interface';
 import Vacataire from 'src/app/interfaces/vacataire-interface';
-import { VacatairesService } from 'src/app/services/vacataires.service';
 import { ModulesService } from 'src/app/services/modules.service';
-import { ViewChild } from '@angular/core';
+import { VacatairesService } from 'src/app/services/vacataires.service';
 
 @Component({
   selector: 'app-le-vacataire',
@@ -16,24 +16,23 @@ export class LeVacataireComponent {
   @Input() vacataires: Vacataire[] = [];
   @Input() filtres: Filtre = {};
 
+  public cours: Module[] = []
+
   errorMessage: string | null = null;
 
   nomCours: string = '';
-
-  public cours: any[] = []
   
   form = {
-  name: "",
-  
-}
+    name: ""
+  }
 
 
 
   constructor(private vacatairesService: VacatairesService, private modulesService: ModulesService) {}
 
   ngOnInit() {
-    this.modulesService.getModule().subscribe((data: any) => {
-      this.cours = data;
+    this.modulesService.getModule().subscribe((data: unknown) => {
+      this.cours = data as Module[];
     });
   }
 
@@ -47,8 +46,9 @@ export class LeVacataireComponent {
     switch (status) {
       case 'en attente':
         return 'status-gray';
-      case 'admis':
+      case 'affecté':
         return 'status-green';
+      case 'non affecté':
       default:
         return 'status-red';
     }
@@ -118,8 +118,8 @@ export class LeVacataireComponent {
         vacataire.modules.push(nomCours);
         this.errorMessage = null; // Réinitialise le message d'erreur
         // Rechargez la liste des vacataires après l'affectation
-        this.vacatairesService.getVacataire().subscribe((data: any) => {
-          this.vacataires = data;
+        this.vacatairesService.getVacataire().subscribe((data: unknown) => {
+          this.vacataires = data as Vacataire[];
            // Fermez le modal ici, car il n'y a pas d'erreur
           const modal = document.getElementById('exampleModalToggle2-' + vacataireId);
           if (modal) {
@@ -143,8 +143,8 @@ export class LeVacataireComponent {
         vacataire.modules = vacataire.modules.filter((module: string) => module !== nomCours);
       }
       // Rechargez la liste des vacataires après la désaffectation
-      this.vacatairesService.getVacataire().subscribe((data: any) => {
-        this.vacataires = data;
+      this.vacatairesService.getVacataire().subscribe((data: unknown) => {
+        this.vacataires = data as Vacataire[];
       });
     }, (error) => {
       // Gérez les erreurs ici si nécessaire
@@ -152,7 +152,7 @@ export class LeVacataireComponent {
     });
   }
 
-  onModalShow(event: any) {
+  onModalShow(event: Event) {
     // Réinitialise errorMessage lorsque le modal est sur le point d'être affiché
     if (this.errorMessage) {
       this.errorMessage = null;

@@ -50,7 +50,7 @@
     transition: all ease-in-out .3s;
   }
   
-  .navbar a:hover::before {
+  .navbar a:hover::before, .navbar a.active::before {
     width: 100%;
     transition: all ease-in-out .3s;
   }

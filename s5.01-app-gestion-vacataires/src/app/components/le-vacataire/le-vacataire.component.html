@@ -15,7 +15,6 @@
   <ng-container *ngFor="let vacataire of vacataires; let i = index">
     <!-- Affichage de la carte en fonction des filtres -->
     <div class="vacataire" *ngIf="isInFilter(vacataire)">
-
       <div class="expand" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal-' + vacataire._id">
         <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
       </div>
@@ -54,11 +53,10 @@
               <button type="button" class="btn btn-secondary">Modifier</button>
               <button type="button" class="btn btn-danger" (click)="deleteVacataire(vacataire._id)">Supprimer</button>
             </div>
-            
+
           </div>
         </div>
       </div>
-  
       <div class="modal fade" [id]="'exampleModalToggle2-' + vacataire._id" (show.bs.modal)="onModalShow($event)" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
@@ -84,7 +82,7 @@
                 </div>
               </form>
             </div>
-            
+
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
               <button type="button" class="btn btn-primary" (click)="affecterVacataire(vacataire._id, form.name)" >Valider</button>
@@ -115,7 +113,7 @@
                 </div>
               </form>
             </div>
-            
+
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
               <button type="button" class="btn btn-primary" (click)="desaffecterVacataire(vacataire._id, form.name)" >Valider</button>
@@ -123,11 +121,8 @@
           </div>
         </div>
       </div>
-
-
-
     </div>
   </ng-container>
   <h1 *ngIf="vacataires.length === 0">Pas de vacataires trouvés.</h1>
 </div>
-  
+

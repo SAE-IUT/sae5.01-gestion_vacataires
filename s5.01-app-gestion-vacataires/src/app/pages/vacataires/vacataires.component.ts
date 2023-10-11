@@ -44,18 +44,18 @@ export class VacatairesComponent {
   ){}
 
   ngOnInit() {
-    this.vacatairesService.getVacataire().subscribe((data: any) => {
-      this.vacataires = data;               
-    });
+    this.vacatairesService.getVacataire().subscribe((data: unknown) => {
+      this.vacataires = data as Vacataire[];
 
-    // Récupération des matières distinctes
-    for (const c of this.vacataires) {
-      for (const module of c.modules) {
-        if (!this.matieres.includes(module)) {
-          this.matieres.push(module);
+      // Récupération des matières distinctes
+      for (const c of this.vacataires) {
+        for (const module of c.modules) {
+          if (!this.matieres.includes(module)) {
+            this.matieres.push(module);
+          }
         }
       }
-    }
+    });
 
     // Remplissage des filtres actifs à partir des query params
     this.route.queryParamMap.subscribe((params: ParamMap) => {

@@ -14,9 +14,15 @@ export class CoursComponent {
   @Input() modules: Module[] = [];
   @Input() filtres: Filtre = {};
 
-  constructor(
-    private modulesService: ModulesService,
-  ){}
+  form = {
+    name : "",
+    name_reduit: "",
+    color_hexa: "",
+    departement: [""],
+    matiere: ""
+  }
+
+  constructor(private modulesService: ModulesService){}
 
   deleteModule(id: string) {
     this.modulesService.deleteModule(id).subscribe({
@@ -73,4 +79,19 @@ export class CoursComponent {
     return state;
   }
 
+  updateModule(id: string, name: string, name_reduit: string, color_hexa: string, departement: string[], matiere: string ){
+    this.modulesService.updateModule(id,name,name_reduit,color_hexa,departement,matiere).subscribe({
+      next: (response) => {
+        // Traitement du succès
+        console.log(response);
+      },
+      error: (error) => {
+        // Gestion des erreurs
+        console.error(error);
+      },
+      complete: () => {
+        window.location.reload()
+      }
+    });
+  }
 }
