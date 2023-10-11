@@ -48,7 +48,7 @@
               <!-- Ajoutez d'autres informations du vacataire si nécessaire -->
             </div>
             <div class="modal-footer">
-              <button *ngIf="vacataire.modules && vacataire.modules.length > 0" type="button" class="btn btn-warning" [attr.data-bs-target]="'exampleModalToggle3-' + vacataire._id" data-bs-toggle="modal" data-bs-dismiss="modal">Désaffecter</button>
+              <button *ngIf="vacataire.modules && vacataire.modules.length > 0" type="button" class="btn btn-warning" [attr.data-bs-target]="'#exampleModalToggle3-' + vacataire._id" data-bs-toggle="modal" data-bs-dismiss="modal">Désaffecter</button>
               <button type="button" class="btn btn-primary" [attr.data-bs-target]="'#exampleModalToggle2-' + vacataire._id" data-bs-toggle="modal" data-bs-dismiss="modal">Affecter</button>
               <button type="button" class="btn btn-secondary">Modifier</button>
               <button type="button" class="btn btn-danger" (click)="deleteVacataire(vacataire._id)">Supprimer</button>
@@ -88,14 +88,14 @@
               <button type="button" class="btn btn-primary" (click)="affecterVacataire(vacataire._id, form.name)" >Valider</button>
             </div>
           </div>
-        </div>
-      </div>
+        </div>  
+      </div>  
 
-      <div class="modal fade" [id]="'exampleModalToggle3-' + vacataire._id" (show.bs.modal)="onModalShow($event)" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+      <div class="modal fade" [id]="'exampleModalToggle3-' + vacataire._id" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="desaffecterVacataireModalLabel">Desaffecter {{ vacataire.name }} {{ vacataire.lastName }} à un cours</h5>
+              <h5 class="modal-title" id="exampleModalToggleLabel3">Desaffecter {{ vacataire.name }} {{ vacataire.lastName }} à un cours</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -107,7 +107,7 @@
                 <div class="mb-3">
                   <label for="nomCours" class="col-form-label">Nom du cours :</label>
                   <select class="form-select" id="nomCours" name="name" [(ngModel)]="form.name">
-                    <option value="" disbaled hidden selected >Sélectionnez un cours à desaffeter</option>
+                    <option value="" disbaled hidden selected >Sélectionnez un cours</option>
                     <option *ngFor="let vm of vacataire.modules" [value]="vm">{{ vm }}</option>
                   </select>
                 </div>
