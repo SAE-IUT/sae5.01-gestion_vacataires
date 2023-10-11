@@ -44,8 +44,8 @@ export class VacatairesComponent {
   ){}
 
   ngOnInit() {
-    this.vacatairesService.getVacataire().subscribe((data: any) => {
-      this.vacataires = data;               
+    this.vacatairesService.getVacataire().subscribe((data: unknown) => {
+      this.vacataires = data as Vacataire[];
     });
 
     // Récupération des matières distinctes
