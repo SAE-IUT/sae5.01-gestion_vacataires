@@ -54,11 +54,11 @@
               <button type="button" class="btn btn-secondary">Modifier</button>
               <button type="button" class="btn btn-danger" (click)="deleteVacataire(vacataire._id)">Supprimer</button>
             </div>
-            
+
           </div>
         </div>
       </div>
-  
+
       <div class="modal fade" [id]="'exampleModalToggle2-' + vacataire._id" (show.bs.modal)="onModalShow($event)" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
@@ -84,7 +84,7 @@
                 </div>
               </form>
             </div>
-            
+
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
               <button type="button" class="btn btn-primary" (click)="affecterVacataire(vacataire._id, form.name)" >Valider</button>
@@ -110,12 +110,12 @@
                   <label for="nomCours" class="col-form-label">Nom du cours :</label>
                   <select class="form-select" id="nomCours" name="name" [(ngModel)]="form.name">
                     <option value="" disbaled hidden selected >Sélectionnez un cours à desaffeter</option>
-                    <option *ngFor="let vm of vacataires.modules" [value]="vm">{{ vm }}</option>
+                    <option *ngFor="let vm of vacataire.modules" [value]="vm">{{ vm }}</option>
                   </select>
                 </div>
               </form>
             </div>
-            
+
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
               <button type="button" class="btn btn-primary" (click)="desaffecterVacataire(vacataire._id, form.name)" >Valider</button>
@@ -130,4 +130,4 @@
   </ng-container>
   <h1 *ngIf="vacataires.length === 0">Pas de vacataires trouvés.</h1>
 </div>
-  
+
