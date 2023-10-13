@@ -14,11 +14,13 @@ export class TokenInterceptorService implements HttpInterceptor {
     next: HttpHandler
     ): Observable<HttpEvent<any>> {
       if (this.router.url !== "/connexion"){
+        // on enregistre la route actuelle
         localStorage.setItem("currentRoute",this.router.url)
       }
       const token = localStorage.getItem("token")
 
       if (token) {
+        //Ajout du token dans le header de la requête
         req = req.clone({
           setHeaders:{
             Authorization :`Bearer ${token}`,
@@ -28,14 +30,13 @@ export class TokenInterceptorService implements HttpInterceptor {
       return next.handle(req).pipe(
         catchError((err: HttpErrorResponse) => {
           if(err.status === 401){
+            //Si token expiré ou invalide on renvoie vers connexion
             this.router.navigate(
               ["/connexion"],
               {
                 replaceUrl:true
               }
             )
-          }else {
-            console.log("redirection ok")
           }
           return throwError(err);
         })
