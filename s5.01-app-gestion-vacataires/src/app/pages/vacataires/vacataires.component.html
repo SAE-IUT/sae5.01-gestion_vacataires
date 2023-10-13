@@ -56,70 +56,82 @@
           name="createVacataireForm"
           #f="ngForm"
         >
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="name" id="name" [(ngModel)]="form.name" #name="ngModel">
-            <label for="name">Prénom :</label>
+        <div class="form-floating mb-2">
+          <input type="text" class="form-control" id="name" name="name" [(ngModel)]="form.name" #name="ngModel" placeholder="name@example.com" value="test" required>
+          <label for="name">Prénom :</label>
+
+          <div class="form_error" *ngIf="name.errors && f.submitted">
+            <div *ngIf="name.errors['required']">Le nom est requis !</div>
           </div>
+        </div>
 
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="lastName" id="lastName" [(ngModel)]="form.lastName" #lastName="ngModel">
-            <label for="lastName">Nom de famille : </label>
+        <div class="form-floating mb-2">
+          <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="form.lastName" #lastName="ngModel" placeholder="name@example.com" required>
+          <label for="lastName">Nom de famille :</label>
+
+          <div class="form_error" *ngIf="lastName.errors && f.submitted">
+            <div *ngIf="lastName.errors['required']">Le nom de famille est requis !</div>
           </div>
+        </div>
 
-          <!-- <select class="form-select mb-3" multiple aria-label="multiple select example" id="department" name="department" [(ngModel)]="form.department" #department="ngModel">
-            <option selected disabled>Départments :</option>
-            <option value="info">Informatique</option>
-            <option value="r&t">Réseaux & Télécommunication</option>
-            <option value="cs">Carrière sociales</option>
-            <option value="gim">Génie Industriel et Maintenance</option>
-          </select> -->
+        <div class="form-floating mb-2">
+          <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="form.phone" #phone="ngModel" placeholder="name@example.com" required>
+          <label for="phone">Numéro de téléphone :</label>
 
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="phone" id="phone" [(ngModel)]="form.phone" #phone="ngModel" placeholder="0648618251">
-            <label for="phone">Numéro de téléphone : </label>
+          <div class="form_error" *ngIf="phone.errors && f.submitted">
+            <div *ngIf="phone.errors['required']">Le numéro de téléphone est requis !</div>
           </div>
+        </div>
 
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control" name="email" id="email" [(ngModel)]="form.email" #email="ngModel" placeholder="email@gmail.fr">
-            <label for="email">Adresse Email : </label>
+        <div class="form-floating mb-2">
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="form.email" #email="ngModel" placeholder="name@example.com" required>
+          <label for="email">Adresse email :</label>
+
+          <div class="form_error" *ngIf="email.errors && f.submitted">
+            <div *ngIf="email.errors['required']">L'adresse email est requise !</div>
           </div>
+        </div>
 
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="github" id="github" [(ngModel)]="form.github" #github="ngModel" placeholder="github.gg//christopher">
-            <label for="github">Profil GitHub : </label>
+        <div class="form-floating mb-2">
+          <input type="text" class="form-control" id="github" name="github" [(ngModel)]="form.github" #github="ngModel" placeholder="name@example.com" required>
+          <label for="github ">Profil GitHub :</label>
+
+          <div class="form_error" *ngIf="github.errors && f.submitted">
+            <div *ngIf="github.errors['required']">Le profil github est requis !</div>
           </div>
+        </div>
 
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="skills" id="skills" [(ngModel)]="form.skills" #skills="ngModel" placeholder="ihm dev bd" (input)="splitSkills()" >
-            <label for="skills">Skills : </label>
-          </div>
+        <div class="form">
+          <select class="form-select" id="skills" name="skills" [(ngModel)]="selectedSkill">
+            <option value="" disabled selected>Sélectionnez une compétence</option>
+            <option *ngFor="let skill of skillsList" [value]="skill">{{ skill }}</option>
+          </select> 
+        </div>
+        <div class="d-flex mt-2 mb-2 justify-content-center">
+          <button type="button" class="btn btn-primary" (click)="addSkill()">Ajouter Compétence</button>
+        </div>
 
-          <div class="skills-container mb-3">
-            <div *ngFor="let comp of comp" class="skill">
-              {{ comp }}
-              <span class="delete-icon" (click)="removeSkill(comp)">X</span>
+
+        <div class="skills-container mb-3">
+          <ng-container *ngFor="let skill of form.skills">
+            <div *ngIf="skill!=''" class="skill">{{ skill }}
+              <span class="delete-icon" (click)="removeSkill(skill)"><i class="fa-solid fa-xmark"></i></span>
             </div>
-          </div>
+          </ng-container>
+        </div>
 
-
-
-
-
-          <!-- <select class="form-select mb-3" multiple aria-label="multiple select example" id="skills" name="skills" [(ngModel)]="form.skills" #skills="ngModel">
-            <option selected disabled>Départments :</option>
-            <option value="info">Informatique</option>
-            <option value="r&t">Réseaux & Télécommunication</option>
-            <option value="cs">Carrière sociales</option>
-            <option value="gim">Génie Industriel et Maintenance</option>
-          </select> -->
-        </form>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-          <button type="button" class="btn btn-primary" (click)="addVacataire(form.name, form.lastName, form.phone, form.email, form.github , form.skills)" data-bs-dismiss="modal">Ajouter</button>
+          <button type="button" class="btn btn-primary" (click)="addVacataire(form.name, form.lastName, form.phone, form.email, form.github ,form.skills)" data-bs-dismiss="modal">Ajouter</button>
 
           <!-- <button type="button" class="btn btn-primary" (click)='addVacataire(form.name, form.lastName, form.phone, form.email, form.linkedin, form.discord)'>Ajouter</button> -->
         </div>
+
+
+        </form>
+
+     
       </div>
 
     </div>

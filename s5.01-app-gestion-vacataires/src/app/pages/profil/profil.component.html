@@ -1,20 +1,19 @@
-<div class="mt-6 d-flex justify-content-center align-items-center container">
+<div class="d-flex container justify-content-center">
 
-  <article class="body ">
+  <article class="body">
 
-    <div class="container border shadow p-5 mb-5 rounded bg-white">
-
-      <div>Nom d'utilisateur :</div>
+    <div class="shadow-lg rounded bg-white p-4 center">
       <form
         action="#"
         name="connectionForm"
         #f="ngForm"
-        class="border shadow bg-white p-2 rounded"
+        class="shadow bg-white p-4 rounded"
       >
+
         <div class="form-outline mb-3 mt-3">
           <label class="form-label" for="password">Mot de passe actuel</label>
           <input class="form-control border-secondary" name="password" id="password"
-                 [(ngModel)]="form.password" #lastName="ngModel" type="password">
+                 [(ngModel)]="form.password" type="password">
         </div>
 
         <div class="alert alert-danger" role="alert" style="display: none;" id="alertPass">
@@ -26,11 +25,20 @@
           <input class="form-control border-secondary" name="newPassword" id="newPassword"
                  [(ngModel)]="form.newPassword" #lastName="ngModel" type="password">
         </div>
+
+        <div class="alert alert-success" role="alert" style="display: none;" id="alertCreated">
+          Mot de passe modifié avec succés
+        </div>
+
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)='changePassword(form.password, form.newPassword)'>Changer le mot de passe</button>
+          <button type="button" class="btn btn-primary" (click)='changePassword(form.password, form.newPassword)'>
+            Changer le mot de passe
+          </button>
         </div>
       </form>
-      <div>Déconnexion</div>
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-danger mt-4" (click)='disconnect()'>Déconnexion</button>
+      </div>
     </div>
 
   </article>

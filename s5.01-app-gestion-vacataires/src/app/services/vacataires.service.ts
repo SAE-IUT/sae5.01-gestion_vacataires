@@ -16,7 +16,7 @@ export class VacatairesService {
     return this.http.get(this.apiUrl)
   }
 
-  addVacataire(name: string, lastName: string, phone: string, email: string, github: string, skills: string): Observable<any> {
+  addVacataire(name: string, lastName: string, phone: string, email: string, github: string, skills: string[]): Observable<any> {
     const url = this.apiUrl + "/newVacataire";
     return this.http.post(url, {name, lastName, phone, email, github, skills});
   }
@@ -24,6 +24,19 @@ export class VacatairesService {
   deleteVacataire(id: string): Observable<any> {
     const url = this.apiUrl + '/deleteVacataire/' + id;
     return this.http.delete(url);
+  }
+
+  editVacataire(id: String, name: string, lastName: string, phone: string, email: string, github: string, skills: string[]): Observable<any> {
+    const url = this.apiUrl + '/editVacataire/' + id;
+    const body = {
+      name: name,
+      lastName: lastName,
+      phone: phone,
+      email: email,
+      github: github,
+      skills : skills
+    }
+    return this.http.put(url, body);   
   }
 
   affecterVacataire(id: string, nomCours: string): Observable<any> {

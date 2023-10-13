@@ -19,7 +19,7 @@ export class ConnectionComponent {
   constructor(private loginService: LoginService ,private router:Router) {}
 
   connect(pseudo: string, password: string) {
-    this.loginService.getPasswordValid(pseudo,password).subscribe({
+    this.loginService.login(pseudo,password).subscribe({
       next: (response) => {
         //On stock le token en local
         localStorage.setItem("token",(response as res).msg)
