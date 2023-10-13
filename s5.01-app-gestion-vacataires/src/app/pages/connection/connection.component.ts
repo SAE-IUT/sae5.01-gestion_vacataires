@@ -21,8 +21,9 @@ export class ConnectionComponent {
   connect(pseudo: string, password: string) {
     this.loginService.getPasswordValid(pseudo,password).subscribe({
       next: (response) => {
-        //window.location.reload()
+        //On stock le token en local
         localStorage.setItem("token",(response as res).msg)
+        //On redirige vers la dernière route sauvegardée en local
         this.router.navigate(
           [localStorage.getItem("currentRoute")],
         {
@@ -33,9 +34,11 @@ export class ConnectionComponent {
       error: (error) => {
         // Gestion des erreurs
         console.error(error);
+        //On cherche l'id du composant d'alert
         const alert = document.getElementById('alertPass');
 
         if (alert != null ){
+          //On affiche l'alert et on attend 3 secondes avant de la desactiver
           alert.style.display = "block"
           setTimeout(() => {
             alert.style.display = "none";
