@@ -15,7 +15,7 @@
   <ng-container *ngFor="let vacataire of vacataires; let i = index">
     <!-- Affichage de la carte en fonction des filtres -->
     <div class="vacataire" *ngIf="isInFilter(vacataire)">
-      <div class="expand" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal-' + vacataire._id">
+      <div class="expand"  id = "openModal" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal-' + vacataire._id">
         <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
       </div>
 
@@ -106,8 +106,8 @@
               #f="ngForm"
               >
                 <div class="mb-3">
-                  <label for="nomCours" class="col-form-label">Nom du cours :</label>
-                  <select class="form-select" id="nomCours" name="name" [(ngModel)]="form.name">
+                  <label for="nomCourse" class="col-form-label">Nom du cours :</label>
+                  <select class="form-select" id="nomCourse" name="name" [(ngModel)]="form.name">
                     <option value="" disabled hidden selected >Sélectionnez un cours</option>
                     <option *ngFor="let vm of vacataire.modules" [value]="vm">{{ vm }}</option>
                   </select>
@@ -117,7 +117,7 @@
 
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-              <button type="button" class="btn btn-primary" (click)="desaffecterVacataire(vacataire._id, form.name)" >Valider</button>
+              <button type="button" class="btn btn-primary" id="validModal"(click)="desaffecterVacataire(vacataire._id, form.name)" >Valider</button>
             </div>
           </div>
         </div>

@@ -64,13 +64,13 @@ export class VacatairesComponent {
     });
 
     // Remplissage des filtres actifs à partir des query params
-    // this.route.queryParamMap.subscribe((params: ParamMap) => {
-    //   this.filtres = {};
-    //   for (const param of params.keys) {
-    //     this.filtres[param] = params.get(param) ?? '';
-    //   }
-    //   this.currentSearch = this.route.snapshot.queryParamMap.get('search');
-    // });
+     this.route.queryParamMap.subscribe((params: ParamMap) => {
+       this.filtres = {};
+       for (const param of params.keys) {
+        this.filtres[param] = params.get(param) ?? '';
+      }
+       this.currentSearch = this.route.snapshot.queryParamMap.get('search');
+     });
   }
 
   addSkill(): void {

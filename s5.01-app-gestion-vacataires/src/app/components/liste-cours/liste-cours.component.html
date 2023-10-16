@@ -2,7 +2,7 @@
   <ng-container *ngFor="let cours of modules">
     <div *ngIf="isInFilter(cours)" class="cours-card">
 
-      <div class="expand" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal' + cours._id">
+      <div class="expand"  id="openModal" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal' + cours._id">
         <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
       </div>
 
