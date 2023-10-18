@@ -4,6 +4,7 @@ import Module from 'src/app/interfaces/module-interface';
 import Vacataire from 'src/app/interfaces/vacataire-interface';
 import { ModulesService } from 'src/app/services/modules.service';
 import { VacatairesService } from 'src/app/services/vacataires.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-liste-vacataires',
@@ -20,7 +21,7 @@ export class ListeVacatairesComponent {
 
   errorMessage: string | null = null;
 
-  nomCours: string = '';
+  nomCours_reduit: string = '';
 
   selectedSkill: string = ''; // Ajoutez la variable selectedSkill pour stocker la compétence sélectionnée
 
@@ -28,14 +29,14 @@ export class ListeVacatairesComponent {
 
   comp: string[] = [];
 
-  
+
   form  = {
     _id:"",
     name: "",
     lastName:"",
-    phone: "", 
-    email: "", 
-    github: "", 
+    phone: "",
+    email: "",
+    github: "",
     skills: [""]
   }
 
@@ -52,7 +53,7 @@ export class ListeVacatairesComponent {
 
   /**
    * permet de déterminer le style de la div status selon le status du vacataire
-   * 
+   *
    * @param status : le status du vacataire
    * @returns : le style de la div status du vacataire
    */
@@ -73,7 +74,7 @@ export class ListeVacatairesComponent {
     if (!this.form.skills) {
       this.form.skills = [];
     }
-  
+
     if (this.selectedSkill && !this.form.skills.includes(this.selectedSkill)) {
       this.form.skills.push(this.selectedSkill);
     }
@@ -99,13 +100,13 @@ export class ListeVacatairesComponent {
       complete: () => {
         window.location.reload()
       }
-    });    
+    });
   }
 
   /* dans le controllers */
 initializeFormWithId(id: string) {
   const vacataire = this.vacataires.find(vacataire => vacataire._id === id);
-  
+
 
   if (vacataire) {
     this.form._id = vacataire._id;
@@ -118,13 +119,13 @@ initializeFormWithId(id: string) {
   }
 }
 
-  onSubmit(name: string, lastName: string, phone: string, email: string, github: string, skills: string[]) {
-    this.editVacataire(this.form._id, this.form.name, this.form.lastName, this.form.phone, this.form.email, this.form.github, this.form.skills)
+onSubmit(name: string, lastName: string, phone: string, email: string, github: string, skills: string[]) {
+  this.editVacataire(this.form._id, this.form.name, this.form.lastName, this.form.phone, this.form.email, this.form.github, this.form.skills)
 }
 
 editVacataire(id: String, name: string, lastName: string, phone: string, email: string, github: string, skills: string[]) {
   console.log(name);
-  
+
   this.vacatairesService.editVacataire(id, name, lastName, phone, email, github, skills).subscribe({
     next: (response) => {
       // Traitement du succès
@@ -137,8 +138,8 @@ editVacataire(id: String, name: string, lastName: string, phone: string, email: 
     complete: () => {
       window.location.reload()
     }
-  });    
-  
+  });
+
 }
 
 
@@ -182,16 +183,16 @@ editVacataire(id: String, name: string, lastName: string, phone: string, email: 
     return state;
   }
 
- 
 
 
-  affecterVacataire(vacataireId: string, nomCours: string) {
-    console.log(nomCours);
+
+  affecterVacataire(vacataireId: string, nomCours_reduit: string) {
+    console.log(nomCours_reduit);
     const vacataire = this.vacataires.find(v => v._id === vacataireId);
-  
-    if (vacataire && nomCours && !vacataire.modules.includes(nomCours)) {
-      this.vacatairesService.affecterVacataire(vacataireId, nomCours).subscribe(() => {
-        vacataire.modules.push(nomCours);
+
+    if (vacataire && nomCours_reduit && !vacataire.modules.includes(nomCours_reduit)) {
+      this.vacatairesService.affecterVacataire(vacataireId, nomCours_reduit).subscribe(() => {
+        vacataire.modules.push(nomCours_reduit);
         this.errorMessage = null; // Réinitialise le message d'erreur
         // Rechargez la liste des vacataires après l'affectation
         this.vacatairesService.getVacataire().subscribe((data: unknown) => {
@@ -199,8 +200,8 @@ editVacataire(id: String, name: string, lastName: string, phone: string, email: 
            // Fermez le modal ici, car il n'y a pas d'erreur
           const modal = document.getElementById('exampleModalToggle2-' + vacataireId);
           if (modal) {
-            modal.querySelector('.btn-close')?.dispatchEvent(new Event('click'));        
-          }    
+            modal.querySelector('.btn-close')?.dispatchEvent(new Event('click'));
+          }
         });
       }, (error) => {
         // Gérer les erreurs ici si nécessaire
@@ -211,12 +212,12 @@ editVacataire(id: String, name: string, lastName: string, phone: string, email: 
     }
   }
 
-  desaffecterVacataire(vacataireId: string, nomCours: string) {
-    this.vacatairesService.desaffecterVacataire(vacataireId, nomCours).subscribe(() => {
+  desaffecterVacataire(vacataireId: string, nomCours_reduit: string) {
+    this.vacatairesService.desaffecterVacataire(vacataireId, nomCours_reduit).subscribe(() => {
       const vacataire = this.vacataires.find((v) => v._id === vacataireId);
       if (vacataire) {
         // Retirez le cours de la liste des modules du vacataire
-        vacataire.modules = vacataire.modules.filter((module: string) => module !== nomCours);
+        vacataire.modules = vacataire.modules.filter((module: string) => module !== nomCours_reduit);
       }
       // Rechargez la liste des vacataires après la désaffectation
       this.vacatairesService.getVacataire().subscribe((data: unknown) => {
@@ -224,8 +225,8 @@ editVacataire(id: String, name: string, lastName: string, phone: string, email: 
       });
       const modal = document.getElementById('exampleModalToggle3-' + vacataireId);
           if (modal) {
-            modal.querySelector('.btn-close')?.dispatchEvent(new Event('click'));        
-          } 
+            modal.querySelector('.btn-close')?.dispatchEvent(new Event('click'));
+          }
     }, (error) => {
       // Gérez les erreurs ici si nécessaire
       console.error(error);
@@ -242,6 +243,6 @@ editVacataire(id: String, name: string, lastName: string, phone: string, email: 
 
   hello() {
     console.log(this.cours);
-    
+
   }
 }

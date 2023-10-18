@@ -26,7 +26,6 @@ import { ProfilComponent } from './pages/profil/profil.component';
     ListeVacatairesComponent,
     ConnectionComponent,
     ProfilComponent,
-
   ],
   imports: [
     BrowserModule,

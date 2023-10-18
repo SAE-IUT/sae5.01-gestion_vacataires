@@ -25,8 +25,8 @@
         <div class="name">{{ vacataire.name }} {{ vacataire.lastName }}</div>
         <div class="index">Vacataire n°{{i+1}}</div>
         <div class="email">{{ vacataire.email }}</div>
-        <div class="skills">Skills : {{ vacataire.skills }}</div>
-        <div class="skills">Modules : {{ vacataire.modules }}</div>
+        <!-- <div class="skills">Skills : {{ vacataire.skills }}</div> -->
+        <div class="modules" [hidden]="vacataire.modules.length === 0">Modules : {{ vacataire.modules }}</div>
       </div>
 
       <div class="status" [ngClass]="getVacataireStatusClass(vacataire.status)"></div>
@@ -43,9 +43,9 @@
               <!-- Contenu du modal pour ce vacataire -->
               <p>Téléphone : {{ vacataire.phone }}</p>
               <p>Email : {{ vacataire.email }}</p>
-              <p>github : {{ vacataire.github }}</p>
-              <p>skills : {{ vacataire.skills }}</p>
-              <p>modules : {{ vacataire.modules }}</p>
+              <p>GitHub : {{ vacataire.github }}</p>
+              <p>Skills : {{ vacataire.skills }}</p>
+              <p>Modules : {{ vacataire.modules }}</p>
               <!-- Ajoutez d'autres informations du vacataire si nécessaire -->
             </div>
             <div class="modal-footer">
@@ -72,10 +72,10 @@
               #f="ngForm"
               >
                 <div class="mb-3">
-                  <label for="nomCours" class="col-form-label">Nom du cours :</label>
-                  <select class="form-select" id="nomCours" name="name" [(ngModel)]="form.name">
+                  <label for="nomCours_reduit" class="col-form-label">Nom du cours :</label>
+                  <select class="form-select" id="nomCours_reduit" name="name" [(ngModel)]="form.name">
                     <option value="" disabled selected >Sélectionnez un cours</option>
-                    <option *ngFor="let c of cours" [value]="c.name">{{ c.name }}</option>
+                    <option *ngFor="let c of cours" [value]="c.name_reduit">{{ c.name_reduit }}</option>
                   </select>
                 </div>
                 <div *ngIf="errorMessage" class="alert alert-danger">
@@ -89,8 +89,8 @@
               <button type="button" class="btn btn-primary" (click)="affecterVacataire(vacataire._id, form.name)" >Valider</button>
             </div>
           </div>
-        </div>  
-      </div>  
+        </div>
+      </div>
 
       <div class="modal fade" [id]="'exampleModalToggle3-' + vacataire._id" (show.bs.modal)="onModalShow($event)" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
@@ -131,52 +131,52 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form 
+              <form
               class="row g-2"
               name="createVacataireForm"
               #f="ngForm"
               (ngSubmit)="f.form.valid && onSubmit(form.name, form.lastName, form.phone, form.email, form.github, form.skills)"
               >
                 <div class="form-floating mb-2">
-                  <input type="text" class="form-control" id="name" name="name" [(ngModel)]="form.name" #name="ngModel" placeholder="name@example.com" value="test" required>
+                  <input type="text" class="form-control" id="name" name="name" [(ngModel)]="form.name" #name="ngModel" pattern="^(0[1-9])(?:\d{2}){4}$" >
                   <label for="name">Prénom :</label>
-      
+
                   <div class="form_error" *ngIf="name.errors && f.submitted">
                     <div *ngIf="name.errors['required']">Le nom est requis !</div>
                   </div>
                 </div>
-      
+
                 <div class="form-floating mb-2">
                   <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="form.lastName" #lastName="ngModel" placeholder="name@example.com" required>
                   <label for="lastName">Nom de famille :</label>
-      
+
                   <div class="form_error" *ngIf="lastName.errors && f.submitted">
                     <div *ngIf="lastName.errors['required']">Le nom de famille est requis !</div>
                   </div>
                 </div>
-      
+
                 <div class="form-floating mb-2">
-                  <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="form.phone" #phone="ngModel" placeholder="name@example.com" required>
+                  <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="form.phone" #phone="ngModel" pattern="^(0[1-9])(?:\d{2}){4}$" required>
                   <label for="phone">Numéro de téléphone :</label>
-      
+
                   <div class="form_error" *ngIf="phone.errors && f.submitted">
                     <div *ngIf="phone.errors['required']">Le numéro de téléphone est requis !</div>
                   </div>
                 </div>
-      
+
                 <div class="form-floating mb-2">
                   <input type="email" class="form-control" id="email" name="email" [(ngModel)]="form.email" #email="ngModel" placeholder="name@example.com" required>
                   <label for="email">Adresse email :</label>
-      
+
                   <div class="form_error" *ngIf="email.errors && f.submitted">
                     <div *ngIf="email.errors['required']">L'adresse email est requise !</div>
                   </div>
                 </div>
-      
+
                 <div class="form-floating mb-2">
                   <input type="text" class="form-control" id="github" name="github" [(ngModel)]="form.github" #github="ngModel" placeholder="name@example.com" required>
                   <label for="github ">Profil GitHub :</label>
-      
+
                   <div class="form_error" *ngIf="github.errors && f.submitted">
                     <div *ngIf="github.errors['required']">Le profil github est requis !</div>
                   </div>
@@ -200,20 +200,20 @@
                     </div>
                   </ng-container>
                 </div>
-                
-                
-      
+
+
+
                 <div class="modal-footer">
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
                   <button type="submit" class="btn btn-primary">Modifier le vacataire</button>
-                </div>  
+                </div>
               </form>
             </div>
           </div>
         </div>
       </div>
-      
-      
+
+
     </div>
   </ng-container>
   <h1 *ngIf="vacataires.length === 0">Pas de vacataires trouvés.</h1>

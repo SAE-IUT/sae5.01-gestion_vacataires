@@ -4,7 +4,7 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
   }
-  
+
   .vacataire {
     position: relative;
     display: flex;
@@ -21,7 +21,7 @@
   .vacataire .profile-pic img {
     height: 100px;
   }
-  
+
   .vacataire .status {
     position: absolute;
     bottom: 0;
@@ -29,36 +29,36 @@
     height: 10px;
     border-radius: 0 0 20px 20px;
   }
-  
+
   /* Style pour le statut "en attente" */
   .status-gray {
     background-color: #C0C0C0; /* Fond gris pour le statut "en attente" */
   }
-  
+
   /* Style pour le statut "admis" */
   .status-green {
     background-color: #39C872; /* Fond bleu pour le statut "admis" */
   }
-  
+
   /* Style pour tout autre statut */
   .status-red {
     background-color: #EE5757; /* Fond rouge pour les autres statuts */
   }
-  
+
   .expand {
     position: absolute;
     top: 10px;
     right: 10px;
     cursor: pointer;
   }
-  
+
   @media screen and (max-width: 768px) {
     .vacataires {
       grid-template-columns: repeat(2, 1fr);
     }
   }
-  
-  
+
+
   @media screen and (max-width: 425px) {
     .vacataires {
       grid-template-columns: repeat(1, 1fr);
@@ -86,4 +86,3 @@
   margin-left: 4px;
   font-weight: bold;
 }
-  

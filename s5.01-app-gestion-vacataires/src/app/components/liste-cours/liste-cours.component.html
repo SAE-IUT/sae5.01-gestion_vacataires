@@ -1,5 +1,5 @@
 <div class="cours">
-  <ng-container *ngFor="let cours of modules">
+  <ng-container *ngFor="let cours of modules; let i = index">
     <div *ngIf="isInFilter(cours)" class="cours-card">
 
       <div class="expand" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal' + cours._id">
@@ -11,8 +11,9 @@
 
       <div class="content">
         <div class="name" style="word-wrap: break-word;">{{ cours.name }}</div>
-        <div class="name">{{ cours.name_reduit }}</div>
-        <div class="content_departement">
+        <div class="name_reduit">{{ cours.name_reduit }}</div>
+        <div class="index">Cours n°{{i+1}}</div>
+        <div class="content_departement" [hidden]="cours.departement.length === 1 && cours.departement[0]===''">
           Département :
           <div *ngFor="let departement of cours.departement" class="departement" style="display:inline-block;">
             <li style="text-transform: uppercase;">&nbsp;{{departement}}</li>
@@ -43,7 +44,7 @@
           </div>
           <div class="modal-footer">
             <!-- <button type="button" class="btn btn-primary" [attr.data-bs-target]="'#exampleModalToggle2-' + cours.id" data-bs-toggle="modal" data-bs-dismiss="modal">Affecter</button> -->
-            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" [attr.data-bs-target]="'#updateModule'+cours._id">Modifier</button>
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" [attr.data-bs-target]="'#updateModule'+cours._id" data-bs-dismiss="modal">Modifier</button>
             <button type="button" class="btn btn-danger" (click)="deleteModule(cours._id)">Supprimer</button>
           </div>
         </div>
@@ -54,7 +55,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="updateModuleLabel">Modifier le module :</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="reloadPage()"></button>
           </div>
           <div class="modal-body">
 
@@ -94,7 +95,7 @@
             </form>
 
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="reloadPage()">Annuler</button>
               <button type="button" class="btn btn-primary" (click)='updateModule(cours._id,cours.name, cours.name_reduit, cours.color_hexa, cours.departement, cours.matiere)'>Valider</button>
             </div>
           </div>
