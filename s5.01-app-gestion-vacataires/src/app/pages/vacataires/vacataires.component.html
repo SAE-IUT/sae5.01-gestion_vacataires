@@ -36,6 +36,20 @@
 
   <div data-bs-toggle="modal" data-bs-target="#createVacataire" class="btn">Ajouter un vacataire</div>
 
+  <div class="help-status">
+    <div class="help-container">
+      <div id="green-circle"></div>
+      <div>&#160;Vacataire affecté à un ou plusieurs modules.</div>
+    </div>
+    <div class="help-container">
+      <div id="gray-circle"></div>
+      <div>&#160;Vacataire désaffacté de tout ses modules.</div>
+    </div>
+    <div class="help-container">
+      <div id="red-circle"></div>
+      <div>&#160;Vacataire affecté à aucun cours ou nouveau.</div>
+    </div>
+  </div>
 </div>
 
 <div class="vacataires">
@@ -97,11 +111,11 @@
         </div>
 
         <div class="form-floating mb-2">
-          <input type="text" class="form-control" id="github" name="github" [(ngModel)]="form.github" #github="ngModel" pattern="^(https?:\/\/)?(www\.)?github\.com\/[a-zA-Z0-9-]+\/?$" required>
+          <input type="text" class="form-control" id="github" name="github" [(ngModel)]="form.github" #github="ngModel" pattern="^(https?:\/\/)?(www\.)?github\.com\/[a-zA-Z0-9-]+\/?$" >
           <label for="github ">URl du profil GitHub :</label>
 
           <div class="form_error" *ngIf="github.invalid && (github.touched || github.dirty)">
-            <div *ngIf="github.errors && github.errors['required']">Le profil github est requis !</div>
+            <!-- <div *ngIf="github.errors && github.errors['required']">Le profil github est requis !</div> -->
             <div *ngIf="github.errors && github.errors['pattern']">L'URL du profil n'est pas bonne !</div>
           </div>
         </div>

@@ -242,6 +242,13 @@ editVacataire(id: String, name: string, lastName: string, phone: string, email: 
     }
   }
 
+  logoTelClick(tel:string){
+    navigator.clipboard.writeText(tel);
+  }
+  logoMailClick(mail:string){
+    navigator.clipboard.writeText(mail);
+  }
+
 
   hello() {
     console.log(this.cours);

@@ -26,7 +26,12 @@
         <div class="index">Vacataire n°{{i+1}}</div>
         <!-- <div class="email">{{ vacataire.email }}</div> -->
         <!-- <div class="skills">Skills : {{ vacataire.skills }}</div> -->
-        <div class="modules" [hidden]="vacataire.modules.length === 0">Modules : {{ vacataire.modules }}</div>
+        <div class="skills-containers">
+          <ng-container *ngFor="let module of vacataire.modules">
+            <div *ngIf="module!=''" class="module-show-card">{{module}}</div>
+          </ng-container>
+        </div>
+        <!-- <div class="modules" [hidden]="vacataire.modules.length === 0">Module(s) : {{ vacataire.modules }}</div> -->
       </div>
 
       <div class="status" [ngClass]="getVacataireStatusClass(vacataire.status)"></div>
@@ -36,16 +41,36 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">{{ vacataire.name }} {{ vacataire.lastName }}</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Vacataire n° {{i+1}}</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              <div class="profile-pic-2"><img src='../../../assets/img/user-avatar.svg' alt="profile-pic"></div>
+              <h5 class="modal-title" id="exampleModalLabel">{{ vacataire.name }} {{ vacataire.lastName }}</h5>
               <!-- Contenu du modal pour ce vacataire -->
-              <p>Téléphone : {{ vacataire.phone }}</p>
-              <p>Email : {{ vacataire.email }}</p>
-              <p [hidden]="vacataire.github === ''">GitHub : {{ vacataire.github }}</p>
-              <p [hidden]="vacataire.skills.length === 0">Skills : {{ vacataire.skills }}</p>
-              <p [hidden]="vacataire.modules.length === 0">Modules : {{ vacataire.modules }}</p>
+              <hr>
+              <div class="contact-logo">
+                <a [hidden]="vacataire.github===''" target="_blank" href="{{vacataire.github}}"><img src="../../../assets/img/logo_github.png" alt="logo-github"></a>
+                <img style="cursor: pointer;" src="../../../assets/img/logo_tel.png" alt="logo-tel" (click)="logoTelClick(vacataire.phone)">
+                <img style="cursor: pointer;" src="../../../assets/img/logo_mail.png" alt="logo-mail" (click)="logoMailClick(vacataire.email)">
+              </div>
+              <hr [hidden]="vacataire.skills.length===0">
+              <div class="skills-containers">
+                <ng-container *ngFor="let skill of vacataire.skills">
+                  <div *ngIf="skill!=''" class="skill-show" >{{ skill }}
+                    <!-- <span class="delete-icon" (click)="removeSkill(skill)"><i class="fa-solid fa-xmark"></i></span> -->
+                  </div>
+                </ng-container>
+              </div>
+              <hr [hidden]="vacataire.modules.length===0">
+              <div class="skills-containers">
+                <ng-container *ngFor="let module of vacataire.modules">
+                  <div *ngIf="module!=''" class="module-show">{{module}}</div>
+                </ng-container>
+              </div>
+              <!-- <p [hidden]="vacataire.github === ''">GitHub : {{ vacataire.github }}</p> -->
+              <!-- <p [hidden]="vacataire.skills.length === 0">Skills : {{ vacataire.skills }}</p> -->
+              <!-- <p [hidden]="vacataire.modules.length === 0">Modules : {{ vacataire.modules }}</p> -->
               <!-- Ajoutez d'autres informations du vacataire si nécessaire -->
             </div>
             <div class="modal-footer">
@@ -181,7 +206,7 @@
 
                 <div class="form-floating mb-2">
                   <input type="text" class="form-control" id="github" name="github" [(ngModel)]="form.github" #github="ngModel" pattern="^(https?:\/\/)?(www\.)?github\.com\/[a-zA-Z0-9-]+\/?$" >
-                  <label for="github ">URl du profil GitHub :</label>
+                  <label for="github ">URL du profil GitHub :</label>
 
                   <div class="form_error" *ngIf="github.invalid">
                     <!-- <div *ngIf="github.errors && github.errors['required']">Le profil github est requis !</div> -->
