@@ -1,5 +1,5 @@
 <div class="cours">
-  <ng-container *ngFor="let cours of modules; let i = index">
+  <ng-container *ngFor="let cours of modules">
     <div *ngIf="isInFilter(cours)" class="cours-card">
 
       <div class="expand" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal' + cours._id">
@@ -12,7 +12,6 @@
       <div class="content">
         <div class="name" style="word-wrap: break-word;">{{ cours.name }}</div>
         <div class="name_reduit">{{ cours.name_reduit }}</div>
-        <div class="index">Cours n°{{i+1}}</div>
         <div class="content_departement" [hidden]="cours.departement.length === 1 && cours.departement[0]===''">
           Département :
           <div *ngFor="let departement of cours.departement" class="departement" style="display:inline-block;">
@@ -54,41 +53,59 @@
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  ">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="updateModuleLabel">Modifier le module :</h5>
+            <h5 class="modal-title" id="updateModuleLabel">Modification du module</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="reloadPage()"></button>
           </div>
           <div class="modal-body">
 
             <form
+              class="row g-2"
               action="#"
               name="updateModuleForm"
               #f="ngForm"
             >
+              <div style="text-align: center;">Les champs avec une * sont obligatoires.</div>
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="name" id="name"  [(ngModel)]="cours.name" #name="ngModel">
-                <label for="name">Nom :</label>
+                <input type="text" class="form-control" name="name" id="name"  [(ngModel)]="cours.name" #name="ngModel" pattern="^[a-zA-ZÀ-ÿ\s'-\d]+$" required>
+                <label for="name">Nom* :</label>
+
+                <div class="form_error" *ngIf="name.invalid && (name.touched || name.dirty)">
+                  <div *ngIf="name.errors && name.errors['required'];">Le nom est requis !</div>
+                  <div *ngIf="name.errors && name.errors['pattern'];">Le nom ne doit pas avoir de symbole (sauf -) !</div>
+                </div>
               </div>
 
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="name_reduit" id="name_reduit" [(ngModel)]="cours.name_reduit" #name_reduit="ngModel">
-                <label for="name_reduit">Nom réduit : </label>
+                <input type="text" class="form-control" name="name_reduit" id="name_reduit" [(ngModel)]="cours.name_reduit" #name_reduit="ngModel" pattern="^[a-zA-ZÀ-ÿ\s'-\d]+$" required>
+                <label for="name_reduit">Nom réduit* : </label>
+
+                <div class="form_error" *ngIf="name_reduit.invalid && (name_reduit.touched || name_reduit.dirty)">
+                  <div *ngIf="name_reduit.errors && name_reduit.errors['required'];">Le nom réduit est requis !</div>
+                  <div *ngIf="name_reduit.errors && name_reduit.errors['pattern'];">Le nom réduit ne doit pas avoir de symbole (sauf -) !</div>
+                </div>
               </div>
 
-              <select class="form-select mb-3" multiple aria-label="multiple select example" id="departement" name="departement" [(ngModel)]="cours.departement" #departement="ngModel">
-                <option selected disabled>Départements :</option>
+              <select class="form-select mb-3" multiple aria-label="multiple select example" id="departement" name="departement" [(ngModel)]="cours.departement" #departement="ngModel" required>
+                <option selected disabled>Département(s)* :</option>
                 <option type="text" value="info">INFO</option>
                 <option type="text" value="rt">RT</option>
                 <option type="text" value="cs">CS</option>
                 <option type="text" value="gim">GIM</option>
               </select>
+              <div *ngIf="departement.errors && departement.errors['required'];">Au moins un département est requis !</div>
 
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" name="matiere" id="matiere" [(ngModel)]="cours.matiere" #matiere="ngModel">
-                <label for="matiere">Matière : </label>
+                <input type="text" class="form-control" name="matiere" id="matiere" [(ngModel)]="cours.matiere" #matiere="ngModel" pattern="^[a-zA-ZÀ-ÿ\s'-\d]+$" required>
+                <label for="matiere">Matière* : </label>
+
+                <div class="form_error" *ngIf="matiere.invalid && (matiere.touched || matiere.dirty)">
+                  <div *ngIf="matiere.errors && matiere.errors['required'];">La matière est requise !</div>
+                  <div *ngIf="matiere.errors && matiere.errors['pattern'];">La matiere ne doit pas avoir de symbole (sauf -) !</div>
+                </div>
               </div>
 
               <div class="d-flex align-items-center mb-3">
-                <label for="color_hexa" class="col-form-label me-2">Couleur du module :</label>
+                <label for="color_hexa" class="col-form-label me-2">Couleur du module* :</label>
                 <input type="color" id="color_hexa" name="color_hexa"  [(ngModel)]="cours.color_hexa" #color_hexa="ngModel"/>
               </div>
 
@@ -96,7 +113,7 @@
 
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="reloadPage()">Annuler</button>
-              <button type="button" class="btn btn-primary" (click)='updateModule(cours._id,cours.name, cours.name_reduit, cours.color_hexa, cours.departement, cours.matiere)'>Valider</button>
+              <button type="button" class="btn btn-primary" (click)='updateModule(cours._id,cours.name, cours.name_reduit, cours.color_hexa, cours.departement, cours.matiere)' [disabled]="name.errors || name_reduit.errors || departement.errors || matiere.errors">Valider</button>
             </div>
           </div>
 

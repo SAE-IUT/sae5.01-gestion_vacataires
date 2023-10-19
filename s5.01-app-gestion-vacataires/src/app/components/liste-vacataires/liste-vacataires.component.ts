@@ -4,7 +4,7 @@ import Module from 'src/app/interfaces/module-interface';
 import Vacataire from 'src/app/interfaces/vacataire-interface';
 import { ModulesService } from 'src/app/services/modules.service';
 import { VacatairesService } from 'src/app/services/vacataires.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-liste-vacataires',
@@ -30,6 +30,7 @@ export class ListeVacatairesComponent {
   comp: string[] = [];
 
 
+
   form  = {
     _id:"",
     name: "",
@@ -37,7 +38,8 @@ export class ListeVacatairesComponent {
     phone: "",
     email: "",
     github: "",
-    skills: [""]
+    skills: [""],
+    invalid: false
   }
 
 
@@ -119,7 +121,7 @@ initializeFormWithId(id: string) {
   }
 }
 
-onSubmit(name: string, lastName: string, phone: string, email: string, github: string, skills: string[]) {
+onSubmit() {
   this.editVacataire(this.form._id, this.form.name, this.form.lastName, this.form.phone, this.form.email, this.form.github, this.form.skills)
 }
 

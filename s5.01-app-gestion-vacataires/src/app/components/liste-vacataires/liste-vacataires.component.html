@@ -24,7 +24,7 @@
       <div class="content">
         <div class="name">{{ vacataire.name }} {{ vacataire.lastName }}</div>
         <div class="index">Vacataire n°{{i+1}}</div>
-        <div class="email">{{ vacataire.email }}</div>
+        <!-- <div class="email">{{ vacataire.email }}</div> -->
         <!-- <div class="skills">Skills : {{ vacataire.skills }}</div> -->
         <div class="modules" [hidden]="vacataire.modules.length === 0">Modules : {{ vacataire.modules }}</div>
       </div>
@@ -43,9 +43,9 @@
               <!-- Contenu du modal pour ce vacataire -->
               <p>Téléphone : {{ vacataire.phone }}</p>
               <p>Email : {{ vacataire.email }}</p>
-              <p>GitHub : {{ vacataire.github }}</p>
-              <p>Skills : {{ vacataire.skills }}</p>
-              <p>Modules : {{ vacataire.modules }}</p>
+              <p [hidden]="vacataire.github === ''">GitHub : {{ vacataire.github }}</p>
+              <p [hidden]="vacataire.skills.length === 0">Skills : {{ vacataire.skills }}</p>
+              <p [hidden]="vacataire.modules.length === 0">Modules : {{ vacataire.modules }}</p>
               <!-- Ajoutez d'autres informations du vacataire si nécessaire -->
             </div>
             <div class="modal-footer">
@@ -127,7 +127,7 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="editVacataireModalLabel">Modifier le Vacataire : {{vacataire.name}}</h5>
+              <h5 class="modal-title" id="editVacataireModalLabel">Modification du vacataire</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -135,50 +135,57 @@
               class="row g-2"
               name="createVacataireForm"
               #f="ngForm"
-              (ngSubmit)="f.form.valid && onSubmit(form.name, form.lastName, form.phone, form.email, form.github, form.skills)"
+              (ngSubmit)="onSubmit()"
               >
+                <div>Les champs avec une * sont obligatoires.</div>
                 <div class="form-floating mb-2">
-                  <input type="text" class="form-control" id="name" name="name" [(ngModel)]="form.name" #name="ngModel" pattern="^(0[1-9])(?:\d{2}){4}$" >
-                  <label for="name">Prénom :</label>
+                  <input type="text" class="form-control" id="name" name="name" [(ngModel)]="form.name" pattern="^[a-zA-ZÀ-ÿ\s'-]+$" #name="ngModel" required >
+                  <label for="name">Prénom* :</label>
 
-                  <div class="form_error" *ngIf="name.errors && f.submitted">
-                    <div *ngIf="name.errors['required']">Le nom est requis !</div>
+                  <div class="form_error" *ngIf="name.invalid">
+                    <div *ngIf="name.errors && name.errors['required'];">Le prénom est requis !</div>
+                    <div *ngIf="name.errors && name.errors['pattern'];">Le prénom ne doit avoir que des lettres !</div>
+                  </div>
+
+                </div>
+
+                <div class="form-floating mb-2">
+                  <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="form.lastName" pattern="^[a-zA-ZÀ-ÿ\s'-]+$" #lastName="ngModel" required>
+                  <label for="lastName">Nom de famille* :</label>
+
+                  <div class="form_error" *ngIf="lastName.invalid">
+                    <div *ngIf="lastName.errors && lastName.errors['required']">Le nom de famille est requis !</div>
+                    <div *ngIf="lastName.errors && lastName.errors['pattern'];">Le nom de famille ne doit avoir que des lettres !</div>
                   </div>
                 </div>
 
                 <div class="form-floating mb-2">
-                  <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="form.lastName" #lastName="ngModel" placeholder="name@example.com" required>
-                  <label for="lastName">Nom de famille :</label>
-
-                  <div class="form_error" *ngIf="lastName.errors && f.submitted">
-                    <div *ngIf="lastName.errors['required']">Le nom de famille est requis !</div>
-                  </div>
-                </div>
-
-                <div class="form-floating mb-2">
-                  <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="form.phone" #phone="ngModel" pattern="^(0[1-9])(?:\d{2}){4}$" required>
+                  <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="form.phone" #phone="ngModel" pattern="^(0[1-9])(?:\d{2}){4}$" >
                   <label for="phone">Numéro de téléphone :</label>
 
-                  <div class="form_error" *ngIf="phone.errors && f.submitted">
-                    <div *ngIf="phone.errors['required']">Le numéro de téléphone est requis !</div>
+                  <div class="form_error" *ngIf="phone.invalid">
+                    <!-- <div *ngIf="phone.errors && phone.errors['required']">Le numéro de téléphone est requis !</div> -->
+                    <div *ngIf="phone.errors && phone.errors['pattern']">Le numéro dois être au format FR (sans espace)!</div>
                   </div>
                 </div>
 
                 <div class="form-floating mb-2">
-                  <input type="email" class="form-control" id="email" name="email" [(ngModel)]="form.email" #email="ngModel" placeholder="name@example.com" required>
-                  <label for="email">Adresse email :</label>
+                  <input type="email" class="form-control" id="email" name="email" [(ngModel)]="form.email" #email="ngModel"  pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+                  <label for="email">Adresse email* :</label>
 
-                  <div class="form_error" *ngIf="email.errors && f.submitted">
-                    <div *ngIf="email.errors['required']">L'adresse email est requise !</div>
+                  <div class="form_error" *ngIf="email.invalid">
+                    <div *ngIf="email.errors && email.errors['required']">L'adresse email est requise !</div>
+                    <div *ngIf="email.errors && email.errors['pattern']">L'adresse email n'est pas valide !</div>
                   </div>
                 </div>
 
                 <div class="form-floating mb-2">
-                  <input type="text" class="form-control" id="github" name="github" [(ngModel)]="form.github" #github="ngModel" placeholder="name@example.com" required>
-                  <label for="github ">Profil GitHub :</label>
+                  <input type="text" class="form-control" id="github" name="github" [(ngModel)]="form.github" #github="ngModel" pattern="^(https?:\/\/)?(www\.)?github\.com\/[a-zA-Z0-9-]+\/?$" >
+                  <label for="github ">URl du profil GitHub :</label>
 
-                  <div class="form_error" *ngIf="github.errors && f.submitted">
-                    <div *ngIf="github.errors['required']">Le profil github est requis !</div>
+                  <div class="form_error" *ngIf="github.invalid">
+                    <!-- <div *ngIf="github.errors && github.errors['required']">Le profil github est requis !</div> -->
+                    <div *ngIf="github.errors && github.errors['pattern']">L'URL du profil n'est pas bonne !</div>
                   </div>
                 </div>
 
@@ -201,11 +208,9 @@
                   </ng-container>
                 </div>
 
-
-
                 <div class="modal-footer">
                   <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                  <button type="submit" class="btn btn-primary">Modifier le vacataire</button>
+                  <button type="submit" class="btn btn-primary" [disabled]="name.errors || lastName.errors || phone.errors || email.errors || github.errors">Modifier le vacataire</button>
                 </div>
               </form>
             </div>

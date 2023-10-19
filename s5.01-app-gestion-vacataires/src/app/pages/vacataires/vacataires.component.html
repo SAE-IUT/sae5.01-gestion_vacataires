@@ -57,47 +57,52 @@
           #f="ngForm"
         >
         <div class="form-floating mb-2">
-          <input type="text" class="form-control" id="name" name="name" [(ngModel)]="form.name" #name="ngModel" placeholder="name@example.com" value="test" required>
+          <input type="text" class="form-control" id="name" name="name" [(ngModel)]="form.name" #name="ngModel" pattern="^[a-zA-ZÀ-ÿ\s'-]+$" value="test" required>
           <label for="name">Prénom :</label>
 
-          <div class="form_error" *ngIf="name.errors && f.submitted">
-            <div *ngIf="name.errors['required']">Le nom est requis !</div>
+          <div class="form_error" *ngIf="name.invalid && (name.touched || name.dirty)">
+            <div *ngIf="name.errors && name.errors['required'];">Le prénom est requis !</div>
+            <div *ngIf="name.errors && name.errors['pattern'];">Le prénom ne doit avoir que des lettres !</div>
           </div>
         </div>
 
         <div class="form-floating mb-2">
-          <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="form.lastName" #lastName="ngModel" placeholder="name@example.com" required>
+          <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="form.lastName" #lastName="ngModel" pattern="^[a-zA-ZÀ-ÿ\s'-]+$" required>
           <label for="lastName">Nom de famille :</label>
 
-          <div class="form_error" *ngIf="lastName.errors && f.submitted">
-            <div *ngIf="lastName.errors['required']">Le nom de famille est requis !</div>
+          <div class="form_error" *ngIf="lastName.invalid && (lastName.touched || lastName.dirty)">
+            <div *ngIf="lastName.errors && lastName.errors['required']">Le nom de famille est requis !</div>
+            <div *ngIf="lastName.errors && lastName.errors['pattern'];">Le nom de famille ne doit avoir que des lettres !</div>
           </div>
         </div>
 
         <div class="form-floating mb-2">
-          <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="form.phone" #phone="ngModel" placeholder="name@example.com" required>
+          <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="form.phone" #phone="ngModel" pattern="^(0[1-9])(?:\d{2}){4}$" required>
           <label for="phone">Numéro de téléphone :</label>
 
-          <div class="form_error" *ngIf="phone.errors && f.submitted">
-            <div *ngIf="phone.errors['required']">Le numéro de téléphone est requis !</div>
+          <div class="form_error" *ngIf="phone.invalid && (phone.touched || phone.dirty)">
+            <div *ngIf="phone.errors && phone.errors['required']">Le numéro de téléphone est requis !</div>
+            <div *ngIf="phone.errors && phone.errors['pattern']">Le numéro dois être au format FR (sans espace)!</div>
           </div>
         </div>
 
         <div class="form-floating mb-2">
-          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="form.email" #email="ngModel" placeholder="name@example.com" required>
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="form.email" #email="ngModel" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
           <label for="email">Adresse email :</label>
 
-          <div class="form_error" *ngIf="email.errors && f.submitted">
-            <div *ngIf="email.errors['required']">L'adresse email est requise !</div>
+          <div class="form_error" *ngIf="email.invalid && (email.touched || email.dirty)">
+            <div *ngIf="email.errors && email.errors['required']">L'adresse email est requise !</div>
+            <div *ngIf="email.errors && email.errors['pattern']">L'adresse email n'est pas valide !</div>
           </div>
         </div>
 
         <div class="form-floating mb-2">
-          <input type="text" class="form-control" id="github" name="github" [(ngModel)]="form.github" #github="ngModel" placeholder="name@example.com" required>
-          <label for="github ">Profil GitHub :</label>
+          <input type="text" class="form-control" id="github" name="github" [(ngModel)]="form.github" #github="ngModel" pattern="^(https?:\/\/)?(www\.)?github\.com\/[a-zA-Z0-9-]+\/?$" required>
+          <label for="github ">URl du profil GitHub :</label>
 
-          <div class="form_error" *ngIf="github.errors && f.submitted">
-            <div *ngIf="github.errors['required']">Le profil github est requis !</div>
+          <div class="form_error" *ngIf="github.invalid && (github.touched || github.dirty)">
+            <div *ngIf="github.errors && github.errors['required']">Le profil github est requis !</div>
+            <div *ngIf="github.errors && github.errors['pattern']">L'URL du profil n'est pas bonne !</div>
           </div>
         </div>
 
@@ -105,7 +110,7 @@
           <select class="form-select" id="skills" name="skills" [(ngModel)]="selectedSkill">
             <option value="" disabled selected>Sélectionnez une compétence</option>
             <option *ngFor="let skill of skillsList" [value]="skill">{{ skill }}</option>
-          </select> 
+          </select>
         </div>
         <div class="d-flex mt-2 mb-2 justify-content-center">
           <button type="button" class="btn btn-primary" (click)="addSkill()">Ajouter Compétence</button>
@@ -123,7 +128,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-          <button type="button" class="btn btn-primary" (click)="addVacataire(form.name, form.lastName, form.phone, form.email, form.github ,form.skills)" data-bs-dismiss="modal">Ajouter</button>
+          <button type="button" class="btn btn-primary" (click)="addVacataire(form.name, form.lastName, form.phone, form.email, form.github ,form.skills)" data-bs-dismiss="modal" [disabled]="name.errors || lastName.errors || phone.errors || email.errors || github.errors">Ajouter</button>
 
           <!-- <button type="button" class="btn btn-primary" (click)='addVacataire(form.name, form.lastName, form.phone, form.email, form.linkedin, form.discord)'>Ajouter</button> -->
         </div>
@@ -131,7 +136,7 @@
 
         </form>
 
-     
+
       </div>
 
     </div>
