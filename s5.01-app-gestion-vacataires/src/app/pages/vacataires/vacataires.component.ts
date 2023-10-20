@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { empty } from 'rxjs';
 import Filter from 'src/app/interfaces/filtre-interface';
 import Vacataire from 'src/app/interfaces/vacataire-interface';
@@ -35,7 +36,7 @@ export class VacatairesComponent {
     name : "",
     lastName: "",
     phone: "",
-    email: "", 
+    email: "",
     github: "",
     skills: [] as string[]
   }
@@ -47,6 +48,7 @@ export class VacatairesComponent {
     private vacatairesService: VacatairesService,
     private route: ActivatedRoute,
     private router: Router,
+    private toastr: ToastrService
   ){}
 
   ngOnInit() {
@@ -77,7 +79,7 @@ export class VacatairesComponent {
     if (!this.form.skills) {
       this.form.skills = [];
     }
-  
+
     if (this.selectedSkill!="" && !this.form.skills.includes(this.selectedSkill) ) {
       this.form.skills.push(this.selectedSkill);
     }
@@ -96,10 +98,10 @@ export class VacatairesComponent {
   //   if (this.form.skills && this.form.skills.trim() !== '') {
   //     // Utilisez split() pour diviser la chaîne par des espaces
   //     const newTags = this.form.skills.split(' ');
-  
+
   //     // Ajoutez chaque nouveau tag à la liste des tags
   //     this.tags = [...this.tags, ...newTags];
-  
+
   //     // Effacez le champ d'entrée
   //     this.form.skills = '';
   //   }
@@ -108,7 +110,7 @@ export class VacatairesComponent {
   // removeTag(tag: string) {
   //   this.tags = this.tags.filter(t => t !== tag);
   // }
-  
+
 
   addVacataire(name: string, lastName: string, phone: string, email: string, github: string, skills: string[]) {
 
@@ -118,7 +120,7 @@ export class VacatairesComponent {
       "Phone : " + phone + "\n" +
       "email : " + email + "\n" +
       "github : " + github + "\n" +
-      "skills : " + skills + "\n" 
+      "skills : " + skills + "\n"
     );
     skills = skills.filter(el => el!=="")
     this.vacatairesService.addVacataire(name, lastName, phone, email, github, skills).subscribe({
@@ -137,7 +139,7 @@ export class VacatairesComponent {
 
   hello(value: string) {
     console.log(typeof(value));
-      
+
   }
 
   /**
@@ -174,4 +176,7 @@ export class VacatairesComponent {
     }, 750);
   }
 
+  afficherToast(){
+    this.toastr.success('Ceci est un toast de succès!', 'Succès');
+  }
 }

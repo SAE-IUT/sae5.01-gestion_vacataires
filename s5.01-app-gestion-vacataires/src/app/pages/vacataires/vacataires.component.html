@@ -143,14 +143,12 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
           <button type="button" class="btn btn-primary" (click)="addVacataire(form.name, form.lastName, form.phone, form.email, form.github ,form.skills)" data-bs-dismiss="modal" [disabled]="name.errors || lastName.errors || phone.errors || email.errors || github.errors">Ajouter</button>
-
+          <button (click)="afficherToast()">test</button>
           <!-- <button type="button" class="btn btn-primary" (click)='addVacataire(form.name, form.lastName, form.phone, form.email, form.linkedin, form.discord)'>Ajouter</button> -->
         </div>
 
 
         </form>
-
-
       </div>
 
     </div>
