@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input,ElementRef,ViewChild} from '@angular/core';
 import Filtre from 'src/app/interfaces/filtre-interface';
 import Module from 'src/app/interfaces/module-interface';
 import Vacataire from 'src/app/interfaces/vacataire-interface';
 import { ModulesService } from 'src/app/services/modules.service';
 import { VacatairesService } from 'src/app/services/vacataires.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-liste-vacataires',
@@ -15,6 +16,8 @@ export class ListeVacatairesComponent {
   // Import des données fournies par le parent
   @Input() vacataires: Vacataire[] = [];
   @Input() filtres: Filtre = {};
+
+  
 
   public cours: Module[] = []
 
@@ -28,7 +31,8 @@ export class ListeVacatairesComponent {
 
   comp: string[] = [];
 
-  
+
+
   form  = {
     _id:"",
     name: "",
@@ -41,8 +45,7 @@ export class ListeVacatairesComponent {
 
 
 
-
-  constructor(private vacatairesService: VacatairesService, private modulesService: ModulesService) {}
+  constructor(private vacatairesService: VacatairesService, private modulesService: ModulesService, private http: HttpClient) {}
 
   ngOnInit() {
     this.modulesService.getModule().subscribe((data: unknown) => {
@@ -50,6 +53,29 @@ export class ListeVacatairesComponent {
     });
   }
 
+  @ViewChild('fileInput', { static: false }) fileInput: ElementRef | undefined;
+  selectedFile: File | null = null;
+
+  
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  onFileUpload() {
+    if (this.selectedFile) {
+      const formData = new FormData();
+      formData.append('file', this.selectedFile);
+
+      this.http.post('/api/vacataires/uploadImage', formData).subscribe(response => {
+        console.log(response);
+      });
+    } else {
+      console.log("Aucun fichier sélectionné.");
+    }
+  }
+  
+  
+  
   /**
    * permet de déterminer le style de la div status selon le status du vacataire
    * 

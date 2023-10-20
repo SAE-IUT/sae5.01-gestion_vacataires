@@ -49,6 +49,10 @@
               <!-- Ajoutez d'autres informations du vacataire si nécessaire -->
             </div>
             <div class="modal-footer">
+              <input #fileInput type="file" id="fileInput" name="fileInput" (change)="onFileSelected($event)">
+              <button (click)="onFileUpload()">Upload</button>
+
+              
               <button *ngIf="vacataire.modules && vacataire.modules.length > 0" type="button" class="btn btn-warning" [attr.data-bs-target]="'#exampleModalToggle3-' + vacataire._id" data-bs-toggle="modal" data-bs-dismiss="modal">Désaffecter</button>
               <button type="button" class="btn btn-primary" [attr.data-bs-target]="'#exampleModalToggle2-' + vacataire._id" data-bs-toggle="modal" data-bs-dismiss="modal">Affecter</button>
               <button type="button" class="btn btn-secondary" [attr.data-bs-target]="'#editVacataireModal-' + vacataire._id" data-bs-toggle="modal" data-bs-dismiss="modal" (click)="initializeFormWithId(vacataire._id)">Modifier</button>
