@@ -4,8 +4,8 @@
 
 |=======
 |User Story |Tache associé|Estimation temps (en H)
-|En tant qu’administrateur, je peux créer un vacataire afin de le sauvegarder dans une API|Faire en sorte qu'on puisse ajouter des images|15
-|En tant qu’administrateur, je peux créer un vacataire afin de le sauvegarder dans une API|Faire en sorte qu'on puisse ajouter un CV|15
+|En tant qu’administrateur, je peux créer un vacataire afin de le sauvegarder dans une API|Faire en sorte qu'on puisse ajouter des images|10
+|En tant qu’administrateur, je peux créer un vacataire afin de le sauvegarder dans une API|Faire en sorte qu'on puisse ajouter un CV|10
 |En tant qu’administrateur, je peux créer un vacataire afin de le sauvegarder dans une API|Ajouter des REGEX pour la saisie d'informations valide à la création|5
 |En tant qu’administrateur, je peux consulter les informations d'un vacataire|Améliorer le modal d'affichage des informations d'un vacataire|5
 
