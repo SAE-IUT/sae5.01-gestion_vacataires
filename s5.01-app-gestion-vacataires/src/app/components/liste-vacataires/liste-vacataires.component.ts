@@ -249,6 +249,10 @@ editVacataire(id: String, name: string, lastName: string, phone: string, email: 
     navigator.clipboard.writeText(mail);
   }
 
+  //Rafraichie la page des vacataires quand on annule les modifications pour que la card remète les bonnes valeurs
+  reloadPage(){
+    window.location.reload()
+  }
 
   hello() {
     console.log(this.cours);

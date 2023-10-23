@@ -51,8 +51,8 @@
               <hr>
               <div class="contact-logo">
                 <a [hidden]="vacataire.github===''" target="_blank" href="{{vacataire.github}}"><img src="../../../assets/img/logo_github.png" alt="logo-github"></a>
-                <img style="cursor: pointer;" src="../../../assets/img/logo_tel.png" alt="logo-tel" (click)="logoTelClick(vacataire.phone)">
-                <img style="cursor: pointer;" src="../../../assets/img/logo_mail.png" alt="logo-mail" (click)="logoMailClick(vacataire.email)">
+                <img style="cursor: pointer;" src="../../../assets/img/logo_tel.png" alt="logo-tel" (click)="logoTelClick(vacataire.phone)" title="Copie dans le presse papier">
+                <img style="cursor: pointer;" src="../../../assets/img/logo_mail.png" alt="logo-mail" (click)="logoMailClick(vacataire.email)" title="Copie dans le presse papier">
               </div>
               <hr [hidden]="vacataire.skills.length===0">
               <div class="skills-containers">
@@ -153,7 +153,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="editVacataireModalLabel">Modification du vacataire</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="reloadPage()"></button>
             </div>
             <div class="modal-body">
               <form
@@ -164,7 +164,7 @@
               >
                 <div>Les champs avec une * sont obligatoires.</div>
                 <div class="form-floating mb-2">
-                  <input type="text" class="form-control" id="name" name="name" [(ngModel)]="form.name" pattern="^[a-zA-ZÀ-ÿ\s'-]+$" #name="ngModel" required >
+                  <input type="text" class="form-control" id="name" name="name" [(ngModel)]="form.name" pattern="^[a-zA-ZÀ-ÿ\s'\-]+$" #name="ngModel" required >
                   <label for="name">Prénom* :</label>
 
                   <div class="form_error" *ngIf="name.invalid">
@@ -175,7 +175,7 @@
                 </div>
 
                 <div class="form-floating mb-2">
-                  <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="form.lastName" pattern="^[a-zA-ZÀ-ÿ\s'-]+$" #lastName="ngModel" required>
+                  <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="form.lastName" pattern="^[a-zA-ZÀ-ÿ\s'\-]+$" #lastName="ngModel" required>
                   <label for="lastName">Nom de famille* :</label>
 
                   <div class="form_error" *ngIf="lastName.invalid">
@@ -234,7 +234,7 @@
                 </div>
 
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="reloadPage()">Annuler</button>
                   <button type="submit" class="btn btn-primary" [disabled]="name.errors || lastName.errors || phone.errors || email.errors || github.errors">Modifier le vacataire</button>
                 </div>
               </form>

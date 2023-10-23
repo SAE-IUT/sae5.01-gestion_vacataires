@@ -71,7 +71,7 @@
           #f="ngForm"
         >
         <div class="form-floating mb-2">
-          <input type="text" class="form-control" id="name" name="name" [(ngModel)]="form.name" #name="ngModel" pattern="^[a-zA-ZÀ-ÿ\s'-]+$" value="test" required>
+          <input type="text" class="form-control" id="name" name="name" [(ngModel)]="form.name" #name="ngModel" pattern="^[a-zA-ZÀ-ÿ\s'\-]+$" value="test" required>
           <label for="name">Prénom :</label>
 
           <div class="form_error" *ngIf="name.invalid && (name.touched || name.dirty)">
@@ -81,7 +81,7 @@
         </div>
 
         <div class="form-floating mb-2">
-          <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="form.lastName" #lastName="ngModel" pattern="^[a-zA-ZÀ-ÿ\s'-]+$" required>
+          <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="form.lastName" #lastName="ngModel" pattern="^[a-zA-ZÀ-ÿ\s'\-]+$" required>
           <label for="lastName">Nom de famille :</label>
 
           <div class="form_error" *ngIf="lastName.invalid && (lastName.touched || lastName.dirty)">
@@ -111,7 +111,7 @@
         </div>
 
         <div class="form-floating mb-2">
-          <input type="text" class="form-control" id="github" name="github" [(ngModel)]="form.github" #github="ngModel" pattern="^(https?:\/\/)?(www\.)?github\.com\/[a-zA-Z0-9-]+\/?$" >
+          <input type="text" class="form-control" id="github" name="github" [(ngModel)]="form.github" #github="ngModel" pattern="/^(https?:\/\/)?(www\.)?github\.com\/[a-zA-Z0-9-]+\/?$/" >
           <label for="github ">URl du profil GitHub :</label>
 
           <div class="form_error" *ngIf="github.invalid && (github.touched || github.dirty)">
@@ -142,15 +142,24 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-          <button type="button" class="btn btn-primary" (click)="addVacataire(form.name, form.lastName, form.phone, form.email, form.github ,form.skills)" data-bs-dismiss="modal" [disabled]="name.errors || lastName.errors || phone.errors || email.errors || github.errors">Ajouter</button>
-          <button (click)="afficherToast()">test</button>
+          <button id="btn-ajout" type="button" class="btn btn-primary" (click)="addVacataire(form.name, form.lastName, form.phone, form.email, form.github ,form.skills)" data-bs-dismiss="modal" [disabled]="name.errors || lastName.errors || phone.errors || email.errors || github.errors">Ajouter</button>
           <!-- <button type="button" class="btn btn-primary" (click)='addVacataire(form.name, form.lastName, form.phone, form.email, form.linkedin, form.discord)'>Ajouter</button> -->
         </div>
 
 
         </form>
       </div>
-
     </div>
   </div>
 </div>
+<!-- <button id="btn-test">test</button>
+<div class="toast" id="myToast">
+  <div class="toast-header">
+      <strong class="me-auto"><i class="bi-gift-fill"></i> We miss you!</strong>
+      <small>10 mins ago</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+  </div>
+  <div class="toast-body">
+      It's been a long time since you visited us. We've something special for you. <a href="#">Click here!</a>
+  </div>
+</div> -->

@@ -61,7 +61,7 @@
         >
         <div style="text-align: center;">Les champs avec une * sont obligatoires.</div>
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="name" id="name" [(ngModel)]="form.name" #name="ngModel" pattern="^[a-zA-ZÀ-ÿ\s'-\d]+$" required>
+            <input type="text" class="form-control" name="name" id="name" [(ngModel)]="form.name" #name="ngModel" pattern="^[a-zA-ZÀ-ÿ\s'\-\d]+$" required>
             <label for="name">Nom* :</label>
 
             <div class="form_error" *ngIf="name.invalid && (name.touched || name.dirty)">
@@ -71,7 +71,7 @@
           </div>
 
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="name_reduit" id="name_reduit" [(ngModel)]="form.name_reduit" #name_reduit="ngModel" pattern="^[a-zA-ZÀ-ÿ\s'-\d]+$" required>
+            <input type="text" class="form-control" name="name_reduit" id="name_reduit" [(ngModel)]="form.name_reduit" #name_reduit="ngModel" pattern="^[a-zA-ZÀ-ÿ\s'\-\d]+$" required>
             <label for="name_reduit">Nom réduit* : </label>
 
             <div class="form_error" *ngIf="name_reduit.invalid && (name_reduit.touched || name_reduit.dirty)">
@@ -90,7 +90,7 @@
           <div *ngIf="departement.errors && departement.errors['required'];">Au moins un département est requis !</div>
 
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="matiere" id="matiere" [(ngModel)]="form.matiere" #matiere="ngModel" pattern="^[a-zA-ZÀ-ÿ\s'-\d]+$" required>
+            <input type="text" class="form-control" name="matiere" id="matiere" [(ngModel)]="form.matiere" #matiere="ngModel" pattern="^[a-zA-ZÀ-ÿ\s'\-\d]+$" required>
             <label for="matiere">Matière* : </label>
 
             <div class="form_error" *ngIf="matiere.invalid && (matiere.touched || matiere.dirty)">

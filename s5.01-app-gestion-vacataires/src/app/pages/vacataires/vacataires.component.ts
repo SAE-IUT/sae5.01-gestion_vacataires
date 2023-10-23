@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import { bootstrapApplication } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { empty } from 'rxjs';
+
 import Filter from 'src/app/interfaces/filtre-interface';
 import Vacataire from 'src/app/interfaces/vacataire-interface';
 import { VacatairesService } from 'src/app/services/vacataires.service';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-vacataires',
@@ -176,7 +178,21 @@ export class VacatairesComponent {
     }, 750);
   }
 
-  afficherToast(){
-    this.toastr.success('Ceci est un toast de succès!', 'Succès');
+  afficherToastAjout(){
+    document.addEventListener("DOMContentLoaded", function(){
+      var btn = document.getElementById("btn-test");
+      var element = document.getElementById("myToast");
+
+      if(element == null){
+        console.log(element)
+      }
+      // Create toast instance
+      var myToast = new bootstrap.Toast(element!);
+
+      btn!.addEventListener("click", function(){
+          myToast.show();
+      });
+  });
+
   }
 }
