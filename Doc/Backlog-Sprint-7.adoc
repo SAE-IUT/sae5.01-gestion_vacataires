@@ -1,0 +1,11 @@
+= Backlog sprint 7 du site de gestion des vacataires, réalisé par Bastien Balmes.
+
+== Site de gestion des vacataires
+
+|=======
+|User Story |Tache associé|Estimation temps (en H)
+|En tant qu’administrateur, je peux créer un vacataire afin de le sauvegarder dans une API|Faire en sorte qu'on puisse ajouter des images|5
+|En tant qu’administrateur, je peux créer un vacataire afin de le sauvegarder dans une API|Faire en sorte qu'on puisse ajouter un CV|5
+
+
+|=======
