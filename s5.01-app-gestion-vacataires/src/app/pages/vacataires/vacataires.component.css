@@ -127,4 +127,7 @@
   background: #EE5757;
 }
 
-
+.img-container{
+  display: flex;
+  justify-content: center;
+}

@@ -18,8 +18,8 @@
 
     <!-- Filtre Matière -->
     <li>
-      <span class="dropdown-item-text" *ngIf="!isFiltered('modules')">Matière</span>
-      <a class="dropdown-item active-filter" [routerLink]="['/vacataires']" [queryParams]="{ 'modules': null }" queryParamsHandling="merge" replaceUrl="true" *ngIf="isFiltered('modules')">Matière</a>
+      <span class="dropdown-item-text" *ngIf="!isFiltered('modules')">Modules</span>
+      <a class="dropdown-item active-filter" [routerLink]="['/vacataires']" [queryParams]="{ 'modules': null }" queryParamsHandling="merge" replaceUrl="true" *ngIf="isFiltered('modules')">Module</a>
       <ul class="dropdown-menu dropdown-submenu">
         <li *ngFor="let matiere of matieres">
           <a class="dropdown-item" [routerLink]="['/vacataires']" [queryParams]="{ 'modules': matiere }" queryParamsHandling="merge" replaceUrl="true" [attr.aria-selected]="filtres['modules'] === matiere">{{ matiere }}</a>
@@ -139,27 +139,18 @@
           </ng-container>
         </div>
 
+        <input type="file" [(ngModel)]="form.profilePicture" (change)="onFileSelected($event)">
+        <!-- <div class="img-container">
+          <img style="width: 200px;height: auto;" [src]="selectedImage" *ngIf="selectedImage">
+        </div>--><br><br>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-          <button id="btn-ajout" type="button" class="btn btn-primary" (click)="addVacataire(form.name, form.lastName, form.phone, form.email, form.github ,form.skills)" data-bs-dismiss="modal" [disabled]="name.errors || lastName.errors || phone.errors || email.errors || github.errors">Ajouter</button>
+          <button id="btn-ajout" type="button" class="btn btn-primary" (click)="addVacataire(form.name, form.lastName, form.phone, form.email, form.github ,form.skills);onFileSelectedUpload(form.profilePicture)" data-bs-dismiss="modal" [disabled]="name.errors || lastName.errors || phone.errors || email.errors || github.errors">Ajouter</button>
           <!-- <button type="button" class="btn btn-primary" (click)='addVacataire(form.name, form.lastName, form.phone, form.email, form.linkedin, form.discord)'>Ajouter</button> -->
         </div>
-
-
         </form>
       </div>
     </div>
   </div>
 </div>
-<!-- <button id="btn-test">test</button>
-<div class="toast" id="myToast">
-  <div class="toast-header">
-      <strong class="me-auto"><i class="bi-gift-fill"></i> We miss you!</strong>
-      <small>10 mins ago</small>
-      <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-  </div>
-  <div class="toast-body">
-      It's been a long time since you visited us. We've something special for you. <a href="#">Click here!</a>
-  </div>
-</div> -->

@@ -38,8 +38,7 @@ export class ListeVacatairesComponent {
     phone: "",
     email: "",
     github: "",
-    skills: [""],
-    invalid: false
+    skills: [""]
   }
 
 

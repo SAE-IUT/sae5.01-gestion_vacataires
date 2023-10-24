@@ -135,3 +135,18 @@
   margin-left: 4px;
   font-weight: bold;
 }
+
+.container-img{
+  position: relative;
+}
+
+.modif-avatar-img{
+  width: 20px !important;
+  height: auto !important;
+  position:absolute;
+  bottom: 0;
+}
+
+.modal-title{
+  margin-top: 10px;
+}

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { bootstrapApplication } from '@angular/platform-browser';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
 import Filter from 'src/app/interfaces/filtre-interface';
 import Vacataire from 'src/app/interfaces/vacataire-interface';
 import { VacatairesService } from 'src/app/services/vacataires.service';
-import * as bootstrap from 'bootstrap';
+
+import { ImageService } from 'src/app/services/image.service';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-vacataires',
@@ -23,6 +24,7 @@ export class VacatairesComponent {
 
   skillsList: string[] = ['Administration réseau', 'Développement Web', 'Gestion de projet', 'Cybersécurité', 'Développement d’applications', 'Communication' , 'Base de données' ];
 
+  profilePicture: string | null | undefined
 
   public status: string[] = [
     'Affecté',
@@ -34,13 +36,16 @@ export class VacatairesComponent {
   public currentSearch: string | null = null; // Dernière recherche saisie
   private searchTimeout: number | null = null;
 
+  fileName = '';
+
   form = {
     name : "",
     lastName: "",
     phone: "",
     email: "",
     github: "",
-    skills: [] as string[]
+    skills: [] as string[],
+    profilePicture: File
   }
 
   comp: string[] = [];
@@ -48,9 +53,11 @@ export class VacatairesComponent {
 
   constructor(
     private vacatairesService: VacatairesService,
+    private imageService: ImageService,
     private route: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private http: HttpClient
   ){}
 
   ngOnInit() {
@@ -178,21 +185,28 @@ export class VacatairesComponent {
     }, 750);
   }
 
-  afficherToastAjout(){
-    document.addEventListener("DOMContentLoaded", function(){
-      var btn = document.getElementById("btn-test");
-      var element = document.getElementById("myToast");
+  selectedImage: string | ArrayBuffer | null = null;
 
-      if(element == null){
-        console.log(element)
-      }
-      // Create toast instance
-      var myToast = new bootstrap.Toast(element!);
-
-      btn!.addEventListener("click", function(){
-          myToast.show();
-      });
-  });
-
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.selectedImage = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
   }
+
+  onFileSelectedUpload(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.fileName = file.name;
+      const formData = new FormData();
+      formData.append("file", file);
+      const upload$ = this.http.post("../../assets/img", formData);
+      upload$.subscribe();
+    }
+  }
+
 }
