@@ -139,14 +139,14 @@
           </ng-container>
         </div>
 
-        <input type="file" [(ngModel)]="form.profilePicture" (change)="onFileSelected($event)">
+        <input type="file" [(ngModel)]="form.profilePicture" (change)="onFileSelected($event)" accept="image/png">
         <!-- <div class="img-container">
           <img style="width: 200px;height: auto;" [src]="selectedImage" *ngIf="selectedImage">
         </div>--><br><br>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-          <button id="btn-ajout" type="button" class="btn btn-primary" (click)="addVacataire(form.name, form.lastName, form.phone, form.email, form.github ,form.skills);onFileSelectedUpload(form.profilePicture)" data-bs-dismiss="modal" [disabled]="name.errors || lastName.errors || phone.errors || email.errors || github.errors">Ajouter</button>
+          <button id="btn-ajout" type="button" class="btn btn-primary" (click)="addVacataire(form.name, form.lastName, form.phone, form.email, form.github ,form.skills)" data-bs-dismiss="modal" [disabled]="name.errors || lastName.errors || phone.errors || email.errors || github.errors">Ajouter</button>
           <!-- <button type="button" class="btn btn-primary" (click)='addVacataire(form.name, form.lastName, form.phone, form.email, form.linkedin, form.discord)'>Ajouter</button> -->
         </div>
         </form>

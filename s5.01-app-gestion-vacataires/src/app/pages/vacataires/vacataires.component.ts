@@ -143,6 +143,16 @@ export class VacatairesComponent {
       complete: () => {
       }
     })
+    if(this.selectedFile){
+      const formData = new FormData();
+      formData.append('image', this.selectedFile);
+
+      this.http.post('/api/asserts/img', formData).subscribe((response: any) => {
+        if (response.imageUrl) {
+          this.imageUrl = response.imageUrl;
+        }
+      });
+    }
 
   }
 
@@ -185,28 +195,29 @@ export class VacatairesComponent {
     }, 750);
   }
 
-  selectedImage: string | ArrayBuffer | null = null;
+  selectedFile: File | null = null;
+  imageUrl: string | null=null;
 
   onFileSelected(event: any) {
-    const file = event.target.files[0];
-    if (file) {
+    this.selectedFile = event.target.files[0] as File;
+    if (this.selectedFile) {
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.selectedImage = e.target.result;
+        this.selectedFile = e.target.result;
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(this.selectedFile);
     }
   }
 
-  onFileSelectedUpload(event: any) {
-    const file: File = event.target.files[0];
-    if (file) {
-      this.fileName = file.name;
-      const formData = new FormData();
-      formData.append("file", file);
-      const upload$ = this.http.post("../../assets/img", formData);
-      upload$.subscribe();
-    }
-  }
+  // onFileSelectedUpload(event: any) {
+  //   const file: File = event.target.files[0];
+  //   if (file) {
+  //     this.fileName = file.name;
+  //     const formData = new FormData();
+  //     formData.append("file", file);
+  //     const upload$ = this.http.post("../../assets/img", formData);
+  //     upload$.subscribe();
+  //   }
+  // }
 
 }
