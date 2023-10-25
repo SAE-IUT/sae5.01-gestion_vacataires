@@ -14,7 +14,6 @@ import { FormsModule } from '@angular/forms';
 import { ConnectionComponent } from './pages/connection/connection.component';
 import { TokenInterceptorService } from './interceptors/token-interceptor.service';
 import { ProfilComponent } from './pages/profil/profil.component';
-import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -34,7 +33,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ToastrModule.forRoot(),
     BrowserAnimationsModule
   ],
   providers: [

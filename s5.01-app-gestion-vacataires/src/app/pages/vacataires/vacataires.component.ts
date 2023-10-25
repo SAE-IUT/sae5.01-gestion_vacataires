@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import Filter from 'src/app/interfaces/filtre-interface';
 import Vacataire from 'src/app/interfaces/vacataire-interface';
 import { VacatairesService } from 'src/app/services/vacataires.service';
@@ -38,14 +37,14 @@ export class VacatairesComponent {
 
   fileName = '';
 
-  form = {
+  vacataire = {
     name : "",
     lastName: "",
     phone: "",
     email: "",
     github: "",
     skills: [] as string[],
-    profilePicture: File
+    // profilePicture: File
   }
 
   comp: string[] = [];
@@ -56,7 +55,6 @@ export class VacatairesComponent {
     private imageService: ImageService,
     private route: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService,
     private http: HttpClient
   ){}
 
@@ -85,20 +83,20 @@ export class VacatairesComponent {
   }
 
   addSkill(): void {
-    if (!this.form.skills) {
-      this.form.skills = [];
+    if (!this.vacataire.skills) {
+      this.vacataire.skills = [];
     }
 
-    if (this.selectedSkill!="" && !this.form.skills.includes(this.selectedSkill) ) {
-      this.form.skills.push(this.selectedSkill);
+    if (this.selectedSkill!="" && !this.vacataire.skills.includes(this.selectedSkill) ) {
+      this.vacataire.skills.push(this.selectedSkill);
     }
   }
 
   removeSkill(skill: string) {
     // Supprimez la compétence du tableau
-    const index = this.form.skills.indexOf(skill);
+    const index = this.vacataire.skills.indexOf(skill);
     if (index !== -1) {
-      this.form.skills.splice(index, 1);
+      this.vacataire.skills.splice(index, 1);
     }
   }
 
@@ -143,16 +141,16 @@ export class VacatairesComponent {
       complete: () => {
       }
     })
-    if(this.selectedFile){
-      const formData = new FormData();
-      formData.append('image', this.selectedFile);
+    // if(this.selectedFile){
+    //   const formData = new FormData();
+    //   formData.append('image', this.selectedFile);
 
-      this.http.post('/api/asserts/img', formData).subscribe((response: any) => {
-        if (response.imageUrl) {
-          this.imageUrl = response.imageUrl;
-        }
-      });
-    }
+    //   this.http.post('/api/asserts/img', formData).subscribe((response: any) => {
+    //     if (response.imageUrl) {
+    //       this.imageUrl = response.imageUrl;
+    //     }
+    //   });
+    // }
 
   }
 
@@ -195,19 +193,19 @@ export class VacatairesComponent {
     }, 750);
   }
 
-  selectedFile: File | null = null;
-  imageUrl: string | null=null;
+  // selectedFile: File | null = null;
+  // imageUrl: string | null=null;
 
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0] as File;
-    if (this.selectedFile) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.selectedFile = e.target.result;
-      };
-      reader.readAsDataURL(this.selectedFile);
-    }
-  }
+  // onFileSelected(event: any) {
+  //   this.selectedFile = event.target.files[0] as File;
+  //   if (this.selectedFile) {
+  //     const reader = new FileReader();
+  //     reader.onload = (e: any) => {
+  //       this.selectedFile = e.target.result;
+  //     };
+  //     reader.readAsDataURL(this.selectedFile);
+  //   }
+  // }
 
   // onFileSelectedUpload(event: any) {
   //   const file: File = event.target.files[0];
