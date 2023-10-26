@@ -8,4 +8,5 @@ export default interface Vacataire {
   skills: string[],
   modules: string[],
   status: string,
+  profilePicture: string
 }

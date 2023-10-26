@@ -78,7 +78,7 @@
   z-index: 1;
   transform: translateY(-50%);
 }
-  
+
 .skills-container {
   display: flex;
   flex-wrap: wrap;
@@ -89,8 +89,9 @@
   background-color: #007bff;
   color: white;
   padding: 4px 8px;
+  margin: 3px;
   border-radius: 4px;
-  display: flex;
+  display: inline-block;
   align-items: center;
 }
 
@@ -98,4 +99,35 @@
   cursor: pointer;
   margin-left: 4px;
   font-weight: bold;
+}
+
+.help-container{
+  display:flex;
+  align-items:center;
+}
+
+#green-circle{
+  width: 15px;
+  height: 15px;
+  border-radius: 20px;
+  background: #39C872;
+}
+
+#gray-circle{
+  width: 15px;
+  height: 15px;
+  border-radius: 20px;
+  background: #C0C0C0;
+}
+
+#red-circle{
+  width: 15px;
+  height: 15px;
+  border-radius: 20px;
+  background: #EE5757;
+}
+
+.img-container{
+  display: flex;
+  justify-content: center;
 }

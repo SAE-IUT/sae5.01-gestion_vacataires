@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { empty } from 'rxjs';
 import Filter from 'src/app/interfaces/filtre-interface';
 import Vacataire from 'src/app/interfaces/vacataire-interface';
 import { VacatairesService } from 'src/app/services/vacataires.service';
+
+import { ImageService } from 'src/app/services/image.service';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-vacataires',
@@ -20,6 +23,7 @@ export class VacatairesComponent {
 
   skillsList: string[] = ['Administration réseau', 'Développement Web', 'Gestion de projet', 'Cybersécurité', 'Développement d’applications', 'Communication' , 'Base de données' ];
 
+  profilePicture: string | null | undefined
 
   public status: string[] = [
     'Affecté',
@@ -31,13 +35,16 @@ export class VacatairesComponent {
   public currentSearch: string | null = null; // Dernière recherche saisie
   private searchTimeout: number | null = null;
 
-  form = {
+  fileName = '';
+
+  vacataire = {
     name : "",
     lastName: "",
     phone: "",
-    email: "", 
+    email: "",
     github: "",
-    skills: [] as string[]
+    skills: [] as string[],
+    // profilePicture: File
   }
 
   comp: string[] = [];
@@ -45,8 +52,10 @@ export class VacatairesComponent {
 
   constructor(
     private vacatairesService: VacatairesService,
+    private imageService: ImageService,
     private route: ActivatedRoute,
     private router: Router,
+    private http: HttpClient
   ){}
 
   ngOnInit() {
@@ -74,20 +83,20 @@ export class VacatairesComponent {
   }
 
   addSkill(): void {
-    if (!this.form.skills) {
-      this.form.skills = [];
+    if (!this.vacataire.skills) {
+      this.vacataire.skills = [];
     }
-  
-    if (this.selectedSkill!="" && !this.form.skills.includes(this.selectedSkill) ) {
-      this.form.skills.push(this.selectedSkill);
+
+    if (this.selectedSkill!="" && !this.vacataire.skills.includes(this.selectedSkill) ) {
+      this.vacataire.skills.push(this.selectedSkill);
     }
   }
 
   removeSkill(skill: string) {
     // Supprimez la compétence du tableau
-    const index = this.form.skills.indexOf(skill);
+    const index = this.vacataire.skills.indexOf(skill);
     if (index !== -1) {
-      this.form.skills.splice(index, 1);
+      this.vacataire.skills.splice(index, 1);
     }
   }
 
@@ -96,10 +105,10 @@ export class VacatairesComponent {
   //   if (this.form.skills && this.form.skills.trim() !== '') {
   //     // Utilisez split() pour diviser la chaîne par des espaces
   //     const newTags = this.form.skills.split(' ');
-  
+
   //     // Ajoutez chaque nouveau tag à la liste des tags
   //     this.tags = [...this.tags, ...newTags];
-  
+
   //     // Effacez le champ d'entrée
   //     this.form.skills = '';
   //   }
@@ -108,7 +117,7 @@ export class VacatairesComponent {
   // removeTag(tag: string) {
   //   this.tags = this.tags.filter(t => t !== tag);
   // }
-  
+
 
   addVacataire(name: string, lastName: string, phone: string, email: string, github: string, skills: string[]) {
 
@@ -118,7 +127,7 @@ export class VacatairesComponent {
       "Phone : " + phone + "\n" +
       "email : " + email + "\n" +
       "github : " + github + "\n" +
-      "skills : " + skills + "\n" 
+      "skills : " + skills + "\n"
     );
     skills = skills.filter(el => el!=="")
     this.vacatairesService.addVacataire(name, lastName, phone, email, github, skills).subscribe({
@@ -132,12 +141,22 @@ export class VacatairesComponent {
       complete: () => {
       }
     })
+    // if(this.selectedFile){
+    //   const formData = new FormData();
+    //   formData.append('image', this.selectedFile);
+
+    //   this.http.post('/api/asserts/img', formData).subscribe((response: any) => {
+    //     if (response.imageUrl) {
+    //       this.imageUrl = response.imageUrl;
+    //     }
+    //   });
+    // }
 
   }
 
   hello(value: string) {
     console.log(typeof(value));
-      
+
   }
 
   /**
@@ -173,5 +192,30 @@ export class VacatairesComponent {
       }
     }, 750);
   }
+
+  // selectedFile: File | null = null;
+  // imageUrl: string | null=null;
+
+  // onFileSelected(event: any) {
+  //   this.selectedFile = event.target.files[0] as File;
+  //   if (this.selectedFile) {
+  //     const reader = new FileReader();
+  //     reader.onload = (e: any) => {
+  //       this.selectedFile = e.target.result;
+  //     };
+  //     reader.readAsDataURL(this.selectedFile);
+  //   }
+  // }
+
+  // onFileSelectedUpload(event: any) {
+  //   const file: File = event.target.files[0];
+  //   if (file) {
+  //     this.fileName = file.name;
+  //     const formData = new FormData();
+  //     formData.append("file", file);
+  //     const upload$ = this.http.post("../../assets/img", formData);
+  //     upload$.subscribe();
+  //   }
+  // }
 
 }

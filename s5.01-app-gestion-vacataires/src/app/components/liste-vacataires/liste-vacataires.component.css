@@ -4,7 +4,7 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
   }
-  
+
   .vacataire {
     position: relative;
     display: flex;
@@ -21,7 +21,16 @@
   .vacataire .profile-pic img {
     height: 100px;
   }
-  
+
+  .vacataire .profile-pic-2 img {
+    height: 200px;
+  }
+
+  .vacataire .contact-logo img {
+    height: 50px;
+    margin: 10px;
+  }
+
   .vacataire .status {
     position: absolute;
     bottom: 0;
@@ -29,36 +38,36 @@
     height: 10px;
     border-radius: 0 0 20px 20px;
   }
-  
+
   /* Style pour le statut "en attente" */
   .status-gray {
     background-color: #C0C0C0; /* Fond gris pour le statut "en attente" */
   }
-  
+
   /* Style pour le statut "admis" */
   .status-green {
     background-color: #39C872; /* Fond bleu pour le statut "admis" */
   }
-  
+
   /* Style pour tout autre statut */
   .status-red {
     background-color: #EE5757; /* Fond rouge pour les autres statuts */
   }
-  
+
   .expand {
     position: absolute;
     top: 10px;
     right: 10px;
     cursor: pointer;
   }
-  
+
   @media screen and (max-width: 768px) {
     .vacataires {
       grid-template-columns: repeat(2, 1fr);
     }
   }
-  
-  
+
+
   @media screen and (max-width: 425px) {
     .vacataires {
       grid-template-columns: repeat(1, 1fr);
@@ -76,8 +85,48 @@
   background-color: #007bff;
   color: white;
   padding: 4px 8px;
+  margin: 3px;
   border-radius: 4px;
-  display: flex;
+  display: inline-block;
+  align-items: center;
+}
+
+.skill-show {
+  background-color: white;
+  color: black;
+  border: solid;
+  border-color: black;
+  border-width: 3px;
+  padding: 4px 8px;
+  margin: 3px;
+  border-radius: 4px;
+  display: inline-block;
+  align-items: center;
+}
+
+.module-show {
+  background-color: white;
+  color: black;
+  border: solid;
+  border-color: #39C872;
+  border-width: 3px;
+  padding: 4px 8px;
+  margin: 3px;
+  border-radius: 4px;
+  display: inline-block;
+  align-items: center;
+}
+
+.module-show-card {
+  background-color: white;
+  color: black;
+  border: solid;
+  border-color: #39C872;
+  border-width: 2px;
+  padding: 1px 4px;
+  margin: 3px;
+  border-radius: 4px;
+  display: inline-block;
   align-items: center;
 }
 
@@ -86,4 +135,18 @@
   margin-left: 4px;
   font-weight: bold;
 }
-  
+
+.container-img{
+  position: relative;
+}
+
+.modif-avatar-img{
+  width: 20px !important;
+  height: auto !important;
+  position:absolute;
+  bottom: 0;
+}
+
+.modal-title{
+  margin-top: 10px;
+}

@@ -94,4 +94,9 @@ export class ListeCoursComponent {
       }
     });
   }
+
+  //Rafraichie la page des modules quand on annule les modifications pour que la card remète les bonnes valeurs
+  reloadPage(){
+    window.location.reload()
+  }
 }

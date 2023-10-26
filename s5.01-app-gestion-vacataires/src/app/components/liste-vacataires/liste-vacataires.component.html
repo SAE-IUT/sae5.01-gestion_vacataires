@@ -15,7 +15,7 @@
   <ng-container *ngFor="let vacataire of vacataires; let i = index">
     <!-- Affichage de la carte en fonction des filtres -->
     <div class="vacataire" *ngIf="isInFilter(vacataire)">
-      <div class="expand"  id = "openModal" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal-' + vacataire._id">
+      <div class="expand" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal-' + vacataire._id">
         <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
       </div>
 
@@ -24,9 +24,14 @@
       <div class="content">
         <div class="name">{{ vacataire.name }} {{ vacataire.lastName }}</div>
         <div class="index">Vacataire n°{{i+1}}</div>
-        <div class="email">{{ vacataire.email }}</div>
-        <div class="skills">Skills : {{ vacataire.skills }}</div>
-        <div class="skills">Modules : {{ vacataire.modules }}</div>
+        <!-- <div class="email">{{ vacataire.email }}</div> -->
+        <!-- <div class="skills">Skills : {{ vacataire.skills }}</div> -->
+        <div class="skills-containers">
+          <ng-container *ngFor="let module of vacataire.modules">
+            <div *ngIf="module!=''" class="module-show-card">{{module}}</div>
+          </ng-container>
+        </div>
+        <!-- <div class="modules" [hidden]="vacataire.modules.length === 0">Module(s) : {{ vacataire.modules }}</div> -->
       </div>
 
       <div class="status" [ngClass]="getVacataireStatusClass(vacataire.status)"></div>
@@ -36,23 +41,41 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">{{ vacataire.name }} {{ vacataire.lastName }}</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Vacataire n° {{i+1}}</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              <div class="container-img">
+                <div class="profile-pic-2" style="display: block;"><img src='../../../assets/img/user-avatar.svg' alt="profile-pic"></div>
+              </div>
+              <h5 class="modal-title" id="exampleModalLabel">{{ vacataire.name }} {{ vacataire.lastName }}</h5>
               <!-- Contenu du modal pour ce vacataire -->
-              <p>Téléphone : {{ vacataire.phone }}</p>
-              <p>Email : {{ vacataire.email }}</p>
-              <p>github : {{ vacataire.github }}</p>
-              <p>skills : {{ vacataire.skills }}</p>
-              <p>modules : {{ vacataire.modules }}</p>
+              <hr>
+              <div class="contact-logo">
+                <a [hidden]="vacataire.github===''" target="_blank" href="{{vacataire.github}}"><img src="../../../assets/img/logo_github.png" alt="logo-github"></a>
+                <img style="cursor: pointer;" src="../../../assets/img/logo_tel.png" alt="logo-tel" (click)="logoTelClick(vacataire.phone)" title="Copie dans le presse papier">
+                <img style="cursor: pointer;" src="../../../assets/img/logo_mail.png" alt="logo-mail" (click)="logoMailClick(vacataire.email)" title="Copie dans le presse papier">
+              </div>
+              <hr [hidden]="vacataire.skills.length===0">
+              <div class="skills-containers">
+                <ng-container *ngFor="let skill of vacataire.skills">
+                  <div *ngIf="skill!=''" class="skill-show" >{{ skill }}
+                    <!-- <span class="delete-icon" (click)="removeSkill(skill)"><i class="fa-solid fa-xmark"></i></span> -->
+                  </div>
+                </ng-container>
+              </div>
+              <hr [hidden]="vacataire.modules.length===0">
+              <div class="skills-containers">
+                <ng-container *ngFor="let module of vacataire.modules">
+                  <div *ngIf="module!=''" class="module-show">{{module}}</div>
+                </ng-container>
+              </div>
+              <!-- <p [hidden]="vacataire.github === ''">GitHub : {{ vacataire.github }}</p> -->
+              <!-- <p [hidden]="vacataire.skills.length === 0">Skills : {{ vacataire.skills }}</p> -->
+              <!-- <p [hidden]="vacataire.modules.length === 0">Modules : {{ vacataire.modules }}</p> -->
               <!-- Ajoutez d'autres informations du vacataire si nécessaire -->
             </div>
             <div class="modal-footer">
-              <input #fileInput type="file" id="fileInput" name="fileInput" (change)="onFileSelected($event)">
-              <button (click)="onFileUpload()">Upload</button>
-
-              
               <button *ngIf="vacataire.modules && vacataire.modules.length > 0" type="button" class="btn btn-warning" [attr.data-bs-target]="'#exampleModalToggle3-' + vacataire._id" data-bs-toggle="modal" data-bs-dismiss="modal">Désaffecter</button>
               <button type="button" class="btn btn-primary" [attr.data-bs-target]="'#exampleModalToggle2-' + vacataire._id" data-bs-toggle="modal" data-bs-dismiss="modal">Affecter</button>
               <button type="button" class="btn btn-secondary" [attr.data-bs-target]="'#editVacataireModal-' + vacataire._id" data-bs-toggle="modal" data-bs-dismiss="modal" (click)="initializeFormWithId(vacataire._id)">Modifier</button>
@@ -76,10 +99,10 @@
               #f="ngForm"
               >
                 <div class="mb-3">
-                  <label for="nomCours" class="col-form-label">Nom du cours :</label>
-                  <select class="form-select" id="nomCours" name="name" [(ngModel)]="form.name">
+                  <label for="nomCours_reduit" class="col-form-label">Nom du cours :</label>
+                  <select class="form-select" id="nomCours_reduit" name="name" [(ngModel)]="form.name">
                     <option value="" disabled selected >Sélectionnez un cours</option>
-                    <option *ngFor="let c of cours" [value]="c.name">{{ c.name }}</option>
+                    <option *ngFor="let c of cours" [value]="c.name_reduit">{{ c.name_reduit }}</option>
                   </select>
                 </div>
                 <div *ngIf="errorMessage" class="alert alert-danger">
@@ -93,8 +116,8 @@
               <button type="button" class="btn btn-primary" (click)="affecterVacataire(vacataire._id, form.name)" >Valider</button>
             </div>
           </div>
-        </div>  
-      </div>  
+        </div>
+      </div>
 
       <div class="modal fade" [id]="'exampleModalToggle3-' + vacataire._id" (show.bs.modal)="onModalShow($event)" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
@@ -110,8 +133,8 @@
               #f="ngForm"
               >
                 <div class="mb-3">
-                  <label for="nomCourse" class="col-form-label">Nom du cours :</label>
-                  <select class="form-select" id="nomCourse" name="name" [(ngModel)]="form.name">
+                  <label for="nomCours" class="col-form-label">Nom du cours :</label>
+                  <select class="form-select" id="nomCours" name="name" [(ngModel)]="form.name">
                     <option value="" disabled hidden selected >Sélectionnez un cours</option>
                     <option *ngFor="let vm of vacataire.modules" [value]="vm">{{ vm }}</option>
                   </select>
@@ -121,7 +144,7 @@
 
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-              <button type="button" class="btn btn-primary" id="validModal"(click)="desaffecterVacataire(vacataire._id, form.name)" >Valider</button>
+              <button type="button" class="btn btn-primary" (click)="desaffecterVacataire(vacataire._id, form.name)" >Valider</button>
             </div>
           </div>
         </div>
@@ -131,58 +154,65 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="editVacataireModalLabel">Modifier le Vacataire : {{vacataire.name}}</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h5 class="modal-title" id="editVacataireModalLabel">Modification du vacataire</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="reloadPage()"></button>
             </div>
             <div class="modal-body">
-              <form 
+              <form
               class="row g-2"
               name="createVacataireForm"
               #f="ngForm"
-              (ngSubmit)="f.form.valid && onSubmit(form.name, form.lastName, form.phone, form.email, form.github, form.skills)"
+              (ngSubmit)="onSubmit()"
               >
+                <div>Les champs avec une * sont obligatoires.</div>
                 <div class="form-floating mb-2">
-                  <input type="text" class="form-control" id="name" name="name" [(ngModel)]="form.name" #name="ngModel" placeholder="name@example.com" value="test" required>
-                  <label for="name">Prénom :</label>
-      
-                  <div class="form_error" *ngIf="name.errors && f.submitted">
-                    <div *ngIf="name.errors['required']">Le nom est requis !</div>
+                  <input type="text" class="form-control" id="name" name="name" [(ngModel)]="form.name" pattern="^[a-zA-ZÀ-ÿ\s'\-]+$" #name="ngModel" required >
+                  <label for="name">Prénom* :</label>
+
+                  <div class="form_error" *ngIf="name.invalid">
+                    <div *ngIf="name.errors && name.errors['required'];">Le prénom est requis !</div>
+                    <div *ngIf="name.errors && name.errors['pattern'];">Le prénom ne doit avoir que des lettres !</div>
+                  </div>
+
+                </div>
+
+                <div class="form-floating mb-2">
+                  <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="form.lastName" pattern="^[a-zA-ZÀ-ÿ\s'\-]+$" #lastName="ngModel" required>
+                  <label for="lastName">Nom de famille* :</label>
+
+                  <div class="form_error" *ngIf="lastName.invalid">
+                    <div *ngIf="lastName.errors && lastName.errors['required']">Le nom de famille est requis !</div>
+                    <div *ngIf="lastName.errors && lastName.errors['pattern'];">Le nom de famille ne doit avoir que des lettres !</div>
                   </div>
                 </div>
-      
+
                 <div class="form-floating mb-2">
-                  <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="form.lastName" #lastName="ngModel" placeholder="name@example.com" required>
-                  <label for="lastName">Nom de famille :</label>
-      
-                  <div class="form_error" *ngIf="lastName.errors && f.submitted">
-                    <div *ngIf="lastName.errors['required']">Le nom de famille est requis !</div>
-                  </div>
-                </div>
-      
-                <div class="form-floating mb-2">
-                  <input type="text" class="form-control" id="phone" name="phone" [(ngModel)]="form.phone" #phone="ngModel" placeholder="name@example.com" required>
+                  <input type="text" class="form-control" required data-cy="phoneIcon-input"id="phone" name="phone" [(ngModel)]="form.phone" #phone="ngModel" pattern="^(0[1-9])(?:\d{2}){4}$" >
                   <label for="phone">Numéro de téléphone :</label>
-      
-                  <div class="form_error" *ngIf="phone.errors && f.submitted">
-                    <div *ngIf="phone.errors['required']">Le numéro de téléphone est requis !</div>
+
+                  <div class="form_error" *ngIf="phone.invalid">
+                    <!-- <div *ngIf="phone.errors && phone.errors['required']">Le numéro de téléphone est requis !</div> -->
+                    <div *ngIf="phone.errors && phone.errors['pattern']">Le numéro dois être au format FR (sans espace)!</div>
                   </div>
                 </div>
-      
+
                 <div class="form-floating mb-2">
-                  <input type="email" class="form-control" id="email" name="email" [(ngModel)]="form.email" #email="ngModel" placeholder="name@example.com" required>
-                  <label for="email">Adresse email :</label>
-      
-                  <div class="form_error" *ngIf="email.errors && f.submitted">
-                    <div *ngIf="email.errors['required']">L'adresse email est requise !</div>
+                  <input type="email" class="form-control" id="email" required data-cy="mailIcon-input"name="email" [(ngModel)]="form.email" #email="ngModel"  pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+                  <label for="email">Adresse email* :</label>
+
+                  <div class="form_error" *ngIf="email.invalid">
+                    <div *ngIf="email.errors && email.errors['required']">L'adresse email est requise !</div>
+                    <div *ngIf="email.errors && email.errors['pattern']">L'adresse email n'est pas valide !</div>
                   </div>
                 </div>
-      
+
                 <div class="form-floating mb-2">
-                  <input type="text" class="form-control" id="github" name="github" [(ngModel)]="form.github" #github="ngModel" placeholder="name@example.com" required>
-                  <label for="github ">Profil GitHub :</label>
-      
-                  <div class="form_error" *ngIf="github.errors && f.submitted">
-                    <div *ngIf="github.errors['required']">Le profil github est requis !</div>
+                  <input type="text" class="form-control" id="github" name="github" [(ngModel)]="form.github" #github="ngModel" pattern="^(https?:\/\/)?(www\.)?github\.com\/[a-zA-Z0-9-]+\/?$" >
+                  <label for="github ">URL du profil GitHub :</label>
+
+                  <div class="form_error" *ngIf="github.invalid">
+                    <!-- <div *ngIf="github.errors && github.errors['required']">Le profil github est requis !</div> -->
+                    <div *ngIf="github.errors && github.errors['pattern']">L'URL du profil n'est pas bonne !</div>
                   </div>
                 </div>
 
@@ -204,20 +234,18 @@
                     </div>
                   </ng-container>
                 </div>
-                
-                
-      
+
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-                  <button type="submit" class="btn btn-primary">Modifier le vacataire</button>
-                </div>  
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="reloadPage()">Annuler</button>
+                  <button type="submit" class="btn btn-primary" [disabled]="name.errors || lastName.errors || phone.errors || email.errors || github.errors">Modifier le vacataire</button>
+                </div>
               </form>
             </div>
           </div>
         </div>
       </div>
-      
-      
+
+
     </div>
   </ng-container>
   <h1 *ngIf="vacataires.length === 0">Pas de vacataires trouvés.</h1>

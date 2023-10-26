@@ -15,7 +15,7 @@
     </li>
 
     <li class="dropdown-divider"></li>
-    
+
     <!-- Filtre département -->
     <li id="departements">
       <span class="dropdown-item-text" *ngIf="!isFiltered('departement')">Département</span>
@@ -31,7 +31,7 @@
 
   <!-- Barre de recherche -->
   <div class="btn search flex-wrap">
-    <label for="search">Rechercher par nom : </label> 
+    <label for="search">Rechercher par nom : </label>
     <input type="text" class="form-control w-auto" id="search" name="search" [value]="currentSearch" (input)="search($event)">
   </div>
 
@@ -54,43 +54,62 @@
       <div class="modal-body">
 
         <form
+          class="row g-2"
           action="#"
           name="createModuleForm"
           #f="ngForm"
         >
+        <div style="text-align: center;">Les champs avec une * sont obligatoires.</div>
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="name" id="name" [(ngModel)]="form.name" #name="ngModel">
-            <label for="name">Nom :</label>
+            <input type="text" class="form-control" name="name" id="name" [(ngModel)]="form.name" #name="ngModel" pattern="^[a-zA-ZÀ-ÿ\s'\-\d]+$" required>
+            <label for="name">Nom* :</label>
+
+            <div class="form_error" *ngIf="name.invalid && (name.touched || name.dirty)">
+              <div *ngIf="name.errors && name.errors['required'];">Le nom est requis !</div>
+              <div *ngIf="name.errors && name.errors['pattern'];">Le nom ne doit pas avoir de symbole (sauf -) !</div>
+            </div>
           </div>
 
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="name_reduit" id="name_reduit" [(ngModel)]="form.name_reduit" #name_reduit="ngModel">
-            <label for="name_reduit">Nom réduit : </label>
+            <input type="text" class="form-control" name="name_reduit" id="name_reduit" [(ngModel)]="form.name_reduit" #name_reduit="ngModel" pattern="^[a-zA-ZÀ-ÿ\s'\-\d]+$" required>
+            <label for="name_reduit">Nom réduit* : </label>
+
+            <div class="form_error" *ngIf="name_reduit.invalid && (name_reduit.touched || name_reduit.dirty)">
+              <div *ngIf="name_reduit.errors && name_reduit.errors['required'];">Le nom réduit est requis !</div>
+              <div *ngIf="name_reduit.errors && name_reduit.errors['pattern'];">Le nom réduit ne doit pas avoir de symbole (sauf -) !</div>
+            </div>
           </div>
 
-          <select class="form-select mb-3" multiple aria-label="multiple select example" id="departement" name="departement" [(ngModel)]="form.departement" #departement="ngModel">
-            <option selected disabled>Départements :</option>
+          <select class="form-select mb-3" multiple aria-label="multiple select example" id="departement" name="departement" [(ngModel)]="form.departement" #departement="ngModel" required>
+            <option selected disabled>Département(s)* :</option>
             <option type="text" value="info">INFO</option>
             <option type="text" value="rt">RT</option>
             <option type="text" value="cs">CS</option>
             <option type="text" value="gim">GIM</option>
           </select>
+          <div *ngIf="departement.errors && departement.errors['required'];">Au moins un département est requis !</div>
 
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" name="matiere" id="matiere" [(ngModel)]="form.matiere" #matiere="ngModel">
-            <label for="matiere">Matière : </label>
+            <input type="text" class="form-control" name="matiere" id="matiere" [(ngModel)]="form.matiere" #matiere="ngModel" pattern="^[a-zA-ZÀ-ÿ\s'\-\d]+$" required>
+            <label for="matiere">Matière* : </label>
+
+            <div class="form_error" *ngIf="matiere.invalid && (matiere.touched || matiere.dirty)">
+              <div *ngIf="matiere.errors && matiere.errors['required'];">La matière est requise !</div>
+              <div *ngIf="matiere.errors && matiere.errors['pattern'];">La matiere ne doit pas avoir de symbole (sauf -) !</div>
+            </div>
           </div>
 
           <div class="d-flex align-items-center mb-3">
-            <label for="color_hexa" class="col-form-label me-2">Couleur du module :</label>
+            <label for="color_hexa" class="col-form-label me-2">Couleur du module* :</label>
             <input type="color" id="color_hexa" name="color_hexa" value="#e66465" [(ngModel)]="form.color_hexa" #color_hexa="ngModel"/>
           </div>
+
 
         </form>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
-          <button type="button" class="btn btn-primary" (click)='addModule(form.name, form.name_reduit, form.color_hexa, form.departement, form.matiere)'>Ajouter</button>
+          <button type="button" class="btn btn-primary" (click)='addModule(form.name, form.name_reduit, form.color_hexa, form.departement, form.matiere)' [disabled]="name.errors || name_reduit.errors || departement.errors || matiere.errors">Ajouter</button>
         </div>
       </div>
 
