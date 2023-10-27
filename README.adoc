@@ -28,11 +28,15 @@ L'application : http://vacataires.mvallew.com/
 
 - https://github.com/SAE-IUT/sae5.01-gestion_vacataires/tree/main/Doc[Dossier des documentations]
 
-- Version courante : https://github.com/SAE-IUT/sae5.01-gestion_vacataires/releases/tag/V.3[Sprint 3]
-
 - https://github.com/SAE-IUT/sae5.01-gestion_vacataires/tree/main/Doc/Backlog-Produit-Site-Vacataires.adoc[Backlog produit gestion des vacataires]
 
 - https://github.com/SAE-IUT/sae5.01-gestion_vacataires/labels/US[Liste user stories]
+
+- https://github.com/SAE-IUT/sae5.01-gestion_vacataires/blob/main/Doc/Documentation%20Technique.pdf[Documentation technique]
+
+- https://github.com/SAE-IUT/sae5.01-gestion_vacataires/blob/main/Doc/Documentation%20Utilisateur.pdf[Documentation utilisateur]
+
+- https://github.com/SAE-IUT/sae5.01-gestion_vacataires/blob/main/Doc/TEST%20du%20site.pdf[Documentation des tests du site]
 
 == Installation docker (sous linux ou WSL2 avec docker installé)
 
