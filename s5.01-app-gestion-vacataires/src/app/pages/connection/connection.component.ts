@@ -19,36 +19,37 @@ export class ConnectionComponent {
   constructor(private loginService: LoginService ,private router:Router) {}
 
   connect(pseudo: string, password: string) {
-    this.loginService.login(pseudo,password).subscribe({
-      next: (response) => {
-        //On stock le token en local
-        localStorage.setItem("token",(response as res).msg)
-        //On redirige vers la dernière route sauvegardée en local
-        this.router.navigate(
-          [localStorage.getItem("currentRoute")],
-        {
-          replaceUrl:true
-        })
+    this.loginService.login(pseudo, password).subscribe({
+        next: (response) => {
+            // On stocke le token en local
+            localStorage.setItem("token", (response as res).msg);
+            
+            // On récupère la route sauvegardée en local
+            const currentRoute = localStorage.getItem("currentRoute");
+            
+            if (currentRoute) {
+                this.router.navigate(
+                    [currentRoute],
+                    {
+                        replaceUrl: true
+                    }
+                );
+            } else {
+                // Si aucune route n'a été sauvegardée, redirigez vers http://localhost:4200/vacataires
+                this.router.navigate(['/vacataires'], { replaceUrl: true });
+            }
+        },
+        error: (error) => {
+            // Gestion des erreurs
+            console.error(error);
+            // ...
 
-      },
-      error: (error) => {
-        // Gestion des erreurs
-        console.error(error);
-        //On cherche l'id du composant d'alert
-        const alert = document.getElementById('alertPass');
+        },
+        complete: () => {
 
-        if (alert != null ){
-          //On affiche l'alert et on attend 3 secondes avant de la desactiver
-          alert.style.display = "block"
-          setTimeout(() => {
-            alert.style.display = "none";
-              },3000)
         }
-
-      },
-      complete: () => {
-
-      }
     });
-  }
+}
+
+
 }
