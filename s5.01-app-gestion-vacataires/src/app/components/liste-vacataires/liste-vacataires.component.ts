@@ -71,6 +71,7 @@ export class ListeVacatairesComponent {
     }
   }
 
+  //
   addSkill(): void {
     if (!this.form.skills) {
       this.form.skills = [];

@@ -44,7 +44,7 @@ export class VacatairesComponent {
     email: "",
     github: "",
     skills: [] as string[],
-    // profilePicture: File
+    profilePicture: File
   }
 
   comp: string[] = [];
@@ -82,6 +82,7 @@ export class VacatairesComponent {
     });
   }
 
+  //méthode qui ajoute le(s) skill(s) au bon vacataire
   addSkill(): void {
     if (!this.vacataire.skills) {
       this.vacataire.skills = [];
@@ -92,6 +93,7 @@ export class VacatairesComponent {
     }
   }
 
+  //inverse de la premiere elle supprime le skill choisie
   removeSkill(skill: string) {
     // Supprimez la compétence du tableau
     const index = this.vacataire.skills.indexOf(skill);
@@ -119,6 +121,7 @@ export class VacatairesComponent {
   // }
 
 
+  //Méthode qui ajoute un vacataire avec toute les informations saisie quand le bouton valider est appuyé
   addVacataire(name: string, lastName: string, phone: string, email: string, github: string, skills: string[]) {
 
     console.log(
@@ -196,6 +199,7 @@ export class VacatairesComponent {
   // selectedFile: File | null = null;
   // imageUrl: string | null=null;
 
+
   // onFileSelected(event: any) {
   //   this.selectedFile = event.target.files[0] as File;
   //   if (this.selectedFile) {
@@ -207,6 +211,7 @@ export class VacatairesComponent {
   //   }
   // }
 
+  //envoie de l'image pour le stockage
   // onFileSelectedUpload(event: any) {
   //   const file: File = event.target.files[0];
   //   if (file) {
