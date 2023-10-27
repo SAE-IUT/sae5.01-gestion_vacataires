@@ -203,6 +203,7 @@ editVacataire(id: String, name: string, lastName: string, phone: string, email: 
           const modal = document.getElementById('exampleModalToggle2-' + vacataireId);
           if (modal) {
             modal.querySelector('.btn-close')?.dispatchEvent(new Event('click'));
+            this.reloadPage()
           }
         });
       }, (error) => {
@@ -228,6 +229,7 @@ editVacataire(id: String, name: string, lastName: string, phone: string, email: 
       const modal = document.getElementById('exampleModalToggle3-' + vacataireId);
           if (modal) {
             modal.querySelector('.btn-close')?.dispatchEvent(new Event('click'));
+            this.reloadPage()
           }
     }, (error) => {
       // Gérez les erreurs ici si nécessaire
