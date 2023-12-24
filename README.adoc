@@ -91,7 +91,7 @@ docker compose pull
 ----
 
 == BDD appliquée à la SAE5.A.1
-Les tests on était réalisés dans la branche https://github.com/SAE-IUT/sae5.01-gestion_vacataires/blob/dev-test-appli[dev-test-appli]
+Les tests on était réalisés dans la branche https://github.com/SAE-IUT/sae5.01-gestion_vacataires/tree/dev-test-appli[dev-test-appli]
 Pour lancer les tests, veuillez suivre ces étapes :
 
 1. *Lancer le Docker de l'application :*
