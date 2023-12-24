@@ -116,4 +116,5 @@ Pour lancer les tests, veuillez suivre ces étapes :
    - Dans l'onglet "Specs", tous les tests réalisés seront répertoriés.
 
 
+https://github.com/SAE-IUT/sae5.01-gestion_vacataires/blob/main/Doc/Compte_rendu_projet_BDD_QualDev.pdf[Lien vers la documentation de test BDD]
 
