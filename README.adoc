@@ -101,9 +101,9 @@ Pour lancer les tests, veuillez suivre ces étapes :
 
 3. *Exécuter la commande Cypress :*
    - Tapez la commande suivante dans le terminal VSCode :
-     ```
+     ``
      npx cypress open
-     ```
+     ``
 
 4. *Sélectionner "E2E Testing" :*
    - Une fois que Cypress est ouvert, cliquez sur "E2E Testing".
